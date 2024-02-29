@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
-using NeoFortaleza.Runtime.Systems.Behaviors;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

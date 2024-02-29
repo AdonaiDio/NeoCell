@@ -17,8 +17,8 @@ using System;
 
         [SerializeField] private Transform playerTarget;
         [SerializeField] private float interactDistance;
-        private UnityEngine.Vector3 FollowPos;
-        [SerializeField] private float speed = 0.5f;
+  
+     
         [SerializeField] private float damageCooldown;
         private float lastDamage;
         [SerializeField] private GameObject body;

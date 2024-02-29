@@ -31,7 +31,7 @@ using Unity.VisualScripting;
    
      private CharacterController controller;
     private Controls controls; 
-    private PlayerInput playerInput;
+    
    
     private UnityEngine.Vector2 playerMovement;
     private UnityEngine.Vector2 aim;
@@ -52,7 +52,7 @@ using Unity.VisualScripting;
     public void Awake(){
         controller = GetComponent<CharacterController>();
         controls = new Controls();
-        playerInput = GetComponent<PlayerInput>();
+        
         HP = HPMax;
     }
     private void OnEnable(){
@@ -68,9 +68,9 @@ using Unity.VisualScripting;
         void Update(){
         if (HP <= 0){
             
-            //Application.Quit(); Close App
+            Application.Quit(); //Close App
             
-            UnityEditor.EditorApplication.isPlaying = false; //Close editor
+            //UnityEditor.EditorApplication.isPlaying = false; //Close editor
         }
         HandleInput();
         HandleMovement();

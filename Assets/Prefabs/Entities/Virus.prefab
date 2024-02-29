@@ -218,7 +218,6 @@ MonoBehaviour:
   virusAgent: {fileID: 3825823172516024662}
   playerTarget: {fileID: 7455264074127862014, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
   interactDistance: 1
-  speed: 0.5
   damageCooldown: 0
   body: {fileID: 2839111922000915296}
   expAmount: 1
@@ -492,3 +491,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barImage: {fileID: 3326983593400304671}
   enemy: {fileID: 7472649979847753351}
+  HPBarCanva: {fileID: 2258753048228732807}
