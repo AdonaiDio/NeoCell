@@ -20,11 +20,13 @@ using System;
         private UnityEngine.Vector3 FollowPos;
         [SerializeField] private float speed = 0.5f;
         [SerializeField] private float damageCooldown;
+        private float lastDamage;
         [SerializeField] private GameObject body;
         
         public event EventHandler<OnHPLostEventArgs> OnHPLost;
         [SerializeField] float expAmount = 1;
         private Rigidbody rb;
+       
         public class OnHPLostEventArgs : EventArgs{
             public float hpNormalized;
         } 
@@ -58,6 +60,7 @@ using System;
         OnHPLost?.Invoke(this, new OnHPLostEventArgs{
         hpNormalized = HP/HPMax
         });
+
         }
         void CheckCollisions(float interactDistance)
         {
@@ -77,8 +80,13 @@ using System;
         {
             if (hit.collider.GetComponent<Cell>())
             {
-
+                if (Time.time - lastDamage < damageCooldown ){
+              
+                }
+                else{
                 hit.collider.GetComponent<Cell>().LoseHP();
+                lastDamage = Time.time;
+                }
             }
         }
 
