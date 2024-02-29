@@ -13,10 +13,10 @@ using Unity.VisualScripting;
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravityValue = -9.81f;   
-    [SerializeField] private float HPMax;
+    [SerializeField] private float HPMax; //Max HP
     [SerializeField] private GameObject body;
 
-    private float HP;
+    private float HP; //Used to store current HP
 
     [SerializeField] private Camera camera;
 
@@ -25,7 +25,7 @@ using Unity.VisualScripting;
     
     [SerializeField] private float shootTimer = 0.5f;
     [SerializeField] private float currentExperience, maxExperience, level;
-    public float experienceNormalized;
+    public float experienceToFillBar; // for XP bar calc
     
 
    
@@ -33,14 +33,14 @@ using Unity.VisualScripting;
     private Controls controls; 
     
    
-    private UnityEngine.Vector2 playerMovement;
-    private UnityEngine.Vector2 aim;
-    private UnityEngine.Vector3 playerVelocity;
+    private UnityEngine.Vector2 playerMovement; // receive move inputs
+    private UnityEngine.Vector2 aim; //receive aim inputs
+    private UnityEngine.Vector3 playerVelocity; //physics handling
     
-        public event EventHandler<OnHPLostEventArgs> OnHPLost;
+        public event EventHandler<OnHPLostEventArgs> OnHPLost; //Send to HP Bar
         public class OnHPLostEventArgs : EventArgs{
-            public float hpNormalized;
-        }         public event EventHandler<OnLevelUpEventArgs> OnLevelUp;
+            public float hpToFillBar;
+        }         public event EventHandler<OnLevelUpEventArgs> OnLevelUp; // Send to Level TextMesh on ExperienceManager
         public class OnLevelUpEventArgs : EventArgs{
             public float currentLevel;
         } 
@@ -53,11 +53,11 @@ using Unity.VisualScripting;
         controller = GetComponent<CharacterController>();
         controls = new Controls();
         
-        HP = HPMax;
+        HP = HPMax; //Start at max HP
     }
     private void OnEnable(){
         controls.Enable();
-        ExperienceManager.Instance.OnExperienceChange += HandleXP;
+        ExperienceManager.Instance.OnExperienceChange += HandleXP; //Receive XP change from Experience Manager
     }
     private void OnDisable(){
         controls.Disable();
@@ -68,9 +68,9 @@ using Unity.VisualScripting;
         void Update(){
         if (HP <= 0){
             
-            Application.Quit(); //Close App
+            //Application.Quit(); //Close App
             
-            //UnityEditor.EditorApplication.isPlaying = false; //Close editor
+            UnityEditor.EditorApplication.isPlaying = false; //Close editor
         }
         HandleInput();
         HandleMovement();
@@ -79,13 +79,7 @@ using Unity.VisualScripting;
       
        
         currentWeapon.Shoot();
-        if (shootTimer <= 0){
-            shootTimer -= Time.deltaTime;
-        }
-        if (shootTimer<= 0){
-            shootTimer = 0.5f;
-        }
-    
+ 
 
     }
     private void HandleInput(){
@@ -121,28 +115,28 @@ using Unity.VisualScripting;
     public void LoseHP(){
         HP--;
         OnHPLost?.Invoke(this, new OnHPLostEventArgs{
-        hpNormalized = HP/HPMax
+        hpToFillBar = HP/HPMax //Variable used to fill on HPBarCell
             });
     }
-        public void HandleXP(float newExperience){
+        public void HandleXP(float newExperience){ //Maybe remove this function and let ExperienceManager handle it completely
         currentExperience += newExperience;
             if (currentExperience >= maxExperience){
             level++;
-            OnLevelUp?.Invoke(this, new OnLevelUpEventArgs{
+            OnLevelUp?.Invoke(this, new OnLevelUpEventArgs{ //Send XP bar
             currentLevel = level
             
             });
-            currentExperience = 0;
+            LevelUp();
         }
         
-        experienceNormalized = currentExperience/maxExperience;
+        experienceToFillBar = currentExperience/maxExperience; //Variable used to fill XP bar;
         
           
     
             }
             
     public void LevelUp(){
-        currentExperience = 0;
+        currentExperience = 0; //Reset XP value
 
     }
     }   

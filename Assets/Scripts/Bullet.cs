@@ -4,18 +4,18 @@ using UnityEngine;
 
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] public LayerMask collisionMask;
-        [SerializeField] private float speed = 10f;
-        private Camera mainCamera;
+        [SerializeField] public LayerMask collisionMask; //enemy collision mask
+        private float speed = 0;//going to receive speed from weapon 
+       
 
         public void SetSpeed(float newSpeed)
         {
-            speed = newSpeed;
+            speed = newSpeed;//receive speed from weapon
         }
 
         void Start()
         {
-            mainCamera = Camera.main;
+      
         }
 
         void Update()

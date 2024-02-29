@@ -19,21 +19,21 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] UnityEngine.UI.Image barImage;
     private void Awake(){
         if (Instance != null && Instance != this){
-            Destroy(this);
+            Destroy(this); 
         }
         else{
             Instance = this;
-        }
+        } //Applying Singleton
         
     }
     private void Update(){
         player.OnLevelUp += Player_OnLevelUp;
     }
     public void AddExperience(float amount){
-        OnExperienceChange?.Invoke(amount);
-        barImage.fillAmount = player.experienceNormalized;
+        OnExperienceChange?.Invoke(amount); //send to Cell
+        barImage.fillAmount = player.experienceToFillBar; //receive experience normalized to calc fill ammount
     }
     public void Player_OnLevelUp(object sender, Cell.OnLevelUpEventArgs e){
-        levelText.text = e.currentLevel.ToString();
+        levelText.text = e.currentLevel.ToString(); //Change level text value
     }
 }
