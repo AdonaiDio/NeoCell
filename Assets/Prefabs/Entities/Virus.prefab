@@ -140,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 3825823172516024744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.419998, y: 1, z: 32.71}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 422206145777724412}
@@ -159,7 +159,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &3257110934199292916
 Rigidbody:
@@ -214,11 +214,11 @@ MonoBehaviour:
   HPMax: 3
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   virusAgent: {fileID: 3825823172516024662}
   playerTarget: {fileID: 7455264074127862014, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
   interactDistance: 1
-  damageCooldown: 0
+  damageCooldown: 0.5
   body: {fileID: 2839111922000915296}
   expAmount: 1
 --- !u!1 &6729049941470554300
