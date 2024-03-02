@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] Vector3 spawnArea;
     [SerializeField] float spawnTimer;
     [SerializeField] Cell player;
-    [SerializeField] float minDistanceToPlayer;
+    [SerializeField] float minDistance;
     float timer;
 
     private void Update(){
@@ -29,9 +30,9 @@ public class SpawnManager : MonoBehaviour
 
         );
         
-        float distanceToPlayer = Vector3.Distance(position, player.transform.position);
+        float distance = Vector3.Distance(position, player.transform.position);
         
-        if (distanceToPlayer > minDistanceToPlayer){
+        if (distance > minDistance){
         GameObject newEnemy = Instantiate(enemy);
         newEnemy.transform.position = position;
         }

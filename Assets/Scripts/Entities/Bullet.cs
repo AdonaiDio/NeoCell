@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 
 
@@ -15,7 +17,7 @@ using UnityEngine;
 
         void Start()
         {
-      
+        StartCoroutine(destroyProjectile());
         }
 
         void Update()
@@ -45,4 +47,8 @@ using UnityEngine;
             }
             Destroy(gameObject);
         }
+        private IEnumerator destroyProjectile(){
+        yield return new WaitForSeconds(3);
+        Bullet.Destroy(this.gameObject);
+    }
     }
