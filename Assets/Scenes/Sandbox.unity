@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 69583687}
   - component: {fileID: 69583686}
   m_Layer: 0
-  m_Name: EnemySpawn
+  m_Name: SpawnManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,9 +274,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 3825823172516024744, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
   spawnArea: {x: 95, y: 0, z: 95}
-  spawnTimer: 0.4
+  spawnTimer: 2
   player: {fileID: 2025166227}
-  minDistanceToPlayer: 40
+  minDistance: 50
 --- !u!4 &69583687
 Transform:
   m_ObjectHideFlags: 0
