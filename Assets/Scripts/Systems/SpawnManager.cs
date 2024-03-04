@@ -20,6 +20,7 @@ public class SpawnManager : MonoBehaviour
             timer = spawnTimer;
         }
     }
+    
     private void SpawnEnemy()
     {
         Vector3 position = new Vector3(

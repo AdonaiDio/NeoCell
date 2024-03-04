@@ -9,12 +9,22 @@ public class HPBarCell : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private Image barImage;
     [SerializeField] private Cell player;
+            private void OnEnable()
+    {
+        EventManager.onHpLostCell.AddListener(loseHP);
+        
+    }
+    private void OnDisable()
+    {
+        EventManager.onHpLostCell.RemoveListener(loseHP);
+      
+    }
     private void Start() {
-        player.OnHPLost += Cell_OnHPLost; //receive HP lost event from Cell
+        
     }
 
-    private void Cell_OnHPLost(object sender, Cell.OnHPLostEventArgs e){
-        barImage.fillAmount = e.hpToFillBar;  //Receive hp normalized to fill bar
+    private void loseHP(float loseHP){
+        barImage.fillAmount = loseHP;  //Receive hp normalized to fill bar
     }
 
 

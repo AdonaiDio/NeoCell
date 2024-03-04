@@ -212,15 +212,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPMax: 3
+  hpBarVirus: {fileID: 7033904940086372055}
+  hpBarImage: {fileID: 3326983593400304671}
   collisionMask:
     serializedVersion: 2
     m_Bits: 8
   virusAgent: {fileID: 3825823172516024662}
+  xpValue: 1
   playerTarget: {fileID: 7455264074127862014, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
   interactDistance: 1
   damageCooldown: 0.5
   body: {fileID: 2839111922000915296}
-  expAmount: 1
 --- !u!1 &6729049941470554300
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,4 +493,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barImage: {fileID: 3326983593400304671}
   enemy: {fileID: 7472649979847753351}
-  HPBarCanva: {fileID: 2258753048228732807}
+  HPBarCanvas: {fileID: 2258753048228732807}

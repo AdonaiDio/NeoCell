@@ -8,10 +8,8 @@ using UnityEngine.UI;
 public class ExperienceManager : MonoBehaviour
 {
     public static ExperienceManager Instance;
-    public delegate void ExperienceChangeHandler (float amount);
-    public event ExperienceChangeHandler OnExperienceChange;
-    public delegate void LevelChangeHandler (float level);
-    public event LevelChangeHandler OnLevelUp;
+    [SerializeField] private float maxExperience = 10;
+    private float currentExperience = 0;
     [SerializeField] TextMeshProUGUI levelText;
 
     
@@ -26,14 +24,27 @@ public class ExperienceManager : MonoBehaviour
         } //Applying Singleton
         
     }
+            private void OnEnable()
+    {
+        EventManager.onXPGained.AddListener(earnXP);
+        EventManager.onLevelUp.AddListener(levelUp);
+        
+    }
+    private void OnDisable()
+    {
+        EventManager.onXPGained.RemoveListener(earnXP);
+        EventManager.onLevelUp.RemoveListener(levelUp);
+      
+    }
     private void Update(){
-        player.OnLevelUp += Player_OnLevelUp;
     }
-    public void AddExperience(float amount){
-        OnExperienceChange?.Invoke(amount); //send to Cell
-        barImage.fillAmount = player.experienceToFillBar; //receive experience normalized to calc fill ammount
+    public void earnXP(float amount){
+        //send to Cell
+        currentExperience += amount;
+        barImage.fillAmount = currentExperience/maxExperience; //receive experience normalized to calc fill ammount
     }
-    public void Player_OnLevelUp(object sender, Cell.OnLevelUpEventArgs e){
-        levelText.text = e.currentLevel.ToString(); //Change level text value
+    public void levelUp(float level){
+        levelText.text = level.ToString(); //Change level text value
+        currentExperience = 0;
     }
 }

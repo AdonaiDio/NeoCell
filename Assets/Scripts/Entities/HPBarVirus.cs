@@ -10,17 +10,28 @@ public class HPBarVirus : MonoBehaviour
     [SerializeField] private Image barImage;
 
     [SerializeField] private Virus enemy;
-    [SerializeField] private Canvas HPBarCanva;
+    [SerializeField] private Canvas HPBarCanvas;
+        private void OnEnable()
+    {
+        EventManager.onHpLostVirus.AddListener(loseHP);
+        
+    }
+    private void OnDisable()
+    {
+        EventManager.onHpLostVirus.RemoveListener(loseHP);
+      
+    }
     private void Start(){
-        enemy.OnHPLost += Enemy_OnHPLost;
+        
     }
     private void Update(){
-      HPBarCanva.transform.rotation = Quaternion.identity; //Stay in place when virus rotates
+      HPBarCanvas.transform.rotation = Quaternion.identity; //Stay in place when virus rotates
     }
 
 
 
-    private void Enemy_OnHPLost(object sender, Virus.OnHPLostEventArgs e){
-      barImage.fillAmount = e.hpToFillBar; //calc hp fill
+    private void loseHP(Virus enemy, float hpToFillBar){
+         enemy.hpBarImage.fillAmount = hpToFillBar; //calc hp fill
+
     }
 }
