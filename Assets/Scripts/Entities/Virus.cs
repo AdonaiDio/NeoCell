@@ -38,6 +38,7 @@ public class Virus : MonoBehaviour
             HP = HPMax; //Start with max HP
             rb = GetComponent<Rigidbody>();
 
+
         }
         void Update()
         {
@@ -46,12 +47,15 @@ public class Virus : MonoBehaviour
                 //FlyweightFactory.ReturnToPool(this);
                 
                 GameObject.Destroy(gameObject);
-                EventManager.onXPGained.Invoke(xpValue);
+                
+                Events.onXPGained.Invoke(xpValue);
+                Events.onEnemyDeath.Invoke(this);
                 
                 //ExperienceManager.Instance.AddExperience(expAmount); //send XP after death, maybe convert to dna drop later
             }
             ChasePlayer(); //follow player
             CheckCollisions(interactDistance);//check collisions to do damage
+            hpBarVirus.transform.rotation = Quaternion.identity;
             
         }
         void ChasePlayer()
@@ -62,7 +66,7 @@ public class Virus : MonoBehaviour
         {
         HP--;
         float hpToFillBar = HP/HPMax;
-        EventManager.onHpLostVirus.Invoke(this, hpToFillBar);
+        hpBarImage.fillAmount = hpToFillBar;
        // EventManager.Instance.OnHPLost?.Invoke(this, new OnHPLostEventArgs{
         //hpToFillBar = HP/HPMax //calc hp bar fill 
         //});

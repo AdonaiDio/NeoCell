@@ -13,12 +13,12 @@ public class HPBarVirus : MonoBehaviour
     [SerializeField] private Canvas HPBarCanvas;
         private void OnEnable()
     {
-        EventManager.onHpLostVirus.AddListener(loseHP);
+        Events.onHpLostVirus.AddListener(loseHP);
         
     }
     private void OnDisable()
     {
-        EventManager.onHpLostVirus.RemoveListener(loseHP);
+        Events.onHpLostVirus.RemoveListener(loseHP);
       
     }
     private void Start(){

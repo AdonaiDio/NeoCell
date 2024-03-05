@@ -11,12 +11,12 @@ public class HPBarCell : MonoBehaviour
     [SerializeField] private Cell player;
             private void OnEnable()
     {
-        EventManager.onHpLostCell.AddListener(loseHP);
+        Events.onHpLostCell.AddListener(loseHP);
         
     }
     private void OnDisable()
     {
-        EventManager.onHpLostCell.RemoveListener(loseHP);
+        Events.onHpLostCell.RemoveListener(loseHP);
       
     }
     private void Start() {

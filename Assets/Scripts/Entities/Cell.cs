@@ -109,7 +109,7 @@ using Unity.VisualScripting;
     public void LoseHP(){
         HP--;
         float hpToFillBar = HP/HPMax;
-        EventManager.onHpLostCell.Invoke(hpToFillBar);
+        Events.onHpLostCell.Invoke(hpToFillBar);
         //hpToFillBar = HP/HPMax //Variable used to fill on HPBarCell
            
     }

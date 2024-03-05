@@ -26,14 +26,14 @@ public class ExperienceManager : MonoBehaviour
     }
             private void OnEnable()
     {
-        EventManager.onXPGained.AddListener(earnXP);
-        EventManager.onLevelUp.AddListener(levelUp);
+        Events.onXPGained.AddListener(earnXP);
+        Events.onLevelUp.AddListener(levelUp);
         
     }
     private void OnDisable()
     {
-        EventManager.onXPGained.RemoveListener(earnXP);
-        EventManager.onLevelUp.RemoveListener(levelUp);
+        Events.onXPGained.RemoveListener(earnXP);
+        Events.onLevelUp.RemoveListener(levelUp);
       
     }
     private void Update(){
