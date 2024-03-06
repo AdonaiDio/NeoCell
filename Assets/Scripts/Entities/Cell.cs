@@ -8,11 +8,11 @@ using Unity.VisualScripting;
 
 
 
-    public class Cell : MonoBehaviour
-    {
+public class Cell : MonoBehaviour
+{
 
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float gravityValue = -9.81f;   
+    [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float HPMax; //Max HP
     [SerializeField] private GameObject body;
 
@@ -21,77 +21,86 @@ using Unity.VisualScripting;
     [SerializeField] private Camera camera;
 
     [SerializeField] private Weapon currentWeapon;
-    
-    
+
+
     [SerializeField] private float shootTimer = 0.5f;
     [SerializeField] private float currentExperience, maxExperience, level;
     public float experienceToFillBar; // for XP bar calc
-    
 
-   
-     private CharacterController controller;
-    private Controls controls; 
-    
-   
+
+
+    private CharacterController controller;
+    private Controls controls;
+
+
     private UnityEngine.Vector2 playerMovement; // receive move inputs
     private UnityEngine.Vector2 aim; //receive aim inputs
     private UnityEngine.Vector3 playerVelocity; //physics handling
-    
-        public event EventHandler<OnHPLostEventArgs> OnHPLost; //Send to HP Bar
-        public class OnHPLostEventArgs : EventArgs{
-            public float hpToFillBar;
-        }         public event EventHandler<OnLevelUpEventArgs> OnLevelUp; // Send to Level TextMesh on ExperienceManager
-        public class OnLevelUpEventArgs : EventArgs{
-            public float currentLevel;
-        } 
 
-   
-   
-    
+    public event EventHandler<OnHPLostEventArgs> OnHPLost; //Send to HP Bar
+    public class OnHPLostEventArgs : EventArgs
+    {
+        public float hpToFillBar;
+    }
+    public event EventHandler<OnLevelUpEventArgs> OnLevelUp; // Send to Level TextMesh on ExperienceManager
+    public class OnLevelUpEventArgs : EventArgs
+    {
+        public float currentLevel;
+    }
 
-    public void Awake(){
+
+
+
+
+    public void Awake()
+    {
         controller = GetComponent<CharacterController>();
         controls = new Controls();
-        
+
         HP = HPMax; //Start at max HP
     }
-    private void OnEnable(){
+    private void OnEnable()
+    {
         controls.Enable();
         ExperienceManager.Instance.OnExperienceChange += HandleXP; //Receive XP change from Experience Manager
     }
-    private void OnDisable(){
+    private void OnDisable()
+    {
         controls.Disable();
         ExperienceManager.Instance.OnExperienceChange -= HandleXP;
     }
 
 
-        void Update(){
-        if (HP <= 0){
-            
+    void Update()
+    {
+        if (HP <= 0)
+        {
+
             //Application.Quit(); //Close App
-            
+
             UnityEditor.EditorApplication.isPlaying = false; //Close editor
         }
         HandleInput();
         HandleMovement();
         HandleRotation();
-        
-      
-       
+
+
+
         currentWeapon.Shoot();
- 
+
 
     }
-    private void HandleInput(){
+    private void HandleInput()
+    {
         playerMovement = controls.Player.Move.ReadValue<UnityEngine.Vector2>();
-        aim = controls.Player.Aim.ReadValue<UnityEngine.Vector2>();    
+        aim = controls.Player.Aim.ReadValue<UnityEngine.Vector2>();
     }
     private void HandleMovement()
     {
-      UnityEngine.Vector3 move = new UnityEngine.Vector3(playerMovement.x, 0, playerMovement.y);
-      controller.Move(move * Time.deltaTime * moveSpeed);
-      playerVelocity.y += gravityValue * Time.deltaTime;
-      controller.Move(playerVelocity * Time.deltaTime);
+        UnityEngine.Vector3 move = new UnityEngine.Vector3(playerMovement.x, 0, playerMovement.y);
+        controller.Move(move * Time.deltaTime * moveSpeed);
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
 
     }
 
@@ -100,48 +109,56 @@ using Unity.VisualScripting;
         Ray ray = Camera.main.ScreenPointToRay(aim);
         UnityEngine.Plane groundPlane = new UnityEngine.Plane(UnityEngine.Vector3.up, UnityEngine.Vector3.zero);
         float rayDistance;
-        if (groundPlane.Raycast(ray, out rayDistance)){
+        if (groundPlane.Raycast(ray, out rayDistance))
+        {
             UnityEngine.Vector3 point = ray.GetPoint(rayDistance);
             LookAt(point);
         }
     }
-    private void LookAt(UnityEngine.Vector3 lookPoint){
-        UnityEngine.Vector3 heightCorrectedPoint = new UnityEngine.Vector3 (lookPoint.x, transform.position.y, lookPoint.z);
+    private void LookAt(UnityEngine.Vector3 lookPoint)
+    {
+        UnityEngine.Vector3 heightCorrectedPoint = new UnityEngine.Vector3(lookPoint.x, transform.position.y, lookPoint.z);
         body.transform.LookAt(heightCorrectedPoint);
 
 
     }
 
-    public void LoseHP(){
+    public void LoseHP()
+    {
         HP--;
-        OnHPLost?.Invoke(this, new OnHPLostEventArgs{
-        hpToFillBar = HP/HPMax //Variable used to fill on HPBarCell
-            });
+        OnHPLost?.Invoke(this, new OnHPLostEventArgs
+        {
+            hpToFillBar = HP / HPMax //Variable used to fill on HPBarCell
+        });
     }
-        public void HandleXP(float newExperience){ //Maybe remove this function and let ExperienceManager handle it completely
+    public void HandleXP(float newExperience)
+    { //Maybe remove this function and let ExperienceManager handle it completely
         currentExperience += newExperience;
-            if (currentExperience >= maxExperience){
+        if (currentExperience >= maxExperience)
+        {
             level++;
-            OnLevelUp?.Invoke(this, new OnLevelUpEventArgs{ //Send XP bar
-            currentLevel = level
-            
+            OnLevelUp?.Invoke(this, new OnLevelUpEventArgs
+            { //Send XP bar
+                currentLevel = level
+
             });
             LevelUp();
         }
-        
-        experienceToFillBar = currentExperience/maxExperience; //Variable used to fill XP bar;
-        
-          
-    
-            }
-            
-    public void LevelUp(){
+
+        experienceToFillBar = currentExperience / maxExperience; //Variable used to fill XP bar;
+
+
+
+    }
+
+    public void LevelUp()
+    {
         currentExperience = 0; //Reset XP value
 
     }
-    }   
+}
 
 
 
-     
+
 
