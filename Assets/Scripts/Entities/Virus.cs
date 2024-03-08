@@ -2,17 +2,23 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI;
 
 
 
-    public class Virus : MonoBehaviour
+public class Virus : MonoBehaviour
     {
         [SerializeField] private float HPMax = 3; //Max HP
         private float HP; //Used to store current HP
+        [SerializeField] HPBarVirus hpBarVirus;
+        [SerializeField] public UnityEngine.UI.Image hpBarImage;
+        
 
 
         [SerializeField] private LayerMask collisionMask;
         [SerializeField] private NavMeshAgent virusAgent;
+        [SerializeField] private float xpValue = 1;
 
 
         [SerializeField] private Transform playerTarget; 
@@ -23,19 +29,15 @@ using System;
         private float lastDamage; //Store last damage Time.time
         [SerializeField] private GameObject body;
         
-        public event EventHandler<OnHPLostEventArgs> OnHPLost; 
-        [SerializeField] float expAmount = 1; 
-        private Rigidbody rb;
-       
-        public class OnHPLostEventArgs : EventArgs{
-            public float hpToFillBar; //Variable used to calculate fill on HP Bar
-        } 
 
+     private Rigidbody rb;
+       
         private void Awake()
         {
             playerTarget = GameObject.Find("Cell").transform; //Find Cell target to follow
             HP = HPMax; //Start with max HP
             rb = GetComponent<Rigidbody>();
+
 
         }
         void Update()
@@ -43,11 +45,17 @@ using System;
               if (HP <= 0) //Die
             {
                 //FlyweightFactory.ReturnToPool(this);
-                GameObject.Destroy(gameObject); 
-                ExperienceManager.Instance.AddExperience(expAmount); //send XP after death, maybe convert to dna drop later
+                
+                GameObject.Destroy(gameObject);
+                
+                Events.onXPGained.Invoke(xpValue);
+                Events.onEnemyDeath.Invoke(this);
+                
+                //ExperienceManager.Instance.AddExperience(expAmount); //send XP after death, maybe convert to dna drop later
             }
             ChasePlayer(); //follow player
             CheckCollisions(interactDistance);//check collisions to do damage
+            hpBarVirus.transform.rotation = Quaternion.identity;
             
         }
         void ChasePlayer()
@@ -57,9 +65,11 @@ using System;
         public void LoseHP()
         {
         HP--;
-        OnHPLost?.Invoke(this, new OnHPLostEventArgs{
-        hpToFillBar = HP/HPMax //calc hp bar fill 
-        });
+        float hpToFillBar = HP/HPMax;
+        hpBarImage.fillAmount = hpToFillBar;
+       // EventManager.Instance.OnHPLost?.Invoke(this, new OnHPLostEventArgs{
+        //hpToFillBar = HP/HPMax //calc hp bar fill 
+        //});
 
         }
         void CheckCollisions(float interactDistance)

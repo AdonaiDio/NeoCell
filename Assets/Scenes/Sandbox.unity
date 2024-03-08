@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 69583687}
   - component: {fileID: 69583686}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: EnemySpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -272,11 +272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8852f276f20006c4ea1052f0fe809370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3825823172516024744, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
+  enemy: {fileID: 7472649979847753351, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
   spawnArea: {x: 95, y: 0, z: 95}
-  spawnTimer: 2
+  spawnTimer: 0.1
   player: {fileID: 2025166227}
   minDistance: 50
+  maxEnemies: 30
 --- !u!4 &69583687
 Transform:
   m_ObjectHideFlags: 0
@@ -839,6 +840,10 @@ PrefabInstance:
       value: Cell
       objectReference: {fileID: 0}
     - target: {fileID: 6539727383561169181, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
+      propertyPath: HPMax
+      value: 2.3903822e+11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539727383561169181, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
       propertyPath: level
       value: 1
       objectReference: {fileID: 0}
@@ -946,7 +951,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eaba695d9a10d2489f66757778d6afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxExperience: 10
   levelText: {fileID: 213046472}
+  currentLevel: 0
   player: {fileID: 2025166227}
   barImage: {fileID: 1399620613}
 --- !u!4 &931840042

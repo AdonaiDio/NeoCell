@@ -43,7 +43,7 @@ using System.Collections;
         {
             if (hit.collider.GetComponent<Virus>())
             {
-                hit.collider.GetComponent<Virus>().LoseHP();
+                hit.collider.GetComponent<Virus>().LoseHP(); 
             }
             Destroy(gameObject);
         }

@@ -37,13 +37,7 @@ using Unity.VisualScripting;
     private UnityEngine.Vector2 aim; //receive aim inputs
     private UnityEngine.Vector3 playerVelocity; //physics handling
     
-        public event EventHandler<OnHPLostEventArgs> OnHPLost; //Send to HP Bar
-        public class OnHPLostEventArgs : EventArgs{
-            public float hpToFillBar;
-        }         public event EventHandler<OnLevelUpEventArgs> OnLevelUp; // Send to Level TextMesh on ExperienceManager
-        public class OnLevelUpEventArgs : EventArgs{
-            public float currentLevel;
-        } 
+     
 
    
    
@@ -57,11 +51,11 @@ using Unity.VisualScripting;
     }
     private void OnEnable(){
         controls.Enable();
-        ExperienceManager.Instance.OnExperienceChange += HandleXP; //Receive XP change from Experience Manager
+        //Receive XP change from Experience Manager
     }
     private void OnDisable(){
         controls.Disable();
-        ExperienceManager.Instance.OnExperienceChange -= HandleXP;
+    
     }
 
 
@@ -114,33 +108,12 @@ using Unity.VisualScripting;
 
     public void LoseHP(){
         HP--;
-        OnHPLost?.Invoke(this, new OnHPLostEventArgs{
-        hpToFillBar = HP/HPMax //Variable used to fill on HPBarCell
-            });
+        float hpToFillBar = HP/HPMax;
+        Events.onHpLostCell.Invoke(hpToFillBar);
+        //hpToFillBar = HP/HPMax //Variable used to fill on HPBarCell
+           
     }
-        public void HandleXP(float newExperience){ //Maybe remove this function and let ExperienceManager handle it completely
-        currentExperience += newExperience;
-            if (currentExperience >= maxExperience){
-            level++;
-            OnLevelUp?.Invoke(this, new OnLevelUpEventArgs{ //Send XP bar
-            currentLevel = level
-            
-            });
-            LevelUp();
-        }
-        
-        experienceToFillBar = currentExperience/maxExperience; //Variable used to fill XP bar;
-        
-          
-    
-            }
-            
-    public void LevelUp(){
-        currentExperience = 0; //Reset XP value
-
     }
-    }   
-
 
 
      

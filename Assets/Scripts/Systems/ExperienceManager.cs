@@ -8,11 +8,10 @@ using UnityEngine.UI;
 public class ExperienceManager : MonoBehaviour
 {
     public static ExperienceManager Instance;
-    public delegate void ExperienceChangeHandler (float amount);
-    public event ExperienceChangeHandler OnExperienceChange;
-    public delegate void LevelChangeHandler (float level);
-    public event LevelChangeHandler OnLevelUp;
+    [SerializeField] private float maxExperience = 10;
+    private float currentExperience = 0;
     [SerializeField] TextMeshProUGUI levelText;
+    public float currentLevel = 0;
 
     
     [SerializeField] private Cell player;
@@ -26,14 +25,31 @@ public class ExperienceManager : MonoBehaviour
         } //Applying Singleton
         
     }
+            private void OnEnable()
+    {
+        Events.onXPGained.AddListener(earnXP);
+        Events.onLevelUp.AddListener(levelUp);
+        
+    }
+    private void OnDisable()
+    {
+        Events.onXPGained.RemoveListener(earnXP);
+        Events.onLevelUp.RemoveListener(levelUp);
+      
+    }
     private void Update(){
-        player.OnLevelUp += Player_OnLevelUp;
     }
-    public void AddExperience(float amount){
-        OnExperienceChange?.Invoke(amount); //send to Cell
-        barImage.fillAmount = player.experienceToFillBar; //receive experience normalized to calc fill ammount
+    public void earnXP(float amount){
+        //send to Cell
+        currentExperience += amount;
+        barImage.fillAmount = currentExperience/maxExperience; //receive experience normalized to calc fill ammount
+        if (currentExperience >= maxExperience){
+            levelUp(currentLevel);
+        }
     }
-    public void Player_OnLevelUp(object sender, Cell.OnLevelUpEventArgs e){
-        levelText.text = e.currentLevel.ToString(); //Change level text value
+    public void levelUp(float level){
+        currentLevel++;
+        levelText.text = level.ToString(); //Change level text value
+        currentExperience = 0;
     }
 }
