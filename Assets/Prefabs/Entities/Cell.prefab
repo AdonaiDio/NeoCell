@@ -312,12 +312,11 @@ MonoBehaviour:
   body: {fileID: 1868783323334227792}
   camera: {fileID: 0}
   currentWeapon: {fileID: 2460616184727918713}
-  wayPoint: {fileID: 0}
   shootTimer: 0.5
   currentExperience: 0
   maxExperience: 0
   level: 0
-  experienceNormalized: 0
+  experienceToFillBar: 0
 --- !u!143 &3673642205915433225
 CharacterController:
   m_ObjectHideFlags: 0
