@@ -11,6 +11,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] private float maxExperience = 10;
     private float currentExperience = 0;
     [SerializeField] TextMeshProUGUI levelText;
+    public float currentLevel = 0;
 
     
     [SerializeField] private Cell player;
@@ -42,8 +43,12 @@ public class ExperienceManager : MonoBehaviour
         //send to Cell
         currentExperience += amount;
         barImage.fillAmount = currentExperience/maxExperience; //receive experience normalized to calc fill ammount
+        if (currentExperience >= maxExperience){
+            levelUp(currentLevel);
+        }
     }
     public void levelUp(float level){
+        currentLevel++;
         levelText.text = level.ToString(); //Change level text value
         currentExperience = 0;
     }

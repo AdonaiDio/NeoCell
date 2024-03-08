@@ -12,6 +12,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float spawnTimer;
     [SerializeField] Cell player;
     [SerializeField] float minDistance;
+    [SerializeField] float maxEnemies;
     List<Virus> enemies = new List<Virus>();    
      private void OnEnable()
     {
@@ -21,7 +22,7 @@ public class SpawnManager : MonoBehaviour
     }
     private void OnDisable()
     {
-         Events.onEnemyDeath.RemoveListener(removeEnemy);
+        Events.onEnemyDeath.RemoveListener(removeEnemy);
 
         
       
@@ -50,7 +51,7 @@ public class SpawnManager : MonoBehaviour
         float maxDistance = minDistance+10;
         float distance = Vector3.Distance(position, player.transform.position);
        
-        if (distance > minDistance && distance < maxDistance && enemies.Count <= 1){
+        if (distance > minDistance && distance < maxDistance && enemies.Count <= maxEnemies){
         Virus newEnemy = Instantiate(enemy);
         enemies.Add(newEnemy);
         newEnemy.transform.position = position;
