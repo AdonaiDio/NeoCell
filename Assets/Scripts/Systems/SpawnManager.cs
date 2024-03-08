@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -12,6 +13,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float spawnTimer;
     [SerializeField] Player player;
     [SerializeField] float minDistance;
+    [SerializeField] float maxDistance;
     [SerializeField] float maxEnemies;
     List<Virus> enemies = new List<Virus>();    
      private void OnEnable()
@@ -31,7 +33,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update(){
         timer -= Time.deltaTime;
-        if (timer < 0f){
+        if (timer < 0f && enemies.Count < maxEnemies){
             SpawnEnemy();
             timer = spawnTimer;
         }
@@ -41,23 +43,25 @@ public class SpawnManager : MonoBehaviour
     private void SpawnEnemy()
     {   
          
-        Vector3 position = new Vector3(
-            UnityEngine.Random.Range(-spawnArea.x, spawnArea.x),
-            0f,
-            UnityEngine.Random.Range(-spawnArea.z, spawnArea.z)
-            
 
-        );
-        float maxDistance = minDistance+10;
-        float distance = Vector3.Distance(position, player.transform.position);
-       
-        if (distance > minDistance && distance < maxDistance && enemies.Count <= maxEnemies){
-        Virus newEnemy = Instantiate(enemy);
+        Vector3 center = player.transform.position;
+        int a = UnityEngine.Random.Range(1,360);
+        center.y = 0;
+        Vector3 pos = RandomCircle(center, maxDistance, a);
+        Virus newEnemy = Instantiate(enemy, pos, Quaternion.identity, player.transform);
         enemies.Add(newEnemy);
-        newEnemy.transform.position = position;
-        }
+        
     }
-    private void removeEnemy(Virus removedEnemy){
+    Vector3 RandomCircle(Vector3 center, float radius, int a){
+        float ang = a;
+        Vector3 pos;
+        pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+        pos.z = center.z + radius * Mathf.Cos (ang * Mathf.Deg2Rad);
+        pos.y = center.y;
+        return pos;
+
+    }
+    private void removeEnemy(Virus removedEnemy){        
         enemies.Remove(removedEnemy);
     }
     

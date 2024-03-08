@@ -275,8 +275,9 @@ MonoBehaviour:
   enemy: {fileID: 7472649979847753351, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
   spawnArea: {x: 95, y: 0, z: 95}
   spawnTimer: 0.1
-  player: {fileID: 2025166227}
+  player: {fileID: 2025166232}
   minDistance: 50
+  maxDistance: 50
   maxEnemies: 30
 --- !u!4 &69583687
 Transform:
@@ -633,6 +634,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
+--- !u!1 &543155326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6531889807947945256, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
+  m_PrefabInstance: {fileID: 914693979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &611530437
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6539727383561169181, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
       propertyPath: HPMax
-      value: 2.3903822e+11
+      value: 2.3842938e+20
       objectReference: {fileID: 0}
     - target: {fileID: 6539727383561169181, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
       propertyPath: level
@@ -1590,7 +1596,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6539727383561169181, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
   m_PrefabInstance: {fileID: 914693979}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 543155326}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e870df75b67ef34496b72bcb9bdd735, type: 3}
@@ -1601,6 +1607,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7455264074127862014, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
   m_PrefabInstance: {fileID: 914693979}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2025166232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543155326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1000e4ee75f7f48adfc2e6b585e7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4687372462162957133
 PrefabInstance:
   m_ObjectHideFlags: 0
