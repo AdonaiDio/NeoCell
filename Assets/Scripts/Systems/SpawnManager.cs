@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] Virus enemy;
     [SerializeField] Vector3 spawnArea;
     [SerializeField] float spawnTimer;
-    [SerializeField] Cell player;
+    [SerializeField] Player player;
     [SerializeField] float minDistance;
     [SerializeField] float maxEnemies;
     List<Virus> enemies = new List<Virus>();    

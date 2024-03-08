@@ -37,37 +37,3 @@ public class Evt<T0, T1>
     public void AddListener(Action<T0, T1> listener) => _action += listener;
     public void RemoveListener(Action<T0, T1> listener) => _action -= listener;
 }
-
-
-   /*/public event EventHandler<OnHPLostEventArgs> OnHPLost; //Send to HP Bar
-       
-        public class OnHPLostEventArgs : EventArgs{
-            public float hpToFillBar;
-        }
-        public event EventHandler<OnLevelUpEventArgs> OnLevelUp; // Send to Level TextMesh on ExperienceManager
-        public class OnLevelUpEventArgs : EventArgs{
-            public float currentLevel;
-        }
-        
-        private void Awake(){
-        if (Instance != null && Instance != this){
-            Destroy(this); 
-        }
-        else{
-            Instance = this;
-        } //Applying Singleton
-        
-    } 
-        private void OnEnable(){
-        
-        ExperienceManager.Instance.OnExperienceChange += HandleXP; //Receive XP change from Experience Manager
-    }
-        private void OnDisable(){
-        
-        ExperienceManager.Instance.OnExperienceChange -= HandleXP;
-    }
-        private void Update(){
-
-        }
-        /*/
-
