@@ -22,8 +22,13 @@ public class HPBarCell : MonoBehaviour
     private void Start() {
         
     }
+    private void Update(){
+        
+        transform.rotation = Quaternion.identity;
+    }
 
     private void loseHP(float loseHP){
+        
         barImage.fillAmount = loseHP;  //Receive hp normalized to fill bar
     }
 

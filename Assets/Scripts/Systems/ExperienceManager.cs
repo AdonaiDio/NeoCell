@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ExperienceManager : MonoBehaviour
 {
-    public static ExperienceManager Instance;
+   /*/ public static ExperienceManager Instance;
     [SerializeField] private float maxExperience = 10;
     private float currentExperience = 0;
     [SerializeField] TextMeshProUGUI levelText;
@@ -51,5 +51,5 @@ public class ExperienceManager : MonoBehaviour
         currentLevel++;
         levelText.text = level.ToString(); //Change level text value
         currentExperience = 0;
-    }
+    }/*/
 }

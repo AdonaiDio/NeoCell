@@ -7,7 +7,7 @@ public static class Events
 {
     public static readonly Evt<float> onHpLostCell = new Evt<float>();
     public static readonly Evt<Virus, float> onHpLostVirus = new Evt<Virus, float>();
-    public static readonly Evt<float> onXPGained = new Evt<float>();
+    public static readonly Evt<float> onDNAGained = new Evt<float>();
     public static readonly Evt<Virus> onEnemyDeath = new Evt<Virus>();
     public static readonly Evt<float> onLevelUp = new Evt<float>();
 

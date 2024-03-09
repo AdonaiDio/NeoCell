@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using System;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 
 
@@ -18,7 +19,7 @@ public class Virus : MonoBehaviour
 
         [SerializeField] private LayerMask collisionMask;
         [SerializeField] private NavMeshAgent virusAgent;
-        [SerializeField] private float xpValue = 1;
+        
 
 
         [SerializeField] private Transform playerTarget; 
@@ -28,6 +29,7 @@ public class Virus : MonoBehaviour
         [SerializeField] private float damageCooldown; //Damage cooldown
         private float lastDamage; //Store last damage Time.time
         [SerializeField] private GameObject body;
+        [SerializeField] private DNADrop dnaDrop;
         
 
      private Rigidbody rb;
@@ -43,16 +45,13 @@ public class Virus : MonoBehaviour
         void Update()
         {
               if (HP <= 0) //Die
-            {
-                //FlyweightFactory.ReturnToPool(this);
+                Die();
+             
                 
-                GameObject.Destroy(gameObject);
+              
                 
-                Events.onXPGained.Invoke(xpValue);
-                Events.onEnemyDeath.Invoke(this);
-                
-                //ExperienceManager.Instance.AddExperience(expAmount); //send XP after death, maybe convert to dna drop later
-            }
+
+            
             ChasePlayer(); //follow player
             CheckCollisions(interactDistance);//check collisions to do damage
             hpBarVirus.transform.rotation = Quaternion.identity;
@@ -98,6 +97,19 @@ public class Virus : MonoBehaviour
                 lastDamage = Time.time;
                 }
             }
+        }
+        void Die(){
+                Vector3 lootSpawnPoint = transform.position;
+                lootSpawnPoint.y = dnaDrop.transform.position.y; 
+                 
+                GameObject.Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
+              
+                GameObject.Destroy(gameObject); 
+                
+                
+                
+                
+                Events.onEnemyDeath.Invoke(this);
         }
 
     }

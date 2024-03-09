@@ -45,17 +45,17 @@ public class SpawnManager : MonoBehaviour
          
 
         Vector3 center = player.transform.position;
-        int a = UnityEngine.Random.Range(1,360);
+        int a = UnityEngine.Random.Range(1, 360);
         center.y = 0;
-        Vector3 pos = RandomCircle(center, maxDistance, a);
-        Virus newEnemy = Instantiate(enemy, pos, Quaternion.identity, player.transform);
+        Vector3 pos = RandomCircle (center, maxDistance, a);
+        Virus newEnemy = Instantiate (enemy, pos, Quaternion.identity);
         enemies.Add(newEnemy);
         
     }
     Vector3 RandomCircle(Vector3 center, float radius, int a){
         float ang = a;
         Vector3 pos;
-        pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+        pos.x = center.x + radius * Mathf.Sin (ang * Mathf.Deg2Rad);
         pos.z = center.z + radius * Mathf.Cos (ang * Mathf.Deg2Rad);
         pos.y = center.y;
         return pos;
