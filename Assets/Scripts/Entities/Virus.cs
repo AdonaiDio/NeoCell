@@ -34,7 +34,7 @@ public class Virus : MonoBehaviour
        
         private void Awake()
         {
-            playerTarget = GameObject.FindWithTag("Cell").transform; //Find Cell target to follow
+            playerTarget = GameObject.FindAnyObjectByType<Player>().transform; //Find Cell target to follow
             HP = HPMax; //Start with max HP
             rb = GetComponent<Rigidbody>();
 
