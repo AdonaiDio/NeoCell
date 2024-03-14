@@ -910,6 +910,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
+--- !u!1 &444932308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 444932309}
+  m_Layer: 3
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &444932309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444932308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7455264073297065893}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &502911132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2240,6 +2271,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
+--- !u!1 &2003094689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7894942076369767142, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
+  m_PrefabInstance: {fileID: 1395733151399403919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2003094692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003094689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5283622e4ff220044b80598e06378b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
 --- !u!1001 &2057173168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2562,6 +2611,10 @@ PrefabInstance:
       propertyPath: m_Lens.FarClipPlane
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 7843647462144371904, guid: 358f0bec2e08f124282bbc722cf2de34, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 358f0bec2e08f124282bbc722cf2de34, type: 3}
 --- !u!1 &6531889808778611315 stripped
@@ -2644,6 +2697,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeGO: {fileID: 869584237}
+  areaGO: {fileID: 2003094689}
   projectile: {fileID: 6938187504091108177, guid: 3d13154e7b07919428afda85d1b02f84, type: 3}
+  MineAroundGO: {fileID: 7085533151129951572, guid: 20e479d5d2de1ab4cbedfe32ee467943, type: 3}
   enemiesAtOnce: 1
+  numberOfMines: 3
+  mineRadius: 2.5
+  spawnedMines: []
   _cooldown: 1

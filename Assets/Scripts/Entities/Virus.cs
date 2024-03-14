@@ -62,9 +62,9 @@ public class Virus : MonoBehaviour
         {
             virusAgent.SetDestination(playerTarget.position);
         }
-        public void LoseHP()
+        public void LoseHP(float damage = 1)
         {
-        HP--;
+        HP-=damage;
         float hpToFillBar = HP/HPMax;
         hpBarImage.fillAmount = hpToFillBar;
        // EventManager.Instance.OnHPLost?.Invoke(this, new OnHPLostEventArgs{

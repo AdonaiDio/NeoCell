@@ -9,8 +9,9 @@ public static class Events
     public static readonly Evt<Virus, float> onHpLostVirus = new Evt<Virus, float>();
     public static readonly Evt<float> onXPGained = new Evt<float>();
     public static readonly Evt<Virus> onEnemyDeath = new Evt<Virus>();
-    public static readonly Evt<Skill_LineProjectile,Virus> onProjectileHitEnemy = new Evt<Skill_LineProjectile,Virus>();
     public static readonly Evt<float> onLevelUp = new Evt<float>();
+    public static readonly Evt<Skill_LineProjectile,Virus> onProjectileHitEnemy = new Evt<Skill_LineProjectile,Virus>();
+    public static readonly Evt<Skill_SpinningAround,Virus> onMineHitEnemy = new Evt<Skill_SpinningAround, Virus>();
 
 }
 public class Evt
