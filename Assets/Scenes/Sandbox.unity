@@ -204,10 +204,10 @@ MonoBehaviour:
   spawnDistance: 60
   maxEnemies: 40
   waitSpawnStrongTimer: 30
-  waitSpawnTimerDecrease: 15
-  waitSpawnTimerBoss: 10
+  waitSpawnTimerDecrease: 60
   spawnTimerDecreaseRate: 0.7
   strongEnemySpawnChance: 10
+  waitSpawnTimerBoss: 300
   weakEnemiesPool:
   - {fileID: 11400000, guid: 09553b021aec83247ab3850f979fee30, type: 2}
   - {fileID: 11400000, guid: 01e5238041241bc4eb0949fdda8168ff, type: 2}
@@ -615,64 +615,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1001 &502779750
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3825823172516024744, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.419998
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 32.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131376219189537411, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-  m_SourcePrefab: {fileID: 100100000, guid: 7734327db09fbb543a1aeb08372e7969, type: 3}
 --- !u!1 &543155326 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6531889807947945256, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
@@ -1340,7 +1282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e1296f3014dac7748a8cb8c219dcdc71, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7eeced12d27bfea4c92e2df3113f8eda, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2290,7 +2232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 988564746}
-  enemy: {fileID: 8681849613868013073, guid: 6790be53fda2f6042852e3b62006f098, type: 3}
+  bossEnemy: {fileID: 0}
   HPBarCanvas: {fileID: 1949872674}
 --- !u!4 &2025166228 stripped
 Transform:
