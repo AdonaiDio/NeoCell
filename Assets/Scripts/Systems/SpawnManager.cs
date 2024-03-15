@@ -8,18 +8,37 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    [SerializeField] Virus enemy;
+    [SerializeField] Enemy enemy;
+    [SerializeField] Enemy boss;
     [SerializeField] Vector3 spawnArea;
     [SerializeField] float spawnTimer;
     [SerializeField] Player player;
-    [SerializeField] float minDistance;
-    [SerializeField] float maxDistance;
+    
+    [SerializeField] float spawnDistance;
     [SerializeField] float maxEnemies;
-    List<Virus> enemies = new List<Virus>();    
+    private int enemiesPoolSize = 3;
+    [SerializeField] private float waitSpawnStrongTimer;
+    [SerializeField] private float waitSpawnTimerDecrease;
+    [SerializeField] private float waitSpawnTimerBoss;
+     [SerializeField] private float spawnTimerDecreaseRate;
+    
+    List<Enemy> enemies = new List<Enemy>();
+    
+    [SerializeField] private int strongEnemySpawnChance = 0;
+    
+    [SerializeField] List<EnemySO> weakEnemiesPool = new List<EnemySO>();
+    [SerializeField] List<EnemySO> strongEnemiesPool = new List<EnemySO>();
+    [SerializeField] List<EnemySO> bossEnemiesPool = new List<EnemySO>();
+    [SerializeField] List<Transform> bossSpawnPoints = new List<Transform>();
+    private bool hasSpawned = false;
+    
+
      private void OnEnable()
     {
         Events.onEnemyDeath.AddListener(removeEnemy);
-        
+        StartCoroutine(StrongerEnemiesCoroutine());   
+        StartCoroutine(SpawnIncrease());   
+        StartCoroutine(SpawnBoss());   
         
     }
     private void OnDisable()
@@ -47,8 +66,16 @@ public class SpawnManager : MonoBehaviour
         Vector3 center = player.transform.position;
         int a = UnityEngine.Random.Range(1, 360);
         center.y = 0;
-        Vector3 pos = RandomCircle (center, maxDistance, a);
-        Virus newEnemy = Instantiate (enemy, pos, Quaternion.identity);
+        Vector3 pos = RandomCircle (center, spawnDistance, a);
+      
+        int enemySOIndex = UnityEngine.Random.Range(0, enemiesPoolSize);
+          if (UnityEngine.Random.Range(0,100) <= strongEnemySpawnChance ){
+            enemy.enemySO = strongEnemiesPool[enemySOIndex];
+        }
+        else{
+        enemy.enemySO = weakEnemiesPool[enemySOIndex];
+        } 
+        Enemy newEnemy = Instantiate (enemy, pos, Quaternion.identity);
         enemies.Add(newEnemy);
         
     }
@@ -61,10 +88,52 @@ public class SpawnManager : MonoBehaviour
         return pos;
 
     }
-    private void removeEnemy(Virus removedEnemy){        
+    private void removeEnemy(Enemy removedEnemy){        
         enemies.Remove(removedEnemy);
     }
-    
+    IEnumerator StrongerEnemiesCoroutine(){
+        while (strongEnemySpawnChance < 100){
+        yield return new WaitForSeconds(waitSpawnStrongTimer);
+       
+        strongEnemySpawnChance += 10;
+        }
+        
+    }
+     IEnumerator SpawnIncrease(){
+        while (true){
+            yield return new WaitForSeconds(waitSpawnTimerDecrease);
+            spawnTimer = spawnTimer * spawnTimerDecreaseRate;
+
+        }
+        
+        
+    }
+        IEnumerator SpawnBoss(){
+       
+        while (true && hasSpawned == false){
+            yield return new WaitForSeconds(waitSpawnTimerBoss);
+            int i = 0;
+            
+            while (i < bossSpawnPoints.Count && hasSpawned == false){
+                if (Vector3.Distance(bossSpawnPoints[i].position, player.transform.position) > spawnDistance){
+                    int bossSOIndex = UnityEngine.Random.Range(0, enemiesPoolSize);
+                    
+                    boss.enemySO = bossEnemiesPool[bossSOIndex];
+                    
+                   
+                    
+                    Instantiate(boss, bossSpawnPoints[i].position, Quaternion.identity);
+                    hasSpawned = true;
+                }
+                else{
+                    i++;
+                }
+            }
+
+        }
+        
+        
+    }
 
 
 }

@@ -5,20 +5,20 @@ using UnityEngine.UI;
 using System;
 
 
-public class HPBarVirus : MonoBehaviour
+public class HPBarEnemy : MonoBehaviour
 {
-    [SerializeField] private Image barImage;
+    [SerializeField] protected Image barImage;
 
-    [SerializeField] private Virus enemy;
-    [SerializeField] private Canvas HPBarCanvas;
+    [SerializeField] protected Enemy enemy;
+    [SerializeField] protected Canvas HPBarCanvas;
         private void OnEnable()
     {
-        Events.onHpLostVirus.AddListener(loseHP);
+        Events.onHpLostEnemy.AddListener(loseHP);
         
     }
     private void OnDisable()
     {
-        Events.onHpLostVirus.RemoveListener(loseHP);
+        Events.onHpLostEnemy.RemoveListener(loseHP);
       
     }
     private void Start(){
@@ -30,7 +30,7 @@ public class HPBarVirus : MonoBehaviour
 
 
 
-    private void loseHP(Virus enemy, float hpToFillBar){
+    public void loseHP(Enemy enemy, float hpToFillBar){
          enemy.hpBarImage.fillAmount = hpToFillBar; //calc hp fill
 
     }

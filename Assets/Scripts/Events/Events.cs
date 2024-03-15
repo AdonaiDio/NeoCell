@@ -6,9 +6,13 @@ using System;
 public static class Events
 {
     public static readonly Evt<float> onHpLostCell = new Evt<float>();
-    public static readonly Evt<Virus, float> onHpLostVirus = new Evt<Virus, float>();
+    public static readonly Evt<Enemy, float> onHpLostEnemy = new Evt<Enemy, float>();
+     public static readonly Evt<BossEnemy, float> onHpLostBoss = new Evt<BossEnemy, float>();
     public static readonly Evt<float> onDNAGained = new Evt<float>();
-    public static readonly Evt<Virus> onEnemyDeath = new Evt<Virus>();
+
+    public static readonly Evt<BossEnemy> onBossSpawn = new Evt<BossEnemy>();
+    public static readonly Evt<BossEnemy> onBossDeath = new Evt<BossEnemy>();
+    public static readonly Evt<Enemy> onEnemyDeath = new Evt<Enemy>();
     public static readonly Evt<float> onLevelUp = new Evt<float>();
 
 }
@@ -39,35 +43,35 @@ public class Evt<T0, T1>
 }
 
 
-   /*/public event EventHandler<OnHPLostEventArgs> OnHPLost; //Send to HP Bar
-       
-        public class OnHPLostEventArgs : EventArgs{
-            public float hpToFillBar;
-        }
-        public event EventHandler<OnLevelUpEventArgs> OnLevelUp; // Send to Level TextMesh on ExperienceManager
-        public class OnLevelUpEventArgs : EventArgs{
-            public float currentLevel;
-        }
-        
-        private void Awake(){
-        if (Instance != null && Instance != this){
-            Destroy(this); 
-        }
-        else{
-            Instance = this;
-        } //Applying Singleton
-        
-    } 
-        private void OnEnable(){
-        
-        ExperienceManager.Instance.OnExperienceChange += HandleXP; //Receive XP change from Experience Manager
-    }
-        private void OnDisable(){
-        
-        ExperienceManager.Instance.OnExperienceChange -= HandleXP;
-    }
-        private void Update(){
+/*/public event EventHandler<OnHPLostEventArgs> OnHPLost; //Send to HP Bar
 
-        }
-        /*/
+     public class OnHPLostEventArgs : EventArgs{
+         public float hpToFillBar;
+     }
+     public event EventHandler<OnLevelUpEventArgs> OnLevelUp; // Send to Level TextMesh on ExperienceManager
+     public class OnLevelUpEventArgs : EventArgs{
+         public float currentLevel;
+     }
+
+     private void Awake(){
+     if (Instance != null && Instance != this){
+         Destroy(this); 
+     }
+     else{
+         Instance = this;
+     } //Applying Singleton
+
+ } 
+     private void OnEnable(){
+
+     ExperienceManager.Instance.OnExperienceChange += HandleXP; //Receive XP change from Experience Manager
+ }
+     private void OnDisable(){
+
+     ExperienceManager.Instance.OnExperienceChange -= HandleXP;
+ }
+     private void Update(){
+
+     }
+     /*/
 
