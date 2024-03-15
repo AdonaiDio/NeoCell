@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e1296f3014dac7748a8cb8c219dcdc71, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7eeced12d27bfea4c92e2df3113f8eda, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 988564746}
-  enemy: {fileID: 8681849613868013073, guid: 6790be53fda2f6042852e3b62006f098, type: 3}
+  bossEnemy: {fileID: 0}
   HPBarCanvas: {fileID: 1949872674}
 --- !u!4 &2025166228 stripped
 Transform:

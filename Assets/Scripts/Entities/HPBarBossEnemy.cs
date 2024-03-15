@@ -9,7 +9,7 @@ public class HPBarBossEnemy : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] protected Image barImage;
 
-    [SerializeField] protected BossEnemy enemy;
+    [SerializeField] protected BossEnemy bossEnemy;
     [SerializeField] protected Canvas HPBarCanvas;
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class HPBarBossEnemy : MonoBehaviour
     }
     private void onBossSpawn(BossEnemy boss)
     {
-        enemy = boss;
+        bossEnemy = boss;
         HPBarCanvas.enabled = true;
 
     }
@@ -47,7 +47,7 @@ public class HPBarBossEnemy : MonoBehaviour
     {
         HPBarCanvas.enabled = false;
     }
-    private void OnHPLostBoss (BossEnemy enemy, float hpToFillBar){
+    private void OnHPLostBoss (BossEnemy enemy, float hpToFillBar) {
         barImage.fillAmount = hpToFillBar;
     }
 }

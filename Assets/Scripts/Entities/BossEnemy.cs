@@ -27,7 +27,7 @@ public class BossEnemy : Enemy
         {
         HP--;
         float hpToFillBar = HP / HPMax;
-        Events.onHpLostBoss.Invoke(this, hpToFillBar);
+        Events.onHpLostBoss.Invoke(this, hpToFillBar);  
         //float hpToFillBar = HP/HPMax;
         //hpBarImage.fillAmount = hpToFillBar;
 
@@ -40,7 +40,8 @@ public class BossEnemy : Enemy
     public override void Die()
     {
         GameObject.Destroy(gameObject);    
-        Events.onBossDeath.Invoke(this);
+        //Events.onBossDeath.Invoke(this);
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 
 
