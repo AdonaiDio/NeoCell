@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7635789907011544824}
-  - component: {fileID: 7635789907011544825}
+  - component: {fileID: 1889274408533216731}
   m_Layer: 0
   m_Name: DNADrop
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7635789907011544825
+--- !u!114 &1889274408533216731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,9 +126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7635789907011544830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39c8d656bd44551498b39f73667cf02b, type: 3}
+  m_Script: {fileID: 11500000, guid: 789ed4bde8346564fad122824653b6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToMove: 15
   distanceToDestroy: 2
-  speed: 10
+  dnaValue: 1
+  speed: 15

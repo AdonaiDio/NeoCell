@@ -9,41 +9,40 @@ using Unity.VisualScripting;
 
 
 public class BossEnemy : Enemy
+{
+    public static BossEnemy Instance;
+    public override void Awake()
     {
-     public static BossEnemy Instance;
-     private void Awake(){
-         if (Instance != null && Instance != this){
-            Destroy(this); 
+        base.Awake();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
         }
-        else{
+        else
+        {
             Instance = this;
         }
-     }
-    private void Start(){
+    }
+    public override void Start()
+    {
+        base.Start();
         Events.onBossSpawn.Invoke(this);
     }
 
-    public override void LoseHP()
-        {
-        HP--;
+    public override void LoseHP(float damage = 1)
+    {
+        HP -= damage;
         float hpToFillBar = HP / HPMax;
         Events.onHpLostBoss.Invoke(this, hpToFillBar);
-        //float hpToFillBar = HP/HPMax;
-        //hpBarImage.fillAmount = hpToFillBar;
-
-        //EventManager.Instance.OnHPLost?.Invoke(this, new OnHPLostEventArgs{
-        //hpToFillBar = HP/HPMax //calc hp bar fill 
-        //});
-
-        }
+    }
 
     public override void Die()
     {
-        GameObject.Destroy(gameObject);    
+        GameObject.Destroy(gameObject);
         Events.onBossDeath.Invoke(this);
     }
 
 
 
 }
-        
+

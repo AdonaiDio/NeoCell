@@ -17,7 +17,7 @@ public class Skill_DetectionTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Virus>())
+        if (other.GetComponent<Enemy>())
         {
             CheckForNullOnList();
             enemies.Add(other.gameObject);
@@ -25,7 +25,7 @@ public class Skill_DetectionTrigger : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Virus>())
+        if (other.GetComponent<Enemy>())
         {
             CheckForNullOnList();
             enemies.Remove(other.gameObject);

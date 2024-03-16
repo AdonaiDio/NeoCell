@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
         HP = HPMax;
     }
 
-    public void LoseHP()
+    public void LoseHP(float damage = 1)
     {
-        HP--;
+        HP -= damage;
         float hpToFillBar = HP / HPMax;
         Events.onHpLostCell.Invoke(hpToFillBar);
     }

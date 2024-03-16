@@ -17,9 +17,9 @@ public class Skill_LineProjectile : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Virus>())
+        if (other.GetComponent<Enemy>())
         {
-            Events.onProjectileHitEnemy.Invoke(this, other.GetComponent<Virus>());
+            Events.onProjectileHitEnemy.Invoke(this, other.GetComponent<Enemy>());
         }
     }
     private void FixedUpdate()

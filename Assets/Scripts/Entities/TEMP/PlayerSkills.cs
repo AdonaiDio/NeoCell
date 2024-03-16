@@ -96,7 +96,7 @@ public class PlayerSkills : MonoBehaviour
     }
     //Detectar colisão e tal
     //??
-    private void MineAroundHit(Skill_SpinningAround spinScript, Virus enemy)
+    private void MineAroundHit(Skill_SpinningAround spinScript, Enemy enemy)
     {
         //realizar todos os efeitos que acontecem quando atingir um inimigo
         Debug.Log("detonou enemy");
@@ -134,7 +134,7 @@ public class PlayerSkills : MonoBehaviour
             {
                 //realizar todos os efeitos que acontecem quando atingir um inimigo
                 Debug.Log("bateu no inimigo "+(i+1).ToString());
-                temp_enemiesList[i].GetComponent<Virus>().LoseHP(damage);
+                temp_enemiesList[i].GetComponent<Enemy>().LoseHP(damage);
             }
         }
     }
@@ -159,7 +159,7 @@ public class PlayerSkills : MonoBehaviour
             if (temp_enemiesList[i] != null)
             {
                 //realizar todos os efeitos que acontecem quando atingir um inimigo
-                temp_enemiesList[i].GetComponent<Virus>().LoseHP(damage);
+                temp_enemiesList[i].GetComponent<Enemy>().LoseHP(damage);
             }
         }
     }
@@ -174,7 +174,7 @@ public class PlayerSkills : MonoBehaviour
         GameObject projInst = Instantiate(projectile, body.position+(body.up*2)+(body.forward*3), body.rotation);
         Debug.Log("shoot");
     }
-    private void ProjectileHit(Skill_LineProjectile skill_LineProjectile, Virus enemy)
+    private void ProjectileHit(Skill_LineProjectile skill_LineProjectile, Enemy enemy)
     {
         _projectileHits++;
         //realizar todos os efeitos que acontecem quando atingir um inimigo

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6938187504091108207}
   - component: {fileID: 6938187504091108206}
   - component: {fileID: 6938187504091108205}
-  - component: {fileID: 6938187504091108179}
+  - component: {fileID: 7050059829552161342}
+  - component: {fileID: 9209232116073968581}
   m_Layer: 0
   m_Name: LineProjectile
   m_TagString: Untagged
@@ -98,7 +99,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6938187504091108179
+--- !u!114 &7050059829552161342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,9 +108,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6938187504091108177}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc8d839eff72ff44909ba81ecb3b4f4, type: 3}
+  m_Script: {fileID: 11500000, guid: e61c178431b1e6a409302db750ab267f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
+--- !u!114 &9209232116073968581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938187504091108177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd07293c3f426a489362871960cb094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
   lifeTime: 4
-  coll: {fileID: 0}

@@ -14,8 +14,8 @@ public static class Events
     public static readonly Evt<BossEnemy> onBossDeath = new Evt<BossEnemy>();
     public static readonly Evt<Enemy> onEnemyDeath = new Evt<Enemy>();
     public static readonly Evt<float> onLevelUp = new Evt<float>();
-    public static readonly Evt<Skill_LineProjectile,Virus> onProjectileHitEnemy = new Evt<Skill_LineProjectile,Virus>();
-    public static readonly Evt<Skill_SpinningAround,Virus> onMineHitEnemy = new Evt<Skill_SpinningAround, Virus>();
+    public static readonly Evt<Skill_LineProjectile, Enemy> onProjectileHitEnemy = new Evt<Skill_LineProjectile, Enemy>();
+    public static readonly Evt<Skill_SpinningAround, Enemy> onMineHitEnemy = new Evt<Skill_SpinningAround, Enemy>();
 
 }
 public class Evt
