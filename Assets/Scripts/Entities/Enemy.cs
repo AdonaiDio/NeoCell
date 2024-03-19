@@ -15,35 +15,32 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected string type;
 
     [SerializeField] protected float HPMax; //Max HP
-    [SerializeField] protected float HP; //Used to store current HP
-    private HPBarEnemy hpBarEnemy;
-    [SerializeField] protected float damage;
 
-    protected LayerMask collisionMask;
-    protected Transform playerTarget;
+    protected float HP; //Used to store current HP
+    public HPBarEnemy hpBarEnemy;
+    public UnityEngine.UI.Image hpBarImage;
+
+    [SerializeField] protected float damage;
+    //private Material material;
+
+    [SerializeField] protected LayerMask collisionMask;
+    [SerializeField] protected NavMeshAgent enemyAgent;
+
+
+
+    [SerializeField] protected Transform playerTarget;
     [SerializeField] protected float interactDistance;
 
 
     [SerializeField] protected float damageCooldown; //Damage cooldown
-    protected float LastDamageTime; //Store last damage Time.time
-    protected GameObject body;
-    [SerializeField] protected GameObject dnaDrop;
+    [SerializeField] protected float lastDamage; //Store last damage Time.time
+    [SerializeField] protected GameObject body;
+    [SerializeField] protected DNADrop dnaDrop;
 
 
     protected Rigidbody rb;
-    public virtual void Awake()
-    {
-        playerTarget = FindFirstObjectByType<Player>().transform; //Find player target to follow
-        body = transform.Find("Body").gameObject;
-        collisionMask = (1 << 3); //player layer is 3
-        rb = GetComponent<Rigidbody>();
-        if (this.GetType() != typeof(BossEnemy))
-        {
-            hpBarEnemy = transform.Find("HPBarUI").GetComponent<HPBarEnemy>();
-        }
-    }
 
-    public virtual void Start()
+    public void OnEnable()
     {
         enemyName = enemySO.enemyName;
         type = enemySO.enemyType;
@@ -53,10 +50,14 @@ public class Enemy : MonoBehaviour
 
         body.GetComponent<Renderer>().material = enemySO.material;
 
-        scaleWithType();
-    }
+        playerTarget = GameObject.FindWithTag("Cell").transform; //Find Cell target to follow
 
-    private void Update()
+        rb = GetComponent<Rigidbody>();
+        scaleWithType();
+
+
+    }
+    public void Update()
     {
         ChasePlayer(); //follow player
         CheckCollisions(interactDistance);//check collisions to do damage
@@ -77,13 +78,18 @@ public class Enemy : MonoBehaviour
     }
     public void ChasePlayer()
     {
-        GetComponent<NavMeshAgent>().SetDestination(playerTarget.position);
+        enemyAgent.SetDestination(playerTarget.position);
     }
-    public virtual void LoseHP(float damage = 1)
+    public virtual void LoseHP()
     {
-        HP -= damage;
+        HP--;
         float hpToFillBar = HP / HPMax;
-        hpBarEnemy.barImage.fillAmount = hpToFillBar;
+        hpBarImage.fillAmount = hpToFillBar;
+
+        //EventManager.Instance.OnHPLost?.Invoke(this, new OnHPLostEventArgs{
+        //hpToFillBar = HP/HPMax //calc hp bar fill 
+        //});
+
     }
 
     public void CheckCollisions(float interactDistance)
@@ -94,34 +100,39 @@ public class Enemy : MonoBehaviour
         if (Physics.Raycast(ray, out hit, interactDistance, collisionMask, QueryTriggerInteraction.Collide))
         {
             OnHitObject(hit);
+
+
         }
+
     }
 
     public void OnHitObject(RaycastHit hit)
     {
         if (hit.collider.GetComponent<Cell>())
         {
-            if (Time.time - LastDamageTime < damageCooldown)
+            if (Time.time - lastDamage < damageCooldown)
             { //Calc damage cooldown
 
             }
             else
             {
                 hit.collider.GetComponent<Cell>().LoseHP(); //Damage player
-                LastDamageTime = Time.time;
+                lastDamage = Time.time;
             }
         }
     }
-
     public virtual void Die()
     {
         Vector3 lootSpawnPoint = transform.position;
-        lootSpawnPoint.y = 1f;
-        //lootSpawnPoint.y = dnaDrop.transform.position.y;
+        lootSpawnPoint.y = dnaDrop.transform.position.y;
 
-        Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
+        GameObject.Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
 
-        Destroy(gameObject);
+        GameObject.Destroy(gameObject);
+
+
+
 
         Events.onEnemyDeath.Invoke(this);
     }

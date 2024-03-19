@@ -7,15 +7,13 @@ public static class Events
 {
     public static readonly Evt<float> onHpLostCell = new Evt<float>();
     public static readonly Evt<Enemy, float> onHpLostEnemy = new Evt<Enemy, float>();
-    public static readonly Evt<BossEnemy, float> onHpLostBoss = new Evt<BossEnemy, float>();
+     public static readonly Evt<BossEnemy, float> onHpLostBoss = new Evt<BossEnemy, float>();
     public static readonly Evt<float> onDNAGained = new Evt<float>();
 
     public static readonly Evt<BossEnemy> onBossSpawn = new Evt<BossEnemy>();
     public static readonly Evt<BossEnemy> onBossDeath = new Evt<BossEnemy>();
     public static readonly Evt<Enemy> onEnemyDeath = new Evt<Enemy>();
     public static readonly Evt<float> onLevelUp = new Evt<float>();
-    public static readonly Evt<Skill_LineProjectile, Enemy> onProjectileHitEnemy = new Evt<Skill_LineProjectile, Enemy>();
-    public static readonly Evt<Skill_SpinningAround, Enemy> onMineHitEnemy = new Evt<Skill_SpinningAround, Enemy>();
 
 }
 public class Evt
@@ -43,3 +41,37 @@ public class Evt<T0, T1>
     public void AddListener(Action<T0, T1> listener) => _action += listener;
     public void RemoveListener(Action<T0, T1> listener) => _action -= listener;
 }
+
+
+/*/public event EventHandler<OnHPLostEventArgs> OnHPLost; //Send to HP Bar
+
+     public class OnHPLostEventArgs : EventArgs{
+         public float hpToFillBar;
+     }
+     public event EventHandler<OnLevelUpEventArgs> OnLevelUp; // Send to Level TextMesh on ExperienceManager
+     public class OnLevelUpEventArgs : EventArgs{
+         public float currentLevel;
+     }
+
+     private void Awake(){
+     if (Instance != null && Instance != this){
+         Destroy(this); 
+     }
+     else{
+         Instance = this;
+     } //Applying Singleton
+
+ } 
+     private void OnEnable(){
+
+     ExperienceManager.Instance.OnExperienceChange += HandleXP; //Receive XP change from Experience Manager
+ }
+     private void OnDisable(){
+
+     ExperienceManager.Instance.OnExperienceChange -= HandleXP;
+ }
+     private void Update(){
+
+     }
+     /*/
+
