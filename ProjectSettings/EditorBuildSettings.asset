@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sandbox.unity
+    path: Assets/Scenes/GabrielSandbox.unity
     guid: 6aebde5fc3dece34f9ac68a5d2dbcdbc
   m_configObjects: {}
