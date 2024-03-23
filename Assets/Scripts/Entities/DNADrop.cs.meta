@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Entities/DNADrop.cs.meta
+guid: 789ed4bde8346564fad122824653b6b4
+========
+guid: 2b666ae42f1722043b7b69c56722ceaf
+>>>>>>>> Adonai:Assets/Scripts/Entities/TEMP/PlayerSkills.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Entities/BossEnemy.cs.meta
+guid: 8dd07293c3f426a489362871960cb094
+========
+guid: 4dc8d839eff72ff44909ba81ecb3b4f4
+>>>>>>>> Adonai:Assets/Scripts/Entities/TEMP/Skill_LineProjectile.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
