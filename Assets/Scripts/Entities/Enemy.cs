@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     protected float LastDamageTime; //Store last damage Time.time
     protected GameObject body;
     [SerializeField] protected GameObject dnaDrop;
+    [SerializeField] protected GameObject medicineDrop;
 
 
     protected Rigidbody rb;
@@ -120,7 +121,8 @@ public class Enemy : MonoBehaviour
         //lootSpawnPoint.y = dnaDrop.transform.position.y;
 
         Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
-
+        Instantiate(medicineDrop, lootSpawnPoint, medicineDrop.transform.rotation);
+        
         Destroy(gameObject);
 
         Events.onEnemyDeath.Invoke(this);
