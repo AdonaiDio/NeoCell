@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Mines_1
+  m_EditorClassIdentifier: Assembly-CSharp::Remedy_Mines
+  _name: Mines
+  _description: "Invoca 2 poderosas minas entorno de voc\xEA a 2.5 de raio, detonando
+    quem estiver no caminho.\nQuanto mais minas estiverem juntas mais rapido giram.\nProximo
+    Upgrade: 3 minas e 3 de raio."
+  _cost: 15
+  _numberOfMines: 2
+  _mineRadius: 2.5

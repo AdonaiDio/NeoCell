@@ -5877,7 +5877,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3.5
+  m_Radius: 2.5
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 2.5, z: 0}
@@ -6800,14 +6800,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3773024c3dc1132459333feb06614c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _remedyList: []
   meleeGO: {fileID: 1999677448}
   areaGO: {fileID: 9137473881750891369}
   projectile: {fileID: 6938187504091108177, guid: 3d13154e7b07919428afda85d1b02f84, type: 3}
   MineAroundGO: {fileID: 7085533151129951572, guid: 20e479d5d2de1ab4cbedfe32ee467943, type: 3}
-  enemiesAtOnce: 1
   numberOfMines: 1
   mineRadius: 2.5
-  spawnedMines: []
   _cooldown: 1
 --- !u!4 &9151095231928295332
 Transform:

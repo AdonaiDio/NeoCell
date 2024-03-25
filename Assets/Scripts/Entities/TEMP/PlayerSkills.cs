@@ -11,27 +11,40 @@ using UnityEngine;
 
 public class PlayerSkills : MonoBehaviour
 {
+    [SerializeField] private List<RemedySO> _remedyList;//Remedios ativos
+    private List<RemedySO> _lastRemedyList;//temporario auxiliar
+    private List<StatusEffectData> _effects;//recebe os efeitos dos os remedios para acesso rápido
+
+    //colliders
     [SerializeField] private GameObject meleeGO;
     [SerializeField] private GameObject areaGO;
     [SerializeField] private GameObject projectile;
     [SerializeField] private GameObject MineAroundGO;
-
+    //infos
+    private int enemiesAtOnce = 1;
     private float damage = 1f;
-    private List<Effect> effects;
-    public int enemiesAtOnce = 1;
+    private float criticalChance = 0f;
+    //projetil
     private int _projectileHits = 0;
-    //info das 'minas' que giram envolta do jogador
-    public int numberOfMines = 1;
-    [SerializeField] private float mineRadius = 2.5f;
-    [SerializeField]//temp
+    private float projectileThickness = 0f;
+    //AreaDamage
+    //private float areaRadius = 0f; //alterar radius do capsule collider(areaGO)
+    //Mines
+    private int numberOfMines = 1;
+    private float mineRadius = 2.5f;
+    private float _mineDamage = 20f;
     private List<GameObject> spawnedMines;
-
+    //controle do tick
     public float _cooldown = 1f;
     private float _lastTick;
 
     private void Awake()
     {
         _projectileHits = 0;
+        _remedyList = new List<RemedySO>();
+        _lastRemedyList = new List<RemedySO>();
+        _effects = new List<StatusEffectData>();
+        spawnedMines = new List<GameObject>();
     }
     private void OnEnable()
     {
@@ -57,9 +70,76 @@ public class PlayerSkills : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Bateu!");
         _lastTick = Time.time;
+        CheckForRemedyChange();
         DoAction();
+    }
+
+    private void CheckForRemedyChange()
+    {
+        bool isChanged = false;
+        //verificar se mudou
+        foreach (RemedySO r in _remedyList)
+        {
+            if(_remedyList.Count != _lastRemedyList.Count)
+            {
+                isChanged = true;
+                break;
+            }
+            if (r != _lastRemedyList[_remedyList.IndexOf(r)])
+            {
+                isChanged = true;
+                break;
+            }
+        }
+        if (isChanged)
+        {
+            //resetar lista auxiliar
+            _lastRemedyList.Clear();
+            //mudou! Ler os remédios. Escrever atributos alterados! Quando entra e tal
+            foreach (RemedySO r in _remedyList)
+            {
+                if (r is Remedy_Projectile)
+                {
+                    //castei o remedio para seu SO correto e usei o auxiliar para pegar os valores específicos.
+                    Remedy_Projectile aux_r = (Remedy_Projectile)r;
+                    projectileThickness = aux_r._projectileThickness;
+                }
+                if (r is Remedy_Area)
+                {
+                    //'castei' o remedio para seu SO corr...
+                    Remedy_Area aux_r = (Remedy_Area)r;
+                    areaGO.GetComponent<CapsuleCollider>().radius = aux_r._areaRadius;
+                }
+                if (r is Remedy_Mines)
+                {
+                    //'castei'...
+                    Remedy_Mines aux_r = (Remedy_Mines)r;
+                    numberOfMines = aux_r._numberOfMines;
+                    mineRadius = aux_r._mineRadius;
+                }
+                if (r is Remedy_Quantity)
+                {
+                    //'castei'...
+                    Remedy_Quantity aux_r = (Remedy_Quantity)r;
+                    enemiesAtOnce = aux_r._enemiesAtOnce;
+                }
+                if (r is Remedy_Multiplicator)
+                {
+                    //'castei'...
+                    Remedy_Multiplicator aux_r = (Remedy_Multiplicator)r;
+                    damage = aux_r._damage;
+                }
+                if (r is Remedy_Critical)
+                {
+                    //'castei'...
+                    Remedy_Critical aux_r = (Remedy_Critical)r;
+                    criticalChance = aux_r._criticalChance;
+                }
+                //guardar a copia da lista na lista auxiliar
+                _lastRemedyList.Add(r);
+            }
+        }
     }
 
     private void DoAction()
@@ -70,11 +150,36 @@ public class PlayerSkills : MonoBehaviour
 
     private void CollisonDetection()
     {
-        //agora vou testar o melee
-        ShootProjectile();
-        AreaDetection();
-        MeleeColDetec();
-        SpinningAround();
+        bool isMeleePointless = false;
+        //usar melee se não tiver outro dano
+        if (_remedyList == null || _remedyList.Count == 0)
+        {
+            MeleeColDetec();
+            return;
+        }
+        foreach (RemedySO r in _remedyList) {
+            //checar se ainda precisa de ataque melee.
+            if (r is Remedy_Area || r is Remedy_Projectile ) {
+                isMeleePointless = true;
+            }
+            //checar cada remédio com collider
+            if (r is Remedy_Projectile)
+            {
+                ShootProjectile();
+            }
+            if (r is Remedy_Area)
+            {
+                AreaDetection();
+            }
+            if (r is Remedy_Mines)
+            {
+                SpinningAround();
+            }
+        }
+        if (!isMeleePointless)
+        {
+            MeleeColDetec();
+        }
     }
     #region spin around
     private void SpinningAround()
@@ -99,8 +204,15 @@ public class PlayerSkills : MonoBehaviour
     private void MineAroundHit(Skill_SpinningAround spinScript, Enemy enemy)
     {
         //realizar todos os efeitos que acontecem quando atingir um inimigo
-        Debug.Log("detonou enemy");
-        enemy.LoseHP(damage*20);//sei lá. dano alto
+        //Testar a sorte do critico
+        float roll = UnityEngine.Random.Range(0f, 100f);
+        float criticalMult = 1f;
+        if (roll <= criticalChance)
+        {
+            Debug.Log("!!!! CRITOU !!!!<color=yellow>");
+            criticalMult = 5f;
+        }
+        enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lá. dano alto
         //limpar da lista de minas ativas e destruir
         spawnedMines.Remove(spinScript.gameObject);
         Destroy(spinScript.gameObject);
@@ -134,7 +246,15 @@ public class PlayerSkills : MonoBehaviour
             {
                 //realizar todos os efeitos que acontecem quando atingir um inimigo
                 Debug.Log("bateu no inimigo "+(i+1).ToString());
-                temp_enemiesList[i].GetComponent<Enemy>().LoseHP(damage);
+                //Testar a sorte do critico
+                float roll = UnityEngine.Random.Range(0f, 100f);
+                float criticalMult = 1f;
+                if (roll <= criticalChance)
+                {
+                    Debug.Log("!!!! CRITOU !!!!<color=yellow>");
+                    criticalMult = 5f;
+                }
+                temp_enemiesList[i].GetComponent<Enemy>().LoseHP(damage*criticalMult);
             }
         }
     }
@@ -159,7 +279,15 @@ public class PlayerSkills : MonoBehaviour
             if (temp_enemiesList[i] != null)
             {
                 //realizar todos os efeitos que acontecem quando atingir um inimigo
-                temp_enemiesList[i].GetComponent<Enemy>().LoseHP(damage);
+                //Testar a sorte do critico
+                float roll = UnityEngine.Random.Range(0f, 100f);
+                float criticalMult = 1f;
+                if (roll <= criticalChance)
+                {
+                    Debug.Log("!!!! CRITOU !!!!<color=yellow>");
+                    criticalMult = 5f;
+                }
+                temp_enemiesList[i].GetComponent<Enemy>().LoseHP(damage*criticalMult);
             }
         }
     }
@@ -172,13 +300,22 @@ public class PlayerSkills : MonoBehaviour
         //instantiate the projectile
         Transform body = transform.Find("Body").transform;
         GameObject projInst = Instantiate(projectile, body.position+(body.up*2)+(body.forward*3), body.rotation);
-        Debug.Log("shoot");
+        //adjust thickness
+        projInst.transform.localScale = new Vector3(projectileThickness, 0.5f, 0.5f);
     }
     private void ProjectileHit(Skill_LineProjectile skill_LineProjectile, Enemy enemy)
     {
         _projectileHits++;
         //realizar todos os efeitos que acontecem quando atingir um inimigo
-        enemy.LoseHP(damage);
+        //Testar a sorte do critico
+        float roll = UnityEngine.Random.Range(0f, 100f);
+        float criticalMult = 1f;
+        if (roll <= criticalChance)
+        {
+            Debug.Log("!!!! CRITOU !!!!<color=yellow>");
+            criticalMult = 5f;
+        }
+        enemy.LoseHP(damage*criticalMult);
         //Limpar da cena caso já tenha atingido o ultimo inimigo possível
         if (_projectileHits >= enemiesAtOnce)
         {
@@ -187,5 +324,3 @@ public class PlayerSkills : MonoBehaviour
     }
     #endregion
 }
-
-public class Effect { } //TEMPORARIO

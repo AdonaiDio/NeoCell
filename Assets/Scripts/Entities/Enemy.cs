@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 using Unity.VisualScripting;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
     protected GameObject body;
     [SerializeField] protected GameObject dnaDrop;
 
+    private List<StatusEffectData> _effects;//recebe os efeitos do golpe do player
 
     protected Rigidbody rb;
     public virtual void Awake()
