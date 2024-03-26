@@ -131,5 +131,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medicine: {fileID: 2602339769099058479, guid: 373d8736c6f19bf41941db33268a13e6, type: 3}
   distanceToMove: 15
-  distanceToDestroy: 2
+  distanceToDestroy: 3
   speed: 15

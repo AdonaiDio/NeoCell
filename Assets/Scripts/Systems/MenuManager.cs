@@ -7,11 +7,14 @@ using UnityEngine.InputSystem;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
+    [SerializeField] private GameObject inGameMenu;
     [SerializeField] private InputHandler inputHandler;
     private bool _isActive = false;
-    void Awake()
+    void Start()
     {
-        //inventoryMenu.SetActive(false);
+        inGameMenu.SetActive(true);
+        inventoryMenu.SetActive(false);
+        
         
 
     }
@@ -33,12 +36,12 @@ public class MenuManager : MonoBehaviour
         
     
     void OnEnable(){
-
+        
     }
    
     
     void ShowInventoryMenu(){
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
         _isActive = true;
         inventoryMenu.SetActive(true);
         
@@ -51,7 +54,7 @@ public class MenuManager : MonoBehaviour
         
     }
         void HideInventoryMenu(){
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         _isActive = false;
         inventoryMenu.SetActive(false);
         

@@ -10,14 +10,25 @@ public class MedicineDrop : MonoBehaviour
     [SerializeField] private float distanceToDestroy;
     
     [SerializeField] private float speed;
+    void Awake(){
+        
+      
+    }
     void Start()
     {
+    
+        medicine.medicineName = medicine.medicineSO.medicineName;
+        medicine.medicineDescription = medicine.medicineSO.medicineDescription;
+        medicine.medicineEffects = medicine.medicineSO.medicineEffects;
+        medicine.icon = medicine.medicineSO.icon;
+        medicine.medicinePrice = medicine.medicineSO.medicinePrice;
+        GetComponentInChildren<SpriteRenderer>().sprite = medicine.icon;  
         player = FindFirstObjectByType<Player>().transform;
         
     }
     private void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) < distanceToMove)
+        if (Vector3.Distance (transform.position, player.transform.position) < distanceToMove)
         {
             moveTowardsPlayer();
         }

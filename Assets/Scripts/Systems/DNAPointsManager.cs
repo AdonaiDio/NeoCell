@@ -9,8 +9,8 @@ public class DNAPointsManager : MonoBehaviour
 
     public static DNAPointsManager Instance;
 
-    private float currentDNAPoints = 0;
-    [SerializeField] TextMeshProUGUI dnaValueText;
+    public float currentDNAPoints = 0;
+    public TextMeshProUGUI dnaValueText;
 
 
     private void Awake()
@@ -23,7 +23,7 @@ public class DNAPointsManager : MonoBehaviour
         {
             Instance = this;
         } //Applying Singleton
-        dnaValueText.text = currentDNAPoints.ToString();
+        updateDNATextUI();
 
     }
     private void OnEnable()
@@ -43,8 +43,11 @@ public class DNAPointsManager : MonoBehaviour
     {
         //send to Cell
         currentDNAPoints += amount;
-        dnaValueText.text = currentDNAPoints.ToString();
+        updateDNATextUI();
 
+    }
+    public void updateDNATextUI(){
+    dnaValueText.text = currentDNAPoints.ToString();
     }
 
 }

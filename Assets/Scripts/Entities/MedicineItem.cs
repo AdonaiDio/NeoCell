@@ -13,7 +13,7 @@ public class MedicineItem : MonoBehaviour
         
     }
     public void Update(){
-        if (medicine != null){
+        if (medicine != null) {
         var newIcon = GetComponent<UnityEngine.UI.Image>();
         newIcon.sprite = medicine.icon;
         }
@@ -21,3 +21,4 @@ public class MedicineItem : MonoBehaviour
 
 
 }
+    

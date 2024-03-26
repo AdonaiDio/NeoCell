@@ -7,11 +7,11 @@ using System;
 public class HPBarBossEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] protected Image barImage;
-    [SerializeField] protected Canvas HPBarCanvas;
+    [SerializeField] public Image barImage;
+    [SerializeField] public GameObject HPBarCanvas;
     private void Awake()
     {
-        HPBarCanvas.enabled = false;
+        HPBarCanvas.SetActive(false);
     }
     private void OnEnable()
     {
@@ -37,12 +37,12 @@ public class HPBarBossEnemy : MonoBehaviour
     }
     private void onBossSpawn(BossEnemy boss)
     {
-        HPBarCanvas.enabled = true;
+        HPBarCanvas.SetActive(true);
 
     }
     private void onBossDeath(BossEnemy enemy)
     {
-        HPBarCanvas.enabled = false;
+        HPBarCanvas.SetActive(false);
     }
     private void OnHPLostBoss (BossEnemy enemy, float hpToFillBar){
         barImage.fillAmount = hpToFillBar;

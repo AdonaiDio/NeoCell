@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class MedicineSO : ScriptableObject
 {
     // Start is called before the first frame update
-    public string medicineName; //virus, bacteria, fungus
-    public string medicineDescription; //weak, strong and boss
+    public string medicineName;
+    public string medicineDescription;
+    public string medicineEffects;
+    public float medicinePrice;
     public Sprite icon;
     
 

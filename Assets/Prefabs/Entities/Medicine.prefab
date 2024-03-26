@@ -129,5 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cf3c75c95718a41a1ab18ddc6a5d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 9095cdc702f1e464c90cdd958f7f074c, type: 3}
+  icon: {fileID: 21300000, guid: 30f5809cf0a11ee42ba45af0dfb1fe4d, type: 3}
+  medicineName: 
+  medicineDescription: 
+  medicineEffects: 
+  medicinePrice: 5
   medicineSO: {fileID: 11400000, guid: c7448af857d61f541b7caa83e5f3f31e, type: 2}
