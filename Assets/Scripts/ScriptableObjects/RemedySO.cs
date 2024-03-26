@@ -17,17 +17,20 @@ public class RemedySO : ScriptableObject
 [CreateAssetMenu(fileName = "Slowdown", menuName = "RemedySO/Slowdown")]
 public class Remedy_Slowdown : RemedySO
 {
-    public List<StatusEffectData> _upgradesOS;
+    public StatusEffectData _effect;
 }
 [CreateAssetMenu(fileName = "Decay", menuName = "RemedySO/Decay")]
 public class Remedy_Decay : RemedySO
 {
-    public List<StatusEffectData> _upgradesOS;
+    public StatusEffectData _effect;
+    //[Tooltip("Critical chance in %")]
+    //public float _chanceOfDecay;
+
 }
 [CreateAssetMenu(fileName = "Explosion", menuName = "RemedySO/Explosion")]
 public class Remedy_Explosion : RemedySO
 {
-    public List<StatusEffectData> _upgradesOS;
+    public StatusEffectData _effect;
 }
 //public class Remedy_Area : RemedySO
 //{

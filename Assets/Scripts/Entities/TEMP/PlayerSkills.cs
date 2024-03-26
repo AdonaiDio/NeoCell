@@ -96,6 +96,7 @@ public class PlayerSkills : MonoBehaviour
         {
             //resetar lista auxiliar
             _lastRemedyList.Clear();
+            _effects.Clear();
             //mudou! Ler os remédios. Escrever atributos alterados! Quando entra e tal
             foreach (RemedySO r in _remedyList)
             {
@@ -105,36 +106,54 @@ public class PlayerSkills : MonoBehaviour
                     Remedy_Projectile aux_r = (Remedy_Projectile)r;
                     projectileThickness = aux_r._projectileThickness;
                 }
-                if (r is Remedy_Area)
+                else if (r is Remedy_Area)
                 {
                     //'castei' o remedio para seu SO corr...
                     Remedy_Area aux_r = (Remedy_Area)r;
                     areaGO.GetComponent<CapsuleCollider>().radius = aux_r._areaRadius;
                 }
-                if (r is Remedy_Mines)
+                else if (r is Remedy_Mines)
                 {
                     //'castei'...
                     Remedy_Mines aux_r = (Remedy_Mines)r;
                     numberOfMines = aux_r._numberOfMines;
                     mineRadius = aux_r._mineRadius;
                 }
-                if (r is Remedy_Quantity)
+                else if (r is Remedy_Quantity)
                 {
                     //'castei'...
                     Remedy_Quantity aux_r = (Remedy_Quantity)r;
                     enemiesAtOnce = aux_r._enemiesAtOnce;
                 }
-                if (r is Remedy_Multiplicator)
+                else if (r is Remedy_Multiplicator)
                 {
                     //'castei'...
                     Remedy_Multiplicator aux_r = (Remedy_Multiplicator)r;
                     damage = aux_r._damage;
                 }
-                if (r is Remedy_Critical)
+                else if (r is Remedy_Critical)
                 {
                     //'castei'...
                     Remedy_Critical aux_r = (Remedy_Critical)r;
                     criticalChance = aux_r._criticalChance;
+                }
+                else if (r is Remedy_Decay)
+                {
+                    //'castei'...
+                    Remedy_Decay aux_r = (Remedy_Decay)r;
+                    _effects.Add(aux_r._effect);
+                }
+                else if (r is Remedy_Explosion)
+                {
+                    //'castei'...
+                    Remedy_Explosion aux_r = (Remedy_Explosion)r;
+                    _effects.Add(aux_r._effect);
+                }
+                else if (r is Remedy_Slowdown)
+                {
+                    //'castei'...
+                    Remedy_Slowdown aux_r = (Remedy_Slowdown)r;
+                    _effects.Add(aux_r._effect);
                 }
                 //guardar a copia da lista na lista auxiliar
                 _lastRemedyList.Add(r);
@@ -147,6 +166,7 @@ public class PlayerSkills : MonoBehaviour
         //executa os efeitos, triggers e danos de remedios ativos
         CollisonDetection();
     }
+
 
     private void CollisonDetection()
     {
@@ -212,7 +232,9 @@ public class PlayerSkills : MonoBehaviour
             Debug.Log("!!!! CRITOU !!!!<color=yellow>");
             criticalMult = 5f;
         }
-        enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lá. dano alto
+        //enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lá. dano alto
+        float damageTotal = (damage*_mineDamage)*criticalMult;//sei lá. dano alto
+        Events.onDamageEnemy.Invoke(enemy, damageTotal,_effects);
         //limpar da lista de minas ativas e destruir
         spawnedMines.Remove(spinScript.gameObject);
         Destroy(spinScript.gameObject);
@@ -254,7 +276,9 @@ public class PlayerSkills : MonoBehaviour
                     Debug.Log("!!!! CRITOU !!!!<color=yellow>");
                     criticalMult = 5f;
                 }
-                temp_enemiesList[i].GetComponent<Enemy>().LoseHP(damage*criticalMult);
+                Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
+                float damageTotal = (damage*criticalMult);
+                Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
             }
         }
     }
@@ -287,7 +311,9 @@ public class PlayerSkills : MonoBehaviour
                     Debug.Log("!!!! CRITOU !!!!<color=yellow>");
                     criticalMult = 5f;
                 }
-                temp_enemiesList[i].GetComponent<Enemy>().LoseHP(damage*criticalMult);
+                Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
+                float damageTotal = (damage * criticalMult);
+                Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
             }
         }
     }
@@ -312,10 +338,11 @@ public class PlayerSkills : MonoBehaviour
         float criticalMult = 1f;
         if (roll <= criticalChance)
         {
-            Debug.Log("!!!! CRITOU !!!!<color=yellow>");
+            Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
             criticalMult = 5f;
         }
-        enemy.LoseHP(damage*criticalMult);
+        float damageTotal = (damage * criticalMult);
+        Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
         //Limpar da cena caso já tenha atingido o ultimo inimigo possível
         if (_projectileHits >= enemiesAtOnce)
         {
