@@ -29,6 +29,7 @@
         protected GameObject body;
         [SerializeField] protected GameObject dnaDrop;
         [SerializeField] protected GameObject medicineDrop;
+        public int medicineDropRate;
 
 
         protected Rigidbody rb;
@@ -121,8 +122,10 @@
             //lootSpawnPoint.y = dnaDrop.transform.position.y;
 
             Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
+            medicineDropRate = UnityEngine.Random.Range(0, 100);
+            if (medicineDropRate <= 50){
             Instantiate(medicineDrop, lootSpawnPoint, medicineDrop.transform.rotation);
-            
+            }
             Destroy(gameObject);
 
             Events.onEnemyDeath.Invoke(this);
