@@ -46,6 +46,13 @@
             updateDNATextUI();
 
         }
+        public void useDNAPoints(float amount)
+        {
+            //send to Cell
+            currentDNAPoints -= amount;
+            updateDNATextUI();
+
+        }
         public void updateDNATextUI(){
         dnaValueText.text = currentDNAPoints.ToString();
         }
