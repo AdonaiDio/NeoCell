@@ -1,30 +1,30 @@
-using UnityEngine;
+    using UnityEngine;
 
-namespace NeoFortaleza.Runtime.Systems.Behaviors
-{
-    public class WeaponController : MonoBehaviour
+    namespace NeoFortaleza.Runtime.Systems.Behaviors
     {
-        [SerializeField] public Transform cellHand;
-
-        public Weapon startingWeapon;
-        Weapon equippedWeapon;
-
-        void Start()
+        public class WeaponController : MonoBehaviour
         {
-            if (startingWeapon != null)
-            {
-                EquipWeapon(startingWeapon);
-            }
-        }
+            [SerializeField] public Transform cellHand;
 
-        public void EquipWeapon(Weapon weaponToEquip)
-        {
-            if (equippedWeapon != null)
+            public Weapon startingWeapon;
+            Weapon equippedWeapon;
+
+            void Start()
             {
-                Destroy(equippedWeapon.gameObject);
+                if (startingWeapon != null)
+                {
+                    EquipWeapon(startingWeapon);
+                }
             }
-            equippedWeapon = Instantiate(weaponToEquip, cellHand.position, cellHand.rotation);
-            equippedWeapon.transform.parent = cellHand;
+
+            public void EquipWeapon(Weapon weaponToEquip)
+            {
+                if (equippedWeapon != null)
+                {
+                    Destroy(equippedWeapon.gameObject);
+                }
+                equippedWeapon = Instantiate(weaponToEquip, cellHand.position, cellHand.rotation);
+                equippedWeapon.transform.parent = cellHand;
+            }
         }
     }
-}

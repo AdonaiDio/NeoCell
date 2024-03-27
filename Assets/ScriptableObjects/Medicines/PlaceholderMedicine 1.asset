@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 185db6f2d37a9de4ea1b7cc84ffe40b2, type: 3}
-  m_Name: PlaceholderMedicine
+  m_Name: PlaceholderMedicine 1
   m_EditorClassIdentifier: 
-  medicineName: Remedio Placeholder 5
+  medicineName: Remedio Placeholder
   medicineDescription: Faz nada
   medicineEffects: Faz nada 2
   medicinePrice: 5
-  icon: {fileID: 21300000, guid: 91f374601998b2c44906293cebf8a706, type: 3}
+  icon: {fileID: 21300000, guid: 30f5809cf0a11ee42ba45af0dfb1fe4d, type: 3}

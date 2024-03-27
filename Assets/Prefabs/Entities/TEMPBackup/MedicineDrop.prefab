@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7859110703970017881
+--- !u!1 &7635789907011544830
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7643435082916808487}
-  - component: {fileID: 8154606599842944937}
+  - component: {fileID: 7635789907011544824}
+  - component: {fileID: -3370769897794207028}
   m_Layer: 0
   m_Name: MedicineDrop
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7643435082916808487
+--- !u!4 &7635789907011544824
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7859110703970017881}
+  m_GameObject: {fileID: 7635789907011544830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,19 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8154606599842944937
+--- !u!114 &-3370769897794207028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7859110703970017881}
+  m_GameObject: {fileID: 7635789907011544830}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0fa3c72403e13e408b4602d981f5a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medicine: {fileID: 2125695367191932207, guid: c93a47f1b95831d42b32b6850509831b, type: 3}
+  medicine: {fileID: 2602339769099058479, guid: 373d8736c6f19bf41941db33268a13e6, type: 3}
   distanceToMove: 15
   distanceToDestroy: 3
   speed: 15

@@ -1,53 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
+    using System.Collections;
+    using System.Collections.Generic;
 
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-public class DNAPointsManager : MonoBehaviour
-{
-
-    public static DNAPointsManager Instance;
-
-    public float currentDNAPoints = 0;
-    public TextMeshProUGUI dnaValueText;
-
-
-    private void Awake()
+    using TMPro;
+    using UnityEngine;
+    using UnityEngine.UI;
+    public class DNAPointsManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+
+        public static DNAPointsManager Instance;
+
+        public float currentDNAPoints = 0;
+        public TextMeshProUGUI dnaValueText;
+
+
+        private void Awake()
         {
-            Destroy(this);
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            } //Applying Singleton
+            updateDNATextUI();
+
         }
-        else
+        private void OnEnable()
         {
-            Instance = this;
-        } //Applying Singleton
-        updateDNATextUI();
+            Events.onDNAGained.AddListener(earnDNA);
+
+
+        }
+        private void OnDisable()
+        {
+            Events.onDNAGained.RemoveListener(earnDNA);
+
+
+        }
+
+        public void earnDNA(float amount)
+        {
+            //send to Cell
+            currentDNAPoints += amount;
+            updateDNATextUI();
+
+        }
+        public void updateDNATextUI(){
+        dnaValueText.text = currentDNAPoints.ToString();
+        }
 
     }
-    private void OnEnable()
-    {
-        Events.onDNAGained.AddListener(earnDNA);
-
-
-    }
-    private void OnDisable()
-    {
-        Events.onDNAGained.RemoveListener(earnDNA);
-
-
-    }
-
-    public void earnDNA(float amount)
-    {
-        //send to Cell
-        currentDNAPoints += amount;
-        updateDNATextUI();
-
-    }
-    public void updateDNATextUI(){
-    dnaValueText.text = currentDNAPoints.ToString();
-    }
-
-}
