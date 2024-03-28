@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnAim()
     {
-        //rotaciona o corpo do player para o cursor do mouse, relativo a sua posição no chão.
+        //rotaciona o corpo do player para o cursor do mouse, relativo a sua posiï¿½ï¿½o no chï¿½o.
         Ray ray = _Camera.ScreenPointToRay(_InputHandler.AimInput);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, _layerMask))
         {

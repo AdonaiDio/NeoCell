@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
     protected float LastDamageTime; //Store last damage Time.time
     protected GameObject body;
     [SerializeField] protected GameObject dnaDrop;
+    [SerializeField] protected GameObject medicineDrop;
+    public int medicineDropRate;
 
     private List<StatusEffectData> effects;//recebe os efeitos do golpe do player
     public GameObject explosionGO;
@@ -151,7 +153,7 @@ public class Enemy : MonoBehaviour
                 //tempo de vida do efeito
                 if (Time.time - _firstTick_Explosion > fx.Lifetime)
                 {
-                    //não faz nada durante os ticks só espera acabar para desabilitar o efeito
+                    //nï¿½o faz nada durante os ticks sï¿½ espera acabar para desabilitar o efeito
                     hasToRemoveExplosion = true;
                     Destroy(explosionIconGO);
                 }
@@ -212,7 +214,7 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        //não tem jeito, mudou mesmo. Logo:
+        //nï¿½o tem jeito, mudou mesmo. Logo:
         effects.Clear();
         foreach (StatusEffectData fx in _effects)
         {
@@ -228,7 +230,7 @@ public class Enemy : MonoBehaviour
             else if (fx.Type == StatusEffectType.DamageOverTime)
             {
                 _firstTick_Decay = Time.time;
-                //não faz nada ao iniciar efeito, só durante os ticks
+                //nï¿½o faz nada ao iniciar efeito, sï¿½ durante os ticks
             }
             else if (fx.Type == StatusEffectType.Explosion)
             {
@@ -299,12 +301,12 @@ public class Enemy : MonoBehaviour
         {
             if (effects.Count != 0)
             {
-                //antes de morrer ver se vai morrer com efeito de explosão
+                //antes de morrer ver se vai morrer com efeito de explosï¿½o
                 foreach (StatusEffectData fx in effects)
                 {
                     if (fx.Type == StatusEffectType.Explosion)
                     {
-                        //hora de fazer a explosão!!!
+                        //hora de fazer a explosï¿½o!!!
                         GameObject explo = Instantiate(explosionGO);
                         explo.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                         explo.GetComponent<ExplosionScript>().damage = damage;
@@ -323,6 +325,12 @@ public class Enemy : MonoBehaviour
         //lootSpawnPoint.y = dnaDrop.transform.position.y;
 
         Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
+        medicineDropRate = UnityEngine.Random.Range(0, 100);
+        if (medicineDropRate <= 50)
+        {
+            Instantiate(medicineDrop, lootSpawnPoint, medicineDrop.transform.rotation);
+        }
+        Destroy(gameObject);
 
         Events.onEnemyDeath.Invoke(this);
 
