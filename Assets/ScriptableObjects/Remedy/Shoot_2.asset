@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shoot_2
   m_EditorClassIdentifier: Assembly-CSharp::Remedy_Projectile
   _name: Shoot
-  _description: 'Um forte tiro de 0.5 de espessura.
+  _description: 'Um forte tiro de 2.0 de espessura.
 
     Proximo Upgrade 1.0 de espessura.'
   _cost: 20

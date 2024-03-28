@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 //A ideia é que o playerSkills seja o lugar com os atributos de combate do jogador.
 //Que por padrão ele tenha as informações necessárias para realizar a ação do "rémédio default".
@@ -37,6 +38,9 @@ public class PlayerSkills : MonoBehaviour
     //controle do tick
     public float _cooldown = 1f;
     private float _lastTick;
+
+    //FMOD
+    [SerializeField] private EventReference sillySound;
 
     private void Awake()
     {
@@ -165,6 +169,7 @@ public class PlayerSkills : MonoBehaviour
     {
         //executa os efeitos, triggers e danos de remedios ativos
         CollisonDetection();
+        //AudioManager.instance.PlayOneShot(sillySound, transform.position); ASSIM QUE USA
     }
 
 
