@@ -8,7 +8,6 @@ public class HPBarCell : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private Image barImage;
-    [SerializeField] private Cell player;
     private void OnEnable()
     {
         Events.onHpLostCell.AddListener(loseHP);
@@ -19,16 +18,6 @@ public class HPBarCell : MonoBehaviour
         Events.onHpLostCell.RemoveListener(loseHP);
 
     }
-    private void Start()
-    {
-
-    }
-    private void Update()
-    {
-
-        transform.rotation = Quaternion.identity;
-    }
-
     private void loseHP(float loseHP)
     {
 

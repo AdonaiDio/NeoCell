@@ -8,15 +8,20 @@ public class Player : MonoBehaviour
 
     public float HP;
 
+    public GameObject floatingDamage;
+
     private void Start()
     {
         HP = HPMax;
     }
 
-    public void LoseHP(float damage = 1)
+    public void LoseHP(float damage = 1, bool isCritical = false)
     {
         HP -= damage;
         float hpToFillBar = HP / HPMax;
         Events.onHpLostCell.Invoke(hpToFillBar);
+        GameObject floatTxt = Instantiate(floatingDamage,transform.Find("HPBarUI"));
+        floatTxt.GetComponent<DamageIndicator>().damageNumber = damage;
+        floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
     }
 }

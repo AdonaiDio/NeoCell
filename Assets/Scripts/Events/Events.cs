@@ -16,10 +16,13 @@ public static class Events
     public static readonly Evt<BossEnemy> onBossDeath = new Evt<BossEnemy>();
     public static readonly Evt<Enemy> onEnemyDeath = new Evt<Enemy>();
     public static readonly Evt<float> onLevelUp = new Evt<float>();
+
     public static readonly Evt<Skill_LineProjectile, Enemy> onProjectileHitEnemy = new Evt<Skill_LineProjectile, Enemy>();
     public static readonly Evt<Skill_SpinningAround, Enemy> onMineHitEnemy = new Evt<Skill_SpinningAround, Enemy>();
     public static readonly Evt onInventoryKeyPressed = new Evt();
 
+    
+    public static readonly Evt<Enemy,float, List<StatusEffectData>> onDamageEnemy = new Evt<Enemy, float, List<StatusEffectData>>();
 }
 public class Evt
 {
@@ -45,4 +48,12 @@ public class Evt<T0, T1>
     public void Invoke(T0 param1, T1 param2) => _action.Invoke(param1, param2);
     public void AddListener(Action<T0, T1> listener) => _action += listener;
     public void RemoveListener(Action<T0, T1> listener) => _action -= listener;
+}
+public class Evt<T0, T1, T2>
+{
+    private event Action<T0, T1, T2> _action = delegate { };
+
+    public void Invoke(T0 param1, T1 param2, T2 param3) => _action.Invoke(param1, param2, param3);
+    public void AddListener(Action<T0, T1, T2> listener) => _action += listener;
+    public void RemoveListener(Action<T0, T1, T2> listener) => _action -= listener;
 }
