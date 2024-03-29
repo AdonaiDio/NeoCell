@@ -18,6 +18,7 @@ public static class Events
     public static readonly Evt<float> onLevelUp = new Evt<float>();
     public static readonly Evt<Skill_LineProjectile, Enemy> onProjectileHitEnemy = new Evt<Skill_LineProjectile, Enemy>();
     public static readonly Evt<Skill_SpinningAround, Enemy> onMineHitEnemy = new Evt<Skill_SpinningAround, Enemy>();
+    public static readonly Evt onInventoryKeyPressed = new Evt();
 
 }
 public class Evt
