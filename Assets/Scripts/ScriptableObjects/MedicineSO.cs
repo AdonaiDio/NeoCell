@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MedicineSO : ScriptableObject
 {
     // Start is called before the first frame update
+    public int medicineID;
     public string medicineName;
     public string medicineDescription;
     public string medicineEffects;

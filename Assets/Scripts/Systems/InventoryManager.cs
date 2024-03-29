@@ -156,7 +156,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (medicineSlots[i].itemInSlot.medicine != null)
             {
-                if (medicineSlots[i].itemInSlot.medicine.medicineName == medicine.medicineName)
+                if (medicineSlots[i].itemInSlot.medicine.medicineID == medicine.medicineID)
                 {
                     return true;
                 }

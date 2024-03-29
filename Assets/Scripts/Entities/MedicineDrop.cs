@@ -19,6 +19,7 @@ public class MedicineDrop : MonoBehaviour
         medicine.medicineSO = InventoryManager.Instance.DrawSOFromPool();
         if (medicine.medicineSO != null)
         {
+            medicine.medicineID = medicine.medicineSO.medicineID;
             medicine.medicineName = medicine.medicineSO.medicineName;
             medicine.medicineDescription = medicine.medicineSO.medicineDescription;
             medicine.medicineEffects = medicine.medicineSO.medicineEffects;
