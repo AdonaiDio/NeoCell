@@ -40,7 +40,7 @@ public class HPBarBossEnemy : MonoBehaviour
         HPBarCanvas.SetActive(true);
 
     }
-    private void onBossDeath(BossEnemy enemy)
+    private void onBossDeath()
     {
         HPBarCanvas.SetActive(false);
     }

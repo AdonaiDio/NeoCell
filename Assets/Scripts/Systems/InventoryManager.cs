@@ -84,11 +84,11 @@ public class InventoryManager : MonoBehaviour
         {
             MedicineSlot slot = medicineSlots[i];
 
-            if (medicineSlots[i].itemInSlot.medicine == null)
+            if (slot.itemInSlot.medicine == null)
             {
 
-                medicineSlots[i].itemInSlot.medicine = Instantiate(medicine, transform);
-                medicineSlots[i].slotPosition = i;
+                slot.itemInSlot.medicine = Instantiate(medicine, transform);
+                slot.slotPosition = i;
                 return;
             }
 
