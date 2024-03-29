@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
-using TMPro;
+
 public class SpawnManager : MonoBehaviour
 {
 
@@ -31,22 +31,10 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] List<EnemySO> bossEnemiesPool = new List<EnemySO>();
     [SerializeField] List<Transform> bossSpawnPoints = new List<Transform>();
     private bool hasSpawned = false;
-    public int enemiesDefeated = 0;
-    public float currentDNAPoints = 0;
-    public TextMeshProUGUI dnaValueText;
-    public static SpawnManager Instance;
 
     private void Awake()
     {
         player = FindFirstObjectByType<Player>();
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        } //Applying Singleton
     }
 
     private void OnEnable()
@@ -109,7 +97,6 @@ public class SpawnManager : MonoBehaviour
     private void removeEnemy(Enemy removedEnemy)
     {
         enemies.Remove(removedEnemy);
-        enemiesDefeated++;
     }
     IEnumerator StrongerEnemiesCoroutine()
     {
