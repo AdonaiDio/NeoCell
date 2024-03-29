@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float HPMax; //Max HP
 
-    private float HP;
+    public float HP;
 
     public GameObject floatingDamage;
 

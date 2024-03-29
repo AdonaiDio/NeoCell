@@ -18,6 +18,7 @@ public class InputHandler : MonoBehaviour
     public InputAction moveAction;
     public InputAction aimAction;
     public InputAction inventoryMenuAction;
+    public bool isBPressed;
 
 
     public static InputHandler Instance { get; private set; }
@@ -43,10 +44,14 @@ public class InputHandler : MonoBehaviour
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
         moveAction.canceled += context => MoveInput = Vector2.zero;
         aimAction.performed += context => AimInput = context.ReadValue<Vector2>();
-        aimAction.canceled += context => AimInput = Vector2.zero;
-        inventoryMenuAction.performed += context => InventoryMenuInput = true;
-        inventoryMenuAction.canceled += context => InventoryMenuInput = false;
-
+        aimAction.canceled += context => AimInput = Vector2.zero;        
+        inventoryMenuAction.performed += context => Events.onInventoryKeyPressed.Invoke();
+        //inventoryMenuAction.canceled += context => Events.onInventoryKeyPressed.Invoke(false);
+        
+        //inventoryMenuAction.performed += context => InventoryMenuInput = true;
+        //inventoryMenuAction.canceled += context => InventoryMenuInput = false;
+        //isBPressed = inventoryMenuAction.ReadValue<float>() > 0.1f;
+        
     }
 
     private void OnEnable()
@@ -66,5 +71,7 @@ public class InputHandler : MonoBehaviour
 
     public Vector2 AimInput { get; private set; }
     public bool InventoryMenuInput { get; private set; }
+    
+    
 
 }

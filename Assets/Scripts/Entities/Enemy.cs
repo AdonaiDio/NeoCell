@@ -267,7 +267,7 @@ public class Enemy : MonoBehaviour
 
     public void CheckCollisions(float interactDistance)
     {
-
+      
         Ray ray = new Ray(body.transform.position, body.transform.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, interactDistance, collisionMask, QueryTriggerInteraction.Collide))
@@ -278,7 +278,7 @@ public class Enemy : MonoBehaviour
 
     public void OnHitObject(RaycastHit hit)
     {
-        if (hit.collider.GetComponent<Cell>())
+        if (hit.collider.GetComponent<Player>())
         {
             if (Time.time - LastDamageTime < damageCooldown)
             { //Calc damage cooldown
@@ -286,7 +286,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                hit.collider.GetComponent<Cell>().LoseHP(); //Damage player
+                hit.collider.GetComponent<Player>().LoseHP(); //Damage player
                 LastDamageTime = Time.time;
             }
         }

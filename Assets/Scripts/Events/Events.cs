@@ -21,6 +21,8 @@ public static class Events
     public static readonly Evt<Skill_SpinningAround, Enemy> onMineHitEnemy = new Evt<Skill_SpinningAround, Enemy>();
     
     public static readonly Evt<Enemy,float, List<StatusEffectData>> onDamageEnemy = new Evt<Enemy, float, List<StatusEffectData>>();
+    public static readonly Evt onInventoryKeyPressed = new Evt();
+
 }
 public class Evt
 {

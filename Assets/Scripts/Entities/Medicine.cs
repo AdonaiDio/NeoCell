@@ -7,6 +7,7 @@ using UnityEngine;
 public class Medicine : MonoBehaviour
 {
     public Sprite icon;
+    public int medicineID;
     public string medicineName;
     public string medicineDescription;
     public string medicineEffects;
