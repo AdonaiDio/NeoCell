@@ -282,7 +282,7 @@ MonoBehaviour:
   maxEnemies: 40
   waitSpawnStrongTimer: 30
   waitSpawnTimerDecrease: 15
-  waitSpawnTimerBoss: 10
+  waitSpawnTimerBoss: 60
   spawnTimerDecreaseRate: 0.7
   strongEnemySpawnChance: 10
   weakEnemiesPool:
