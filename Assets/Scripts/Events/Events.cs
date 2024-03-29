@@ -13,7 +13,7 @@ public static class Events
     public static readonly Evt<Medicine> onMedicineCollected = new Evt<Medicine>();
 
     public static readonly Evt<BossEnemy> onBossSpawn = new Evt<BossEnemy>();
-    public static readonly Evt<BossEnemy> onBossDeath = new Evt<BossEnemy>();
+    public static readonly Evt onBossDeath = new Evt();
     public static readonly Evt<Enemy> onEnemyDeath = new Evt<Enemy>();
     public static readonly Evt<float> onLevelUp = new Evt<float>();
     public static readonly Evt<Skill_LineProjectile, Enemy> onProjectileHitEnemy = new Evt<Skill_LineProjectile, Enemy>();

@@ -39,7 +39,7 @@ public class BossEnemy : Enemy
     public override void Die()
     {
         GameObject.Destroy(gameObject);
-        Events.onBossDeath.Invoke(this);
+        Events.onBossDeath.Invoke();
     }
 
 

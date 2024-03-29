@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-
+    public static SpawnManager Instance;
     [SerializeField] Enemy enemy;
     [SerializeField] GameObject boss;
     [SerializeField] Vector3 spawnArea;
@@ -31,9 +31,18 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] List<EnemySO> bossEnemiesPool = new List<EnemySO>();
     [SerializeField] List<Transform> bossSpawnPoints = new List<Transform>();
     private bool hasSpawned = false;
+    public int enemiesDefeated = 0;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        } //Applying Singleton
         player = FindFirstObjectByType<Player>();
     }
 
@@ -97,6 +106,7 @@ public class SpawnManager : MonoBehaviour
     private void removeEnemy(Enemy removedEnemy)
     {
         enemies.Remove(removedEnemy);
+        enemiesDefeated++;
     }
     IEnumerator StrongerEnemiesCoroutine()
     {
