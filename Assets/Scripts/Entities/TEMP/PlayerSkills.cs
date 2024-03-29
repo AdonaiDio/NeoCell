@@ -232,14 +232,20 @@ public class PlayerSkills : MonoBehaviour
         //Testar a sorte do critico
         float roll = UnityEngine.Random.Range(0f, 100f);
         float criticalMult = 1f;
+        bool isCritical = false;
         if (roll <= criticalChance)
         {
-            Debug.Log("!!!! CRITOU !!!!<color=yellow>");
+            Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
             criticalMult = 5f;
+            isCritical = true;
         }
         //enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lá. dano alto
         float damageTotal = (damage*_mineDamage)*criticalMult;//sei lá. dano alto
         Events.onDamageEnemy.Invoke(enemy, damageTotal,_effects);
+        //efeito de dano do inimigo. critico ou não
+        GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
+        floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
+        floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
         //limpar da lista de minas ativas e destruir
         spawnedMines.Remove(spinScript.gameObject);
         Destroy(spinScript.gameObject);
@@ -276,14 +282,20 @@ public class PlayerSkills : MonoBehaviour
                 //Testar a sorte do critico
                 float roll = UnityEngine.Random.Range(0f, 100f);
                 float criticalMult = 1f;
+                bool isCritical = false;
                 if (roll <= criticalChance)
                 {
-                    Debug.Log("!!!! CRITOU !!!!<color=yellow>");
+                    Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
                     criticalMult = 5f;
+                    isCritical = true;
                 }
                 Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
                 float damageTotal = (damage*criticalMult);
                 Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
+                //efeito de dano do inimigo. critico ou não
+                GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
+                floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
+                floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
             }
         }
     }
@@ -311,14 +323,20 @@ public class PlayerSkills : MonoBehaviour
                 //Testar a sorte do critico
                 float roll = UnityEngine.Random.Range(0f, 100f);
                 float criticalMult = 1f;
+                bool isCritical = false;
                 if (roll <= criticalChance)
                 {
-                    Debug.Log("!!!! CRITOU !!!!<color=yellow>");
+                    Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
                     criticalMult = 5f;
+                    isCritical = true;
                 }
                 Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
                 float damageTotal = (damage * criticalMult);
                 Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
+                //efeito de dano do inimigo. critico ou não
+                GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
+                floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
+                floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
             }
         }
     }
@@ -341,13 +359,19 @@ public class PlayerSkills : MonoBehaviour
         //Testar a sorte do critico
         float roll = UnityEngine.Random.Range(0f, 100f);
         float criticalMult = 1f;
+        bool isCritical = false;
         if (roll <= criticalChance)
         {
             Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
             criticalMult = 5f;
+            isCritical = true;
         }
         float damageTotal = (damage * criticalMult);
         Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
+        //efeito de dano do inimigo. critico ou não
+        GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
+        floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
+        floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
         //Limpar da cena caso já tenha atingido o ultimo inimigo possível
         if (_projectileHits >= enemiesAtOnce)
         {
