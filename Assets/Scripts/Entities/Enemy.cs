@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 using Unity.VisualScripting;
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float HP; //Used to store current HP
     private HPBarEnemy hpBarEnemy;
     [SerializeField] protected float damage;
+    protected float speed = 6f;
 
     protected LayerMask collisionMask;
     protected Transform playerTarget;
@@ -29,10 +31,16 @@ public class Enemy : MonoBehaviour
     protected GameObject body;
     [SerializeField] protected GameObject dnaDrop;
     [SerializeField] protected GameObject medicineDrop;
-    public int medicineDropRate;
+    public float medicineDropRate;
 
+    private List<StatusEffectData> effects;//recebe os efeitos do golpe do player
+    public GameObject explosionGO;
+    public GameObject explosionIcon_prefab;
+    private GameObject explosionIconGO;
 
     protected Rigidbody rb;
+
+    private bool doingTask = false;
     public virtual void Awake()
     {
         playerTarget = FindFirstObjectByType<Player>().transform; //Find player target to follow
@@ -43,7 +51,18 @@ public class Enemy : MonoBehaviour
         {
             hpBarEnemy = transform.Find("HPBarUI").GetComponent<HPBarEnemy>();
         }
+        effects = new List<StatusEffectData>();
     }
+
+    public void OnEnable()
+    {
+        Events.onDamageEnemy.AddListener(ReceveDamage);
+    }
+    public void OnDisable()
+    {
+        Events.onDamageEnemy.RemoveListener(ReceveDamage);
+    }
+
 
     public virtual void Start()
     {
@@ -52,10 +71,13 @@ public class Enemy : MonoBehaviour
         HPMax = enemySO.health;
         HP = HPMax; //Start with max HP
         damage = enemySO.damage;
+        speed = 6f;
+        GetComponent<NavMeshAgent>().speed = speed;
 
         body.GetComponent<Renderer>().material = enemySO.material;
 
         scaleWithType();
+        doingTask = false;
     }
 
     private void Update()
@@ -63,9 +85,163 @@ public class Enemy : MonoBehaviour
         ChasePlayer(); //follow player
         CheckCollisions(interactDistance);//check collisions to do damage
                                           //hpBarEnemy.transform.rotation = Quaternion.identity;
-        if (HP <= 0) //Die
-            Die();
+
     }
+    #region Relacionados a Efeitos
+    private void FixedUpdate()
+    {
+        if (!doingTask) WaitForTicks();
+    }
+
+    private float _firstTick_Slow = 0;
+    //private float _lastTick_Slow = 0;
+
+    private float _firstTick_Decay = 0;//usar para checar o Lifetime
+    private float _lastTick_Decay = 0;//usar para cada tick
+
+    private float _firstTick_Explosion = 0;
+    //private float _lastTick_Explosion = 0;
+    //private float _lastTick_Heal = 0;
+    private void WaitForTicks()
+    {
+        doingTask = true;
+        //DO
+        if (effects.Count == 0)
+        {
+            doingTask = false;
+            return;
+        }
+
+        bool hasToRemoveSlow = false;
+        bool hasToRemoveDecay = false;
+        bool hasToRemoveExplosion = false;
+
+        foreach (StatusEffectData fx in effects)
+        {
+            if (fx.Type == StatusEffectType.Speed)
+            {
+                //tempo de vida do efeito
+                if (Time.time - _firstTick_Slow > fx.Lifetime)
+                {
+                    //retornar a velocidade normal
+                    GetComponent<NavMeshAgent>().speed = speed;
+                    //preciso saber quando e quem remover da lista fora do for
+                    hasToRemoveSlow = true;
+                }
+            }
+            else if (fx.Type == StatusEffectType.DamageOverTime)
+            {
+                //tempo de vida do efeito
+                if (Time.time - _firstTick_Decay <= fx.Lifetime)
+                {
+                    //age conforme o proprio tickSpeed
+                    if (Time.time - _lastTick_Decay >= fx.TickSpeed)
+                    {
+                        _lastTick_Decay = Time.time;
+                        //causar dano (com efeito?)
+                        LoseHP(fx.Amount);
+                    }
+                }
+                else
+                {
+                    //preciso saber quando e quem remover da lista fora do for
+                    hasToRemoveDecay = true;
+                }
+            }
+            else if (fx.Type == StatusEffectType.Explosion)
+            {
+                //tempo de vida do efeito
+                if (Time.time - _firstTick_Explosion > fx.Lifetime)
+                {
+                    //n�o faz nada durante os ticks s� espera acabar para desabilitar o efeito
+                    hasToRemoveExplosion = true;
+                    Destroy(explosionIconGO);
+                }
+            }
+            //if (fx.Type == StatusEffectType.Heal)
+            //{
+
+            //}
+        }
+        //Hora de remover de fato o efeito que viveu todo o lifetime da lista
+        for (int i = effects.Count - 1; i >= 0; i--)
+        {
+            if (effects[i].Type == StatusEffectType.Speed && hasToRemoveSlow)
+            {
+                effects.Remove(effects[i]);
+            }
+            else if (effects[i].Type == StatusEffectType.DamageOverTime && hasToRemoveDecay)
+            {
+                effects.Remove(effects[i]);
+            }
+            else if (effects[i].Type == StatusEffectType.Explosion && hasToRemoveExplosion)
+            {
+                effects.Remove(effects[i]);
+            }
+        }
+        doingTask = false;
+    }
+    private void ReceveDamage(Enemy _enemy, float _damage, List<StatusEffectData> _effects)
+    {
+        if (_enemy != this)
+        {
+            return;
+        }
+        LoseHP(_damage);
+        //se puder, mudar os efeitos.
+        if (_effects.Count == 0)
+        {
+            return;
+        }
+        //checar se mudou os efeitos
+        bool isEffectsChanged = false;
+        if (_effects.Count != effects.Count)
+        {
+            isEffectsChanged = true;
+        }
+        else
+        {
+            for (int i = 0; i < effects.Count; i++)
+            {
+                if (effects[i] != _effects[i])
+                {
+                    isEffectsChanged = true;
+                    break;
+                }
+            }
+        }
+        if (!isEffectsChanged)
+        {
+            return;
+        }
+        //n�o tem jeito, mudou mesmo. Logo:
+        effects.Clear();
+        foreach (StatusEffectData fx in _effects)
+        {
+            //add a nova lista de efeitos
+            effects.Add(fx);
+            //iniciar o timer do Lifetime deste efeito
+            if (fx.Type == StatusEffectType.Speed)
+            {
+                _firstTick_Slow = Time.time;
+                //alterar a velocidade do enemy
+                GetComponent<NavMeshAgent>().speed = speed * fx.Amount;
+            }
+            else if (fx.Type == StatusEffectType.DamageOverTime)
+            {
+                _firstTick_Decay = Time.time;
+                //n�o faz nada ao iniciar efeito, s� durante os ticks
+            }
+            else if (fx.Type == StatusEffectType.Explosion)
+            {
+                _firstTick_Explosion = Time.time;
+                //nao faz nada ao iniciar efeito no maximo algum indicativo visual
+                explosionIconGO = Instantiate(explosionIcon_prefab, hpBarEnemy.transform);
+            }
+        }
+    }
+    #endregion
+
     public void scaleWithType()
     {
         if (type == "Strong")
@@ -79,13 +255,14 @@ public class Enemy : MonoBehaviour
     }
     public void ChasePlayer()
     {
-        GetComponent<NavMeshAgent>().SetDestination(playerTarget.position);
-    }
-    public virtual void LoseHP(float damage = 1)
-    {
-        HP -= damage;
-        float hpToFillBar = HP / HPMax;
-        hpBarEnemy.barImage.fillAmount = hpToFillBar;
+        //persegue jogador enquanto a distancia dele para o jogador for
+        //maior que a soma do tamanho de ambos colliders
+        if (Vector3.Distance(transform.position, playerTarget.position) 
+            > playerTarget.GetComponent<CapsuleCollider>().radius + 
+            GetComponent<BoxCollider>().size.z+(GetComponent<BoxCollider>().size.z / 2))
+        {
+            GetComponent<NavMeshAgent>().SetDestination(playerTarget.position);
+        }
     }
 
     public void CheckCollisions(float interactDistance)
@@ -114,22 +291,48 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    public virtual void LoseHP(float damage = 1)
+    {
+        HP -= damage;
+        float hpToFillBar = HP / HPMax;
+        hpBarEnemy.barImage.fillAmount = hpToFillBar;
 
+        if (HP <= 0) //Die
+        {
+            if (effects.Count != 0)
+            {
+                //antes de morrer ver se vai morrer com efeito de explos�o
+                foreach (StatusEffectData fx in effects)
+                {
+                    if (fx.Type == StatusEffectType.Explosion)
+                    {
+                        //hora de fazer a explos�o!!!
+                        GameObject explo = Instantiate(explosionGO);
+                        explo.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+                        explo.GetComponent<ExplosionScript>().damage = damage;
+                        explo.GetComponent<ExplosionScript>().finalSize = fx.Amount;
+                        //KABUM!
+                    }
+                }
+            }
+            Die();
+        }
+    }
     public virtual void Die()
     {
         Vector3 lootSpawnPoint = transform.position;
         lootSpawnPoint.y = 1f;
-        //lootSpawnPoint.y = dnaDrop.transform.position.y;
 
         Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
-        medicineDropRate = UnityEngine.Random.Range(0, 100);
-        if (medicineDropRate <= 50)
+
+        if (medicineDropRate >= UnityEngine.Random.Range(0f,100f) && medicineDropRate != 0)
         {
             Instantiate(medicineDrop, lootSpawnPoint, medicineDrop.transform.rotation);
         }
-        Destroy(gameObject);
 
         Events.onEnemyDeath.Invoke(this);
+
+        Destroy(gameObject);
     }
 
 

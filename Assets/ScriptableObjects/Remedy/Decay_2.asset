@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Decay_2
+  m_EditorClassIdentifier: Assembly-CSharp::Remedy_Decay
+  _name: Decay
+  _description: 'Causa 3 dano extra a cada 1 segundo, durante 8 segundos.
+
+    Proximo
+    Upgrade:  4 dano a cada 1 segundo, por 10 segundos.'
+  _cost: 20
+  _effect: {fileID: 11400000, guid: c8de51c9fc6b168499457d717eb1207f, type: 2}
