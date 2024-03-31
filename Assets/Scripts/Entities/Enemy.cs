@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     protected GameObject body;
     [SerializeField] protected GameObject dnaDrop;
     [SerializeField] protected GameObject medicineDrop;
-    public float medicineDropRate;
+    private float medicineDropRate = 99f;///temp
 
     private List<StatusEffectData> effects;//recebe os efeitos do golpe do player
     public GameObject explosionGO;
@@ -325,7 +325,7 @@ public class Enemy : MonoBehaviour
 
         Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
 
-        if (medicineDropRate >= UnityEngine.Random.Range(0f,100f) && medicineDropRate != 0)
+        if (medicineDropRate <= UnityEngine.Random.Range(0f,100f) && medicineDropRate != 0)
         {
             Instantiate(medicineDrop, lootSpawnPoint, medicineDrop.transform.rotation);
         }
