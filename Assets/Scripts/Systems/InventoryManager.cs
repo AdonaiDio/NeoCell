@@ -122,7 +122,6 @@ public class InventoryManager : MonoBehaviour
         // medicineItemReceived.medicine = medicine;
         if (medicineReceived != null)
         {
-
             AddMedicine(medicineReceived, medicineInventorySlots);
         }
         else
