@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 using System.Timers;
+using UnityEngine.SceneManagement;
 
 
 public class MenuManager : MonoBehaviour
@@ -88,6 +89,9 @@ public class MenuManager : MonoBehaviour
         gameClearMenu.SetActive(true);
         
         Time.timeScale = 0f;
+    }
+    public void returnToMainMenu(){
+         SceneManager.LoadSceneAsync(0);
     }
 }
 

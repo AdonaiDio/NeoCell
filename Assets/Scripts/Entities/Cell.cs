@@ -10,7 +10,7 @@ using Unity.VisualScripting;
 
 public class Cell : MonoBehaviour
 {
-
+/*/
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float HPMax; //Max HP
@@ -121,7 +121,7 @@ public class Cell : MonoBehaviour
         Events.onHpLostCell.Invoke(hpToFillBar);
         //hpToFillBar = HP/HPMax //Variable used to fill on HPBarCell
 
-    }
+    }/*/
 }
 
 

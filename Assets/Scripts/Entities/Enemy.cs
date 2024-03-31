@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
-using Microsoft.Unity.VisualStudio.Editor;
+//using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 
