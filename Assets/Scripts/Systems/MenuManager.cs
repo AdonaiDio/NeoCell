@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
     [SerializeField] private GameObject inGameMenu;
-    [SerializeField] private GameObject gameClearMenu;
+    [SerializeField] private GameObject gamePauseMenu;
     [SerializeField] private InputHandler inputHandler;
     public float gameTimer;
     public TextMeshProUGUI enemiesDefeatedText;
@@ -21,23 +21,27 @@ public class MenuManager : MonoBehaviour
     
     private bool _isActive = false;
     
+    
     void Start()
     {
         inGameMenu.SetActive(true);
         inventoryMenu.SetActive(false);
-        gameClearMenu.SetActive(false);
+        gamePauseMenu.SetActive(false);
+        
     }
     
         private void OnEnable()
     {
-        Events.onBossDeath.AddListener(endGame);
+        Events.onBossDeath.AddListener(winGame);
+        Events.onPlayerDeath.AddListener(loseGame);
+
         //Events.onInventoryKeyPressed.AddListener(ShowInventoryMenu);
         //Events.onInventoryKeyPressed.AddListener(HideInventoryMenu);
 
     }
     private void OnDisable()
     {
-        Events.onBossDeath.RemoveListener(endGame);
+        Events.onBossDeath.RemoveListener(winGame);
         //Events.onInventoryKeyPressed.RemoveListener(ShowInventoryMenu);
         //Events.onInventoryKeyPressed.RemoveListener(HideInventoryMenu);
     }
@@ -51,47 +55,59 @@ public class MenuManager : MonoBehaviour
             Debug.Log("Apertou o botão!");
             if (!_isActive)
             {
-                ShowInventoryMenu();
+                ShowPauseMenu(inventoryMenu);
             }
             else
             {
-                HideInventoryMenu();
+                HidePauseMenu(inventoryMenu);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Apertou o botão!");
+            if (!_isActive)
+            {
+                ShowPauseMenu(gamePauseMenu);
+            }
+            else
+            {
+                HidePauseMenu(gamePauseMenu);
             }
         }
         
     }
-   void ShowInventoryMenu()
+   void ShowPauseMenu(GameObject menu)
     {
-        if (_isActive == false)
-        {
+        
         _isActive = true;
-        inventoryMenu.SetActive(_isActive);
+        menu.SetActive(_isActive);
         Time.timeScale = 0f; 
         Debug.Log("Menu aberto");
-        }
+        
     }
-    void HideInventoryMenu()
+    void HidePauseMenu(GameObject menu)
     {       
-        if (_isActive == true){
+       
         _isActive = false;
         Time.timeScale = 1f;        
-        inventoryMenu.SetActive(_isActive);
-        Debug.Log("Menu fechado");
-        }
+        menu.SetActive(_isActive);
+        Debug.Log("Menu fechado");        
     }
-    void endGame(){    
-        enemiesDefeatedText.text = SpawnManager.Instance.enemiesDefeated.ToString();        
-        int minutes = Mathf.FloorToInt(gameTimer / 60);
-        int seconds = Mathf.FloorToInt(gameTimer % 60);
-        gameTimerText.text = string.Format("{0:00}:{1:00}",minutes,seconds);
-        inGameMenu.SetActive(false);
-        inventoryMenu.SetActive(false);
-        gameClearMenu.SetActive(true);
-        
-        Time.timeScale = 0f;
+    void winGame(){    
+        SceneManager.LoadSceneAsync(2);
+    }
+    void loseGame(){    
+        SceneManager.LoadSceneAsync(3);
     }
     public void returnToMainMenu(){
-         SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(0);
+    }
+    
+    public void reloadScene(){
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        Time.timeScale = 1f;
+        
     }
 }
 

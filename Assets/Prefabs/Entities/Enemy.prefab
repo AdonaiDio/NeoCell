@@ -189,11 +189,11 @@ MonoBehaviour:
   HPMax: 0
   HP: 0
   damage: 0
-  interactDistance: 1
+  interactDistance: 3
   damageCooldown: 0.5
   dnaDrop: {fileID: 7635789907011544830, guid: c8339ce3a4008244eb6bc1b203cd07a5, type: 3}
   medicineDrop: {fileID: 7859110703970017881, guid: a17110b25e34978408c81868c0babb7b, type: 3}
-  damageIndicator: {fileID: 1838164616141655908, guid: f17520fe2a9ffc241a467c826ca36c2a, type: 3}
+  medicineDropRate: 0
 --- !u!1 &6729049941470554300
 GameObject:
   m_ObjectHideFlags: 0
