@@ -15,9 +15,9 @@ public class DamageIndicator : MonoBehaviour
 
     [SerializeField] private float lifeTime = 1f;
     private float startTime = 0f;
-    public float floatingSpeed = 0.1f;
+    private float floatingSpeed = 0.1f;
     public bool isCritical = false;
-    public float sizeMod = 1f;
+    private float sizeMod = 1f;
 
 
     private void Awake()

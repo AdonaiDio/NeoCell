@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c580a96a7a63a3f4ba044c5e74213a7e, type: 3}
-  m_Name: Boss_Nautic
+  m_Name: New Enemy
   m_EditorClassIdentifier: 
-  enemyName: BossNautic
-  enemyType: Boss
+  enemyName: new
+  enemyType: Strong
   health: 100
   damage: 1
-  material: {fileID: -664555040068797900, guid: 8cc025867a2a44b40beb05fee96f2b05, type: 3}
+  material: {fileID: 2100000, guid: a42bae46259e3954ca320d8247801681, type: 2}
