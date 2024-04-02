@@ -23,5 +23,8 @@ public class Player : MonoBehaviour
         GameObject floatTxt = Instantiate(floatingDamage,transform.Find("HPBarUI"));
         floatTxt.GetComponent<DamageIndicator>().damageNumber = damage;
         floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
+        if (HP <= 0){
+            Events.onPlayerDeath.Invoke();
+        }
     }
 }
