@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: BossNautic
   enemyType: Boss
   health: 100
-  damage: 1
+  damage: 5
   material: {fileID: -664555040068797900, guid: 8cc025867a2a44b40beb05fee96f2b05, type: 3}

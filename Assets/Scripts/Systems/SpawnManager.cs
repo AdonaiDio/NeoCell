@@ -8,7 +8,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    [SerializeField] Enemy enemy;
+    [SerializeField] List<Enemy> enemies_prefabs;
     [SerializeField] GameObject boss;
     [SerializeField] Vector3 spawnArea;
     [SerializeField] float spawnTimer;
@@ -68,16 +68,18 @@ public class SpawnManager : MonoBehaviour
         int a = UnityEngine.Random.Range(1, 360);
         center.y = 0;
         Vector3 pos = RandomCircle(center, spawnDistance, a);
-
+        int indexEnemy = UnityEngine.Random.Range(0, enemies_prefabs.Count);//temporario
         if (UnityEngine.Random.Range(0, 100) >= strongEnemySpawnChance)
         {
-            enemy.enemySO = strongEnemiesPool[UnityEngine.Random.Range(0, strongEnemiesPool.Count)];
+            int indexStrong = UnityEngine.Random.Range(0, strongEnemiesPool.Count);//temporario
+            enemies_prefabs[indexEnemy].enemySO = strongEnemiesPool[indexStrong];
         }
         else
         {
-            enemy.enemySO = weakEnemiesPool[UnityEngine.Random.Range(0, weakEnemiesPool.Count)];
+            int indexWeak = UnityEngine.Random.Range(0, weakEnemiesPool.Count);//temporario
+            enemies_prefabs[indexEnemy].enemySO = weakEnemiesPool[indexWeak];
         }
-        Enemy newEnemy = Instantiate(enemy, pos, Quaternion.identity);
+        Enemy newEnemy = Instantiate(enemies_prefabs[indexEnemy], pos, Quaternion.identity);
         enemies.Add(newEnemy);
 
     }

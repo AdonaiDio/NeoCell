@@ -152,5 +152,7 @@ MonoBehaviour:
   currentColor: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   criticalColor: {r: 0.84313726, g: 0.45490196, b: 0.08235294, a: 0}
-  lifeTime: 2
+  lifeTime: 1.2
+  floatingSpeed: 0.1
   isCritical: 0
+  sizeMod: 1

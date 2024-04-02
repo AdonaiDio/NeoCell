@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Bacteria
   enemyType: Strong
-  health: 6
-  damage: 1
+  health: 4
+  damage: 2
   material: {fileID: 2100000, guid: a42bae46259e3954ca320d8247801681, type: 2}
