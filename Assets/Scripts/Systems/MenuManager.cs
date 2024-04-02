@@ -12,12 +12,8 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
-<<<<<<< HEAD
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject gamePauseMenu;
-=======
-    [SerializeField] private GameObject hotbarUI;
->>>>>>> Adonai
     [SerializeField] private InputHandler inputHandler;
     public float gameTimer;
     public TextMeshProUGUI enemiesDefeatedText;
@@ -28,12 +24,11 @@ public class MenuManager : MonoBehaviour
     
     void Start()
     {
-        hotbarUI.SetActive(true);
+        inGameMenu.SetActive(true);
         inventoryMenu.SetActive(false);
         gamePauseMenu.SetActive(false);
         
     }
-<<<<<<< HEAD
     
         private void OnEnable()
     {
@@ -78,30 +73,9 @@ public class MenuManager : MonoBehaviour
             {
                 HidePauseMenu(gamePauseMenu);
             }
-=======
-
-    /*/     private void OnEnable()
-     {
-         Events.onInventoryKeyPressed.AddListener(ShowInventoryMenu);
-         Events.onInventoryKeyPressed.AddListener(HideInventoryMenu);    
-     }
-     private void OnDisable()
-     {
-         Events.onInventoryKeyPressed.RemoveListener(ShowInventoryMenu);
-         Events.onInventoryKeyPressed.RemoveListener(HideInventoryMenu);
-     }
-     // Update is called once per frame
-     /*/
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("Apertou o botão!");
-            HideOrShowInventory();
->>>>>>> Adonai
         }
+        
     }
-<<<<<<< HEAD
    void ShowPauseMenu(GameObject menu)
     {
         
@@ -134,33 +108,6 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(scene.name);
         Time.timeScale = 1f;
         
-=======
-    public void HideOrShowInventory()
-    {
-        if (!_isActive)
-            ShowInventoryMenu();
-        else
-            HideInventoryMenu();
-    }
-    public void ShowInventoryMenu()
-    {
-        if (_isActive == false)
-        {
-            _isActive = true;
-            inventoryMenu.SetActive(_isActive);
-            Time.timeScale = 0f;
-        }
-    }
-    public void HideInventoryMenu()
-    {
-        if (_isActive == true)
-        {
-            _isActive = false;
-            Time.timeScale = 1f;
-
-            inventoryMenu.SetActive(_isActive);
-        }
->>>>>>> Adonai
     }
 }
 

@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7635789907011544824}
   - component: {fileID: 1889274408533216731}
-  - component: {fileID: -3008392329802547419}
   m_Layer: 0
   m_Name: DNADrop
   m_TagString: Untagged
@@ -134,15 +133,3 @@ MonoBehaviour:
   distanceToDestroy: 2
   dnaValue: 1
   speed: 15
---- !u!114 &-3008392329802547419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7635789907011544830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 263b800ec8cd9c840af9bcdfb2756723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

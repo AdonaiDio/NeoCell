@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class MedicineSO : ScriptableObject
 {
     // Start is called before the first frame update
-    public Sprite icon;
     public int medicineID;
     public string medicineName;
     public string medicineDescription;
     public string medicineEffects;
     public float medicinePrice;
+    public Sprite icon;
+
+
 
 }
