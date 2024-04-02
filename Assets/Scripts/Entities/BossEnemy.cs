@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 
@@ -39,7 +38,7 @@ public class BossEnemy : Enemy
     public override void Die()
     {
         GameObject.Destroy(gameObject);
-        Events.onBossDeath.Invoke(this);
+        Events.onBossDeath.Invoke();
     }
 
 
