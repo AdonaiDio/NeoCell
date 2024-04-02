@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7643435082916808487}
   - component: {fileID: 8154606599842944937}
   - component: {fileID: 2200123568226011095}
+  - component: {fileID: -5411880929677890915}
   m_Layer: 0
   m_Name: MedicineDrop
   m_TagString: Untagged
@@ -45,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fa3c72403e13e408b4602d981f5a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medicine: {fileID: 2125695367191932207, guid: c93a47f1b95831d42b32b6850509831b, type: 3}
   remedy: {fileID: 0}
-  distanceToMove: 15
   distanceToDestroy: 3
   speed: 15
 --- !u!212 &2200123568226011095
@@ -102,3 +101,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5411880929677890915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859110703970017881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263b800ec8cd9c840af9bcdfb2756723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

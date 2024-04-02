@@ -22,7 +22,6 @@ public class MedicineSlot : MonoBehaviour
     }
     public void selectSlot()
     {
-        Debug.Log("Posição do slot enviada: " + this);
         Events.onSlotClicked.Invoke(this);
     }
 

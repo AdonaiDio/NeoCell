@@ -19,11 +19,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float HP; //Used to store current HP
     private HPBarEnemy hpBarEnemy;
     [SerializeField] protected float damage;
-    protected float speed = 6f;
+    protected float speed = 3f;
 
     protected LayerMask collisionMask;
     protected Transform playerTarget;
-    [SerializeField] protected float interactDistance;
 
 
     [SerializeField] protected float damageCooldown; //Damage cooldown
@@ -74,7 +73,7 @@ public class Enemy : MonoBehaviour
         speed = 6f;
         GetComponent<NavMeshAgent>().speed = speed;
 
-        body.GetComponent<Renderer>().material = enemySO.material;
+        //body.GetComponent<Renderer>().material = enemySO.material;
 
         scaleWithType();
         doingTask = false;
@@ -83,9 +82,8 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         ChasePlayer(); //follow player
-        CheckCollisions(interactDistance);//check collisions to do damage
+        //CheckCollisions(interactDistance);//check collisions to do damage
                                           //hpBarEnemy.transform.rotation = Quaternion.identity;
-
     }
     #region Relacionados a Efeitos
     private void FixedUpdate()
@@ -246,51 +244,62 @@ public class Enemy : MonoBehaviour
     {
         if (type == "Strong")
         {
-            transform.localScale += new Vector3(1, 1, 1);
-        }
-        if (type == "Boss")
-        {
-            transform.localScale += new Vector3(5, 5, 5);
+            float size = UnityEngine.Random.Range(1f,2f);
+            transform.localScale += new Vector3(size, size, size);
         }
     }
     public void ChasePlayer()
     {
         //persegue jogador enquanto a distancia dele para o jogador for
         //maior que a soma do tamanho de ambos colliders
-        if (Vector3.Distance(transform.position, playerTarget.position) 
-            > playerTarget.GetComponent<CapsuleCollider>().radius + 
-            GetComponent<BoxCollider>().size.z+(GetComponent<BoxCollider>().size.z / 2))
-        {
+        float desiredDistance = playerTarget.GetComponent<CapsuleCollider>().radius 
+            * playerTarget.transform.localScale.x 
+            + (GetComponent<CapsuleCollider>().radius * transform.localScale.x);
+
+        if (Vector3.Distance(transform.position, playerTarget.position) > desiredDistance) {
             GetComponent<NavMeshAgent>().SetDestination(playerTarget.position);
         }
-    }
-
-    public void CheckCollisions(float interactDistance)
-    {
-      
-        Ray ray = new Ray(body.transform.position, body.transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, interactDistance, collisionMask, QueryTriggerInteraction.Collide))
-        {
-            OnHitObject(hit);
+        else {
+            GetComponent<NavMeshAgent>().SetDestination(transform.position);
         }
     }
 
-    public void OnHitObject(RaycastHit hit)
+    //public void CheckCollisions(float interactDistance)
+    //{
+      
+    //    Ray ray = new Ray(body.transform.position, body.transform.forward);
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(ray, out hit, interactDistance, collisionMask, QueryTriggerInteraction.Collide))
+    //    {
+    //        OnHitObject(hit);
+    //    }
+    //}
+    void OnTriggerStay(Collider col)
     {
-        if (hit.collider.GetComponent<Player>())
+        if(col.GetComponent<Player>())
         {
-            if (Time.time - LastDamageTime < damageCooldown)
-            { //Calc damage cooldown
-
-            }
-            else
-            {
-                hit.collider.GetComponent<Player>().LoseHP(); //Damage player
+            if (Time.time - LastDamageTime > damageCooldown) { 
+                col.GetComponent<Player>().LoseHP(damage); //Damage player
                 LastDamageTime = Time.time;
             }
         }
     }
+
+    //public void OnHitObject(Collider hit)
+    //{
+    //    if (hit.collider.GetComponent<Player>())
+    //    {
+    //        if (Time.time - LastDamageTime < damageCooldown)
+    //        { //Calc damage cooldown
+
+    //        }
+    //        else
+    //        {
+    //            hit.collider.GetComponent<Player>().LoseHP(damage); //Damage player
+    //            LastDamageTime = Time.time;
+    //        }
+    //    }
+    //}
     public virtual void LoseHP(float damage = 1)
     {
         HP -= damage;
@@ -325,7 +334,7 @@ public class Enemy : MonoBehaviour
 
         Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
 
-        if (medicineDropRate <= UnityEngine.Random.Range(0f,100f) && medicineDropRate != 0)
+        if (medicineDropRate >= UnityEngine.Random.Range(1f,100f) && medicineDropRate != 0)
         {
             Instantiate(medicineDrop, lootSpawnPoint, medicineDrop.transform.rotation);
         }

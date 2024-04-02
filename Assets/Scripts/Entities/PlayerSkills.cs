@@ -21,6 +21,11 @@ public class PlayerSkills : MonoBehaviour
     [SerializeField] private GameObject areaGO;
     [SerializeField] private GameObject projectile;
     [SerializeField] private GameObject MineAroundGO;
+
+    //FX
+    public GameObject fx_melee_prefab;
+    public GameObject fx_around_prefab;
+
     //infos
     public float CollectDropAtDistance = 15f;
     private int enemiesAtOnce = 1;
@@ -40,8 +45,9 @@ public class PlayerSkills : MonoBehaviour
     public float _cooldown = 1f;
     private float _lastTick;
 
+
     //FMOD
-    [SerializeField] private EventReference sillySound;
+    //[SerializeField] private EventReference sillySound;
 
     private void Awake()
     {
@@ -201,7 +207,13 @@ public class PlayerSkills : MonoBehaviour
         //usar melee se não tiver outro dano
         if (_remedyList == null || _remedyList.Count == 0)
         {
-            MeleeColDetec();
+            if (!isMeleePointless)
+            {
+                MeleeColDetec();
+                //FX area
+                GameObject _fx = Instantiate(fx_melee_prefab, meleeGO.transform);
+                //SFX
+            }
             return;
         }
         foreach (RemedySO r in _remedyList) {
@@ -213,10 +225,18 @@ public class PlayerSkills : MonoBehaviour
             if (r is Remedy_Projectile)
             {
                 ShootProjectile();
+                //SFX
+
             }
             if (r is Remedy_Area)
             {
                 AreaDetection();
+                //FX area
+                GameObject _fx = Instantiate(fx_around_prefab, areaGO.transform);
+                float newScaleAxis = areaGO.GetComponent<CapsuleCollider>().radius * 2;
+                _fx.transform.localScale = new Vector3(newScaleAxis,newScaleAxis,newScaleAxis);
+                //SFX
+
             }
             if (r is Remedy_Mines)
             {
@@ -226,6 +246,10 @@ public class PlayerSkills : MonoBehaviour
         if (!isMeleePointless)
         {
             MeleeColDetec();
+            //FX area
+            GameObject _fx = Instantiate(fx_melee_prefab, meleeGO.transform);
+            //SFX
+
         }
     }
     #region spin around
@@ -263,11 +287,11 @@ public class PlayerSkills : MonoBehaviour
         }
         //enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lá. dano alto
         float damageTotal = (damage*_mineDamage)*criticalMult;//sei lá. dano alto
-        Events.onDamageEnemy.Invoke(enemy, damageTotal,_effects);
         //efeito de dano do inimigo. critico ou não
         GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
         floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
         floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
+        Events.onDamageEnemy.Invoke(enemy, damageTotal,_effects);
         //limpar da lista de minas ativas e destruir
         spawnedMines.Remove(spinScript.gameObject);
         Destroy(spinScript.gameObject);
@@ -313,11 +337,12 @@ public class PlayerSkills : MonoBehaviour
                 }
                 Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
                 float damageTotal = (damage*criticalMult);
-                Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
                 //efeito de dano do inimigo. critico ou não
                 GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
                 floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
                 floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
+                Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
+
             }
         }
     }
@@ -354,11 +379,11 @@ public class PlayerSkills : MonoBehaviour
                 }
                 Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
                 float damageTotal = (damage * criticalMult);
-                Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
                 //efeito de dano do inimigo. critico ou não
                 GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
                 floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
                 floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
+                Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
             }
         }
     }
@@ -389,11 +414,11 @@ public class PlayerSkills : MonoBehaviour
             isCritical = true;
         }
         float damageTotal = (damage * criticalMult);
-        Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
-        //efeito de dano do inimigo. critico ou não
         GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
         floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
         floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
+        Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
+        //efeito de dano do inimigo. critico ou não
         //Limpar da cena caso já tenha atingido o ultimo inimigo possível
         if (_projectileHits >= enemiesAtOnce)
         {

@@ -41,7 +41,7 @@ public class MedicineDrop : MonoBehaviour
         {
             if (remedy != null)
             {
-                Debug.Log("coletou: "+remedy._name);
+                //Debug.Log("coletou: "+remedy._name);
                 Events.onMedicineCollected.Invoke(remedy);
                 Destroy(gameObject);
             }

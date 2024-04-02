@@ -68,7 +68,6 @@ public class InventoryManager : MonoBehaviour
         {
             medicineHotbarSlots.Add(mSlot.GetComponent<MedicineSlot>());
         }
-        DNAPointsManager.Instance.updateDNATextUI();
     }
     private void OnEnable()
     {
@@ -244,6 +243,7 @@ public class InventoryManager : MonoBehaviour
                     if (slot.remedySO == null)
                     {
                         slot.remedySO = currentRemedy;
+                        slot.itemInSlot.sprite = currentRemedy._icon;
                         Events.onRemedyActive.Invoke(currentRemedy);
                         break;
                     }
@@ -259,6 +259,7 @@ public class InventoryManager : MonoBehaviour
                         if(slot.remedySO.GetType() == currentRemedy.GetType())
                         {
                             slot.remedySO = currentRemedy;
+                            slot.itemInSlot.sprite = currentRemedy._icon;
                             Events.onRemedyUpgrade.Invoke(currentRemedy);
                             //agora atualizar o nivel do remédio no inventário
                             foreach (MedicineSlot ms in medicineInventorySlots)
