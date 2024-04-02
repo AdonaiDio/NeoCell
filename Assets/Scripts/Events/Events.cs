@@ -9,8 +9,10 @@ public static class Events
     public static readonly Evt<Enemy, float> onHpLostEnemy = new Evt<Enemy, float>();
     public static readonly Evt<BossEnemy, float> onHpLostBoss = new Evt<BossEnemy, float>();
     public static readonly Evt<float> onDNAGained = new Evt<float>();
-    public static readonly Evt<int> onSlotClicked = new Evt<int>();
-    public static readonly Evt<Medicine> onMedicineCollected = new Evt<Medicine>();
+    public static readonly Evt<MedicineSlot> onSlotClicked = new Evt<MedicineSlot>();
+    public static readonly Evt<RemedySO> onMedicineCollected = new Evt<RemedySO>();
+    public static readonly Evt<RemedySO> onRemedyActive = new Evt<RemedySO>();
+    public static readonly Evt<RemedySO> onRemedyUpgrade = new Evt<RemedySO>();
 
     public static readonly Evt<BossEnemy> onBossSpawn = new Evt<BossEnemy>();
     public static readonly Evt onBossDeath = new Evt();
