@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Fungus
   enemyType: Weak
-  health: 5
+  health: 3
   damage: 1
   material: {fileID: 2100000, guid: c260dfe430dab0d48b6b20028ef4ea8e, type: 2}

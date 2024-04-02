@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Virus
   enemyType: Strong
-  health: 10
+  health: 6
   damage: 1
   material: {fileID: 2100000, guid: a079a486d74577441a5535ebb06c7855, type: 2}

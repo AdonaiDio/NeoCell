@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public static SpawnManager Instance;
+
     [SerializeField] Enemy enemy;
     [SerializeField] GameObject boss;
     [SerializeField] Vector3 spawnArea;
@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] float spawnDistance;
     [SerializeField] float maxEnemies;
-    private int enemiesPoolSize = 3;
+
     [SerializeField] private float waitSpawnStrongTimer;
     [SerializeField] private float waitSpawnTimerDecrease;
     [SerializeField] private float waitSpawnTimerBoss;
@@ -24,25 +24,16 @@ public class SpawnManager : MonoBehaviour
 
     List<Enemy> enemies = new List<Enemy>();
 
-    [SerializeField] private int strongEnemySpawnChance = 0;
+    [SerializeField] private int strongEnemySpawnChance = 10;
 
     [SerializeField] List<EnemySO> weakEnemiesPool = new List<EnemySO>();
     [SerializeField] List<EnemySO> strongEnemiesPool = new List<EnemySO>();
     [SerializeField] List<EnemySO> bossEnemiesPool = new List<EnemySO>();
     [SerializeField] List<Transform> bossSpawnPoints = new List<Transform>();
     private bool hasSpawned = false;
-    public int enemiesDefeated = 0;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        } //Applying Singleton
         player = FindFirstObjectByType<Player>();
     }
 
@@ -73,21 +64,18 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-
-
         Vector3 center = player.transform.position;
         int a = UnityEngine.Random.Range(1, 360);
         center.y = 0;
         Vector3 pos = RandomCircle(center, spawnDistance, a);
 
-        int enemySOIndex = UnityEngine.Random.Range(0, enemiesPoolSize);
-        if (UnityEngine.Random.Range(0, 100) <= strongEnemySpawnChance)
+        if (UnityEngine.Random.Range(0, 100) >= strongEnemySpawnChance)
         {
-            enemy.enemySO = strongEnemiesPool[enemySOIndex];
+            enemy.enemySO = strongEnemiesPool[UnityEngine.Random.Range(0, strongEnemiesPool.Count)];
         }
         else
         {
-            enemy.enemySO = weakEnemiesPool[enemySOIndex];
+            enemy.enemySO = weakEnemiesPool[UnityEngine.Random.Range(0, weakEnemiesPool.Count)];
         }
         Enemy newEnemy = Instantiate(enemy, pos, Quaternion.identity);
         enemies.Add(newEnemy);
@@ -106,7 +94,6 @@ public class SpawnManager : MonoBehaviour
     private void removeEnemy(Enemy removedEnemy)
     {
         enemies.Remove(removedEnemy);
-        enemiesDefeated++;
     }
     IEnumerator StrongerEnemiesCoroutine()
     {

@@ -1037,7 +1037,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1874359070}
-        m_TargetAssemblyTypeName: VictoryMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: EndGameMenu, Assembly-CSharp
         m_MethodName: returnToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1874359066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e424aa612eb3b42b0ee67b668125c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b64b2780a90484cbe88a8b71579d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1983738598
@@ -1412,7 +1412,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1874359070}
-        m_TargetAssemblyTypeName: VictoryMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: EndGameMenu, Assembly-CSharp
         m_MethodName: restartGame
         m_Mode: 1
         m_Arguments:

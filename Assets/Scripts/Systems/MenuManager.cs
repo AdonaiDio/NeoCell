@@ -16,8 +16,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject gamePauseMenu;
     [SerializeField] private InputHandler inputHandler;
     public float gameTimer;
-    public TextMeshProUGUI enemiesDefeatedText;
-    public TextMeshProUGUI gameTimerText;
+    //public TextMeshProUGUI enemiesDefeatedText;
+    //public TextMeshProUGUI gameTimerText;
     
     private bool _isActive = false;
     
