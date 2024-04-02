@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: a6acca449c2984a488bad26324f19a5c
+=======
+<<<<<<<< HEAD:Assets/Scripts/Entities/ExplosionScript.cs.meta
+guid: 227dab9936549834f96bceaa2eb26003
+========
+guid: 5e870df75b67ef34496b72bcb9bdd735
+>>>>>>>> parent of ba6a7b8 (Merge adonai):Assets/Scripts/Entities/Cell.cs.meta
+>>>>>>> parent of ba6a7b8 (Merge adonai)
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

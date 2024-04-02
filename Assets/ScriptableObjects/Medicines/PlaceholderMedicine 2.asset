@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185db6f2d37a9de4ea1b7cc84ffe40b2, type: 3}
   m_Name: PlaceholderMedicine 2
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 84f2d2cb8f795414b8f79fef665f6fcc, type: 3}
   medicineID: 2
   medicineName: Remedio Placeholder 2
   medicineDescription: Faz nada
   medicineEffects: Faz nada 2
   medicinePrice: 5
+  icon: {fileID: 21300000, guid: 4709bc68ce947274c922782d23b4436e, type: 3}

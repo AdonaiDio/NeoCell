@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: aa042a9aee8b0134cb95480153219b21
+=======
+guid: aa99f386f396d49458cfc721067fe4a1
+>>>>>>> parent of ba6a7b8 (Merge adonai)
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

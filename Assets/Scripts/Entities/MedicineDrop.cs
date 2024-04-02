@@ -5,46 +5,80 @@ using UnityEngine;
 using UnityEngine.UI;
 public class MedicineDrop : MonoBehaviour
 {
-    //é a instancia no mapa do item dropado
     private Transform player;
-    [SerializeField] private RemedySO remedy;
-    [SerializeField] private float distanceToDestroy = 3f;
-    [SerializeField] private float speed = 15f;
+    public Medicine medicine;
+    [SerializeField] private float distanceToMove;
+    [SerializeField] private float distanceToDestroy;
+    [SerializeField] private float speed;
 
 
     void Awake()
     {
-        player = FindFirstObjectByType<Player>().transform;
-        remedy = InventoryManager.Instance.DrawSOFromPool();
-        GetComponent<SpriteRenderer>().sprite = remedy._icon;
-    }
 
-    private void Update()
-    {
-        if (remedy == null)
+        medicine = Instantiate(medicine, transform);
+        medicine.medicineSO = InventoryManager.Instance.DrawSOFromPool();
+        if (medicine.medicineSO != null)
         {
-            Debug.LogWarning("remedySO nulo!");
+            medicine.medicineID = medicine.medicineSO.medicineID;
+            medicine.medicineName = medicine.medicineSO.medicineName;
+            medicine.medicineDescription = medicine.medicineSO.medicineDescription;
+            medicine.medicineEffects = medicine.medicineSO.medicineEffects;
+            medicine.icon = medicine.medicineSO.icon;
+            medicine.medicinePrice = medicine.medicineSO.medicinePrice;
+
+
+        }
+        else
+        {
             Destroy(gameObject);
         }
-        if (Vector3.Distance(transform.position, player.position) < player.GetComponent<PlayerSkills>().CollectDropAtDistance)
+        //GetComponentInChildren<SpriteRenderer>().sprite = medicine.icon;
+        medicine.GetComponentInChildren<SpriteRenderer>().sprite = medicine.icon;
+        player = FindFirstObjectByType<Player>().transform;
+
+    }
+
+
+
+
+    void Start()
+    {
+
+
+    }
+    private void Update()
+    {
+        if (medicine.medicineSO == null)
+        {
+            Debug.Log("SO nulo!");
+            Destroy(gameObject);
+        }
+        if (Vector3.Distance(transform.position, player.transform.position) < distanceToMove)
         {
             moveTowardsPlayer();
         }
     }
     private void moveTowardsPlayer()
     {
-        Vector3 target = player.position;
+        Vector3 target;
+        target = player.transform.position;
         target.y = 2.5f;
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, target) < distanceToDestroy)
         {
-            if (remedy != null)
+
+
+            if (medicine != null)
             {
-                //Debug.Log("coletou: "+remedy._name);
-                Events.onMedicineCollected.Invoke(remedy);
-                Destroy(gameObject);
+
+                Debug.Log(medicine.medicineName);
+                Events.onMedicineCollected.Invoke(medicine);
+                GameObject.Destroy(gameObject);
+
             }
+
         }
+
     }
 }
