@@ -9,198 +9,114 @@ using UnityEngine.AI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance { get; private set; }//Singleton
-
-    public Transform _slotsContainer;
-    private List<MedicineSlot> medicineInventorySlots;
-    public Transform _hotbarSlotsContainer;
-    private List<MedicineSlot> medicineHotbarSlots;
-
+    [SerializeField] public List<MedicineSlot> medicineInventorySlots;
+    [SerializeField] public List<MedicineSlot> medicineHotbarSlots;
+    //public int currentSlot = 0;
+    [SerializeField] private Medicine currentMedicine;
     [SerializeField] private GameObject inventoryUI;
+    public static InventoryManager Instance;
 
-    //Remedy/Medicine
-    [SerializeField] private RemedySO currentRemedy;
-    [SerializeField] private List<RemedySO> remedySO_pool;
+    [SerializeField] TextMeshProUGUI itemUIName;
+    [SerializeField] TextMeshProUGUI itemUIDescription;
+    [SerializeField] TextMeshProUGUI itemUIEffects;
+    [SerializeField] TextMeshProUGUI itemUIPrice;
+    [SerializeField] Button buyButton;
+    [SerializeField] private List<MedicineSO> medicinesSO;
 
-    //infos text
-    [SerializeField] private GameObject infoUI;
-    [SerializeField] private TextMeshProUGUI itemUIName;
-    [SerializeField] private TextMeshProUGUI itemUIDescription;
-    [SerializeField] private TextMeshProUGUI itemUIEffects;
-    [SerializeField] private TextMeshProUGUI itemUIPrice;
-    [SerializeField] private TextMeshProUGUI itemUIButtonText;
-    [SerializeField] private Button buyUpButton;
 
-    //lista de cada grupo de Upgrades de remedios
-    [SerializeField] private List<RemedySO> Area_remedy_SO;
-    [SerializeField] private List<RemedySO> Critical_remedy_SO;
-    [SerializeField] private List<RemedySO> Decay_remedy_SO;
-    [SerializeField] private List<RemedySO> Explosion_remedy_SO;
-    [SerializeField] private List<RemedySO> Mines_remedy_SO;
-    [SerializeField] private List<RemedySO> Multiplicator_remedy_SO;
-    [SerializeField] private List<RemedySO> Quantity_remedy_SO;
-    [SerializeField] private List<RemedySO> Projectile_remedy_SO;
-    [SerializeField] private List<RemedySO> Slowdown_remedy_SO;
+
+
 
     //[SerializeField] private MedicineItem medicineItem;
     //public Medicine medicineReceived; 
     private void Awake()
     {
-        if (Instance != null) {
-            Debug.LogError("Found more than one Inventory Manager in the scene.");
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
         }
-        Instance = this; //Applying Singleton
+        else
+        {
+            Instance = this;
+        } //Applying Singleton
+    }
 
-        //iniciar a lista de slots no invetario
-        medicineInventorySlots = new List<MedicineSlot>();
-        //iniciar a lista de slots no hotbar
-        medicineHotbarSlots = new List<MedicineSlot>();
-    }
-    private void Start()
-    {
-        //adicionar slots eles a lista
-        foreach (Transform mSlot in _slotsContainer)
-        {
-            medicineInventorySlots.Add(mSlot.GetComponent<MedicineSlot>());
-        }
-        //adicionar slots eles a lista
-        foreach (Transform mSlot in _hotbarSlotsContainer)
-        {
-            medicineHotbarSlots.Add(mSlot.GetComponent<MedicineSlot>());
-        }
-    }
     private void OnEnable()
     {
-        Events.onMedicineCollected.AddListener(AddMedicineToInvetory);
+        Events.onMedicineCollected.AddListener(receiveDrop);
         Events.onSlotClicked.AddListener(ShowSelectedSlotInfo);
-        buyUpButton.onClick.AddListener(buyOrUpgradeMedicine);
+        buyButton.onClick.AddListener(buyMedicine);
+
+
     }
+
+
+
 
     private void OnDisable()
     {
-        Events.onMedicineCollected.RemoveListener(AddMedicineToInvetory);
+        Events.onMedicineCollected.RemoveListener(receiveDrop);
         Events.onSlotClicked.RemoveListener(ShowSelectedSlotInfo);
-        buyUpButton.onClick.RemoveListener(buyOrUpgradeMedicine);
-    }
+        buyButton.onClick.RemoveListener(buyMedicine);
 
-    public RemedySO DrawSOFromPool()
+    }
+    public MedicineSO DrawSOFromPool()
     {
-        if (remedySO_pool.Count > 0) {
-            int i = UnityEngine.Random.Range(0, remedySO_pool.Count);
-            RemedySO remedyDrawn = remedySO_pool[i];
-            remedySO_pool.Remove(remedySO_pool[i]);
-            return remedyDrawn;
+        if (medicinesSO.Count > 0)
+        {
+            int i = UnityEngine.Random.Range(0, medicinesSO.Count);
+            MedicineSO medicineDrawn = medicinesSO[i];
+            medicinesSO.Remove(medicinesSO[i]);
+            return medicineDrawn;
         }
-        else {
+        else
+        {
             return null;
         }
     }
-
-    /////
-    public void ShowSelectedSlotInfo(MedicineSlot selectedSlot)
+    private void Update()
     {
-        if (selectedSlot.remedySO == null)
+
+    }
+    public void AddMedicine(Medicine medicine, List<MedicineSlot> medicineSlots)
+    {
+        for (int i = 0; i < medicineSlots.Count; i++)
         {
-            return;
+            MedicineSlot slot = medicineSlots[i];
+
+            if (medicineSlots[i].itemInSlot.medicine == null)
+            {
+
+                medicineSlots[i].itemInSlot.medicine = Instantiate(medicine, transform);
+                medicineSlots[i].slotPosition = i;
+                return;
+            }
+
         }
-        if (!infoUI.activeInHierarchy) {
-            infoUI.SetActive(true);
-        }
-        itemUIName.text = selectedSlot.remedySO._name;
-        itemUIDescription.text = selectedSlot.remedySO._description;
-        itemUIEffects.text = selectedSlot.remedySO._nextDescription;
-        itemUIPrice.text = selectedSlot.remedySO._cost.ToString();
-        currentRemedy = selectedSlot.remedySO;
-        //trocar o texto do botão 
-        //if (currentRemedy is Remedy_Area)
-        //{
-        //    if (Area_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        //if (currentRemedy is Remedy_Critical)
-        //{
-        //    if (Critical_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        //if (currentRemedy is Remedy_Decay)
-        //{
-        //    if (Decay_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        //if (currentRemedy is Remedy_Explosion)
-        //{
-        //    if (Explosion_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        //if (currentRemedy is Remedy_Mines)
-        //{
-        //    if (Mines_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        //if (currentRemedy is Remedy_Multiplicator)
-        //{
-        //    if (Multiplicator_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        //if (currentRemedy is Remedy_Projectile)
-        //{
-        //    if (Projectile_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        //if (currentRemedy is Remedy_Quantity)
-        //{
-        //    if (Quantity_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        //if (currentRemedy is Remedy_Slowdown)
-        //{
-        //    if (Slowdown_remedy_SO.IndexOf(currentRemedy) > 0)
-        //        itemUIButtonText.text = "Upgrade";
-        //    else
-        //        itemUIButtonText.text = "Ativar";
-        //}
-        void ChangeButtonText(Type type, List<RemedySO> list) {
-            if (currentRemedy.GetType() == type) {
-                if (list.IndexOf(currentRemedy) > 0) {
-                    itemUIButtonText.text = "Upgrade";
-                }
-                else {
-                    itemUIButtonText.text = "Ativar";
-                }
+
+    }
+    public void ShowSelectedSlotInfo(int selectedSlot)
+    {
+        for (int i = 0; i < medicineInventorySlots.Count; i++)
+        {
+            MedicineSlot slot = medicineInventorySlots[i];
+            if (slot.slotPosition == selectedSlot && slot.itemInSlot.medicine != null)
+            {
+
+                //slot.itemInSlot.medicine.medicineSO = medicineSO;
+                itemUIName.text = slot.itemInSlot.medicine.medicineName;
+                itemUIDescription.text = slot.itemInSlot.medicine.medicineDescription;
+                itemUIEffects.text = slot.itemInSlot.medicine.medicineEffects;
+                itemUIPrice.text = slot.itemInSlot.medicine.medicinePrice.ToString();
+                currentMedicine = slot.itemInSlot.medicine;
+
             }
         }
-        ChangeButtonText(typeof(Remedy_Area),Area_remedy_SO);
-        ChangeButtonText(typeof(Remedy_Critical),Critical_remedy_SO);
-        ChangeButtonText(typeof(Remedy_Decay),Decay_remedy_SO);
-        ChangeButtonText(typeof(Remedy_Explosion),Explosion_remedy_SO);
-        ChangeButtonText(typeof(Remedy_Mines),Mines_remedy_SO);
-        ChangeButtonText(typeof(Remedy_Multiplicator),Multiplicator_remedy_SO);
-        ChangeButtonText(typeof(Remedy_Projectile),Projectile_remedy_SO);
-        ChangeButtonText(typeof(Remedy_Quantity),Quantity_remedy_SO);
-        ChangeButtonText(typeof(Remedy_Slowdown),Slowdown_remedy_SO);
     }
-    
-    /////
 
-    private void AddMedicineToInvetory(RemedySO _remedySO)
+
+    private void receiveDrop(Medicine medicineReceived)
     {
-<<<<<<< HEAD
 
 
         // medicineItemReceived.medicine = medicine;
@@ -222,106 +138,25 @@ public class InventoryManager : MonoBehaviour
         if (DNAPointsManager.Instance.currentDNAPoints >= currentMedicine.medicinePrice)
         {
             if (!checkHasMedicine(currentMedicine, medicineHotbarSlots))
-=======
-        if (_remedySO == null) {
-            Debug.LogWarning("Remédio nulo!");
-            return;
-        } else {
-            foreach (MedicineSlot slot in medicineInventorySlots)
->>>>>>> Adonai
             {
-                //o primeiro slot vazio que aparecer recebe o novo remédio
-                if (slot.remedySO == null)
-                {
-                    slot.remedySO = _remedySO;
-                    slot.itemInSlot.sprite = _remedySO._icon;
-                    break; //impede que continue adicionando o mesmo ao outros slots
-                }
+                AddMedicine(currentMedicine, medicineHotbarSlots);
+                DNAPointsManager.Instance.useDNAPoints(currentMedicine.medicinePrice);
+                return;
             }
-        }
-    }
-    private void buyOrUpgradeMedicine()
-    {
-        void CheckRemedyType(Type type, List<RemedySO> list, RemedySO changedRemedy)
-        {
-            //aumentar o nivel do remédio baseado na posição na lista do tipo
-            if (currentRemedy.GetType() == type)
-            {
-                //se ele não for o ultimo nível
-                if (list.IndexOf(currentRemedy) < list.Count-1)
-                {
-                    //aumenter pro próximo nível
-                    changedRemedy = list[list.IndexOf(currentRemedy)+1];
-                }
-            }
-        }
-        //Tem dinheiro suficiente?
-        if (DNAPointsManager.Instance.currentDNAPoints >= currentRemedy._cost)
-        {
-            //é upgrade ou compra? esse tipo de remédio, já existe no hotbar?
-            if (!HasThatRemedyType(currentRemedy, medicineHotbarSlots))
-            {
-                //se é compra, add na lista de hotbar
-                foreach (MedicineSlot slot in medicineHotbarSlots)
-                {
-                    if (slot.remedySO == null)
-                    {
-                        slot.remedySO = currentRemedy;
-                        slot.itemInSlot.sprite = currentRemedy._icon;
-                        Events.onRemedyActive.Invoke(currentRemedy);
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                //se é upgrade, atualiza o equivalente na hotbar e no player skill
-                foreach (MedicineSlot slot in medicineHotbarSlots)
-                {
-                    if (slot.remedySO != null)
-                    {
-                        if(slot.remedySO.GetType() == currentRemedy.GetType())
-                        {
-                            slot.remedySO = currentRemedy;
-                            slot.itemInSlot.sprite = currentRemedy._icon;
-                            Events.onRemedyUpgrade.Invoke(currentRemedy);
-                            //agora atualizar o nivel do remédio no inventário
-                            foreach (MedicineSlot ms in medicineInventorySlots)
-                            {
-                                //se esse remedio no slot for o selecionado
-                                if (ms.remedySO == currentRemedy)
-                                {
-                                    //aumentar o nivel do remédio baseado na posição na lista do tipo
-                                    CheckRemedyType(typeof(Remedy_Area), Area_remedy_SO, ms.remedySO);
-                                    CheckRemedyType(typeof(Remedy_Critical), Critical_remedy_SO, ms.remedySO);
-                                    CheckRemedyType(typeof(Remedy_Decay), Decay_remedy_SO, ms.remedySO);
-                                    CheckRemedyType(typeof(Remedy_Explosion), Explosion_remedy_SO, ms.remedySO);
-                                    CheckRemedyType(typeof(Remedy_Mines), Mines_remedy_SO, ms.remedySO);
-                                    CheckRemedyType(typeof(Remedy_Multiplicator), Multiplicator_remedy_SO, ms.remedySO);
-                                    CheckRemedyType(typeof(Remedy_Projectile), Projectile_remedy_SO, ms.remedySO);
-                                    CheckRemedyType(typeof(Remedy_Quantity), Quantity_remedy_SO, ms.remedySO);
-                                    CheckRemedyType(typeof(Remedy_Slowdown), Slowdown_remedy_SO, ms.remedySO);
-                                }
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            //corrige os DNAPoints
-            DNAPointsManager.Instance.useDNAPoints(currentRemedy._cost);
-        }
-    }
 
-    private bool HasThatRemedyType(RemedySO remedySO, List<MedicineSlot> medicineSlots)
+
+
+        }
+        return;
+    }
+    private bool checkHasMedicine(Medicine medicine, List<MedicineSlot> medicineSlots)
     {
-        foreach (MedicineSlot slot in medicineSlots)
+        for (int i = 0; i < medicineSlots.Count; i++)
         {
-            if (slot.remedySO != null)
+            if (medicineSlots[i].itemInSlot.medicine != null)
             {
-                if (slot.remedySO.GetType() == remedySO.GetType())
+                if (medicineSlots[i].itemInSlot.medicine.medicineID == medicine.medicineID)
                 {
-                    Debug.Log("REMEDY TYPE IS: "+ remedySO.GetType()+" "+ slot.remedySO.GetType());
                     return true;
                 }
             }

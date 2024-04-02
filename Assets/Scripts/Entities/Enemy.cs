@@ -18,13 +18,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float HP; //Used to store current HP
     private HPBarEnemy hpBarEnemy;
     [SerializeField] protected float damage;
-<<<<<<< HEAD
-=======
-    protected float speed = 3f;
->>>>>>> Adonai
 
     protected LayerMask collisionMask;
     protected Transform playerTarget;
+    [SerializeField] protected float interactDistance;
 
 
     [SerializeField] protected float damageCooldown; //Damage cooldown
@@ -32,11 +29,7 @@ public class Enemy : MonoBehaviour
     protected GameObject body;
     [SerializeField] protected GameObject dnaDrop;
     [SerializeField] protected GameObject medicineDrop;
-<<<<<<< HEAD
     public int medicineDropRate;
-=======
-    private float medicineDropRate = 99f;///temp
->>>>>>> Adonai
 
 
     protected Rigidbody rb;
@@ -60,7 +53,7 @@ public class Enemy : MonoBehaviour
         HP = HPMax; //Start with max HP
         damage = enemySO.damage;
 
-        //body.GetComponent<Renderer>().material = enemySO.material;
+        body.GetComponent<Renderer>().material = enemySO.material;
 
         scaleWithType();
     }
@@ -68,25 +61,24 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         ChasePlayer(); //follow player
-        //CheckCollisions(interactDistance);//check collisions to do damage
+        CheckCollisions(interactDistance);//check collisions to do damage
                                           //hpBarEnemy.transform.rotation = Quaternion.identity;
-<<<<<<< HEAD
         if (HP <= 0) //Die
             Die();
-=======
->>>>>>> Adonai
     }
     public void scaleWithType()
     {
         if (type == "Strong")
         {
-            float size = UnityEngine.Random.Range(1f,2f);
-            transform.localScale += new Vector3(size, size, size);
+            transform.localScale += new Vector3(1, 1, 1);
+        }
+        if (type == "Boss")
+        {
+            transform.localScale += new Vector3(5, 5, 5);
         }
     }
     public void ChasePlayer()
     {
-<<<<<<< HEAD
         GetComponent<NavMeshAgent>().SetDestination(playerTarget.position);
     }
     public virtual void LoseHP(float damage = 1)
@@ -104,66 +96,24 @@ public class Enemy : MonoBehaviour
         if (Physics.Raycast(ray, out hit, interactDistance, collisionMask, QueryTriggerInteraction.Collide))
         {
             OnHitObject(hit);
-=======
-        //persegue jogador enquanto a distancia dele para o jogador for
-        //maior que a soma do tamanho de ambos colliders
-        float desiredDistance = playerTarget.GetComponent<CapsuleCollider>().radius 
-            * playerTarget.transform.localScale.x 
-            + (GetComponent<CapsuleCollider>().radius * transform.localScale.x);
-
-        if (Vector3.Distance(transform.position, playerTarget.position) > desiredDistance) {
-            GetComponent<NavMeshAgent>().SetDestination(playerTarget.position);
-        }
-        else {
-            GetComponent<NavMeshAgent>().SetDestination(transform.position);
->>>>>>> Adonai
         }
     }
 
-    //public void CheckCollisions(float interactDistance)
-    //{
-      
-    //    Ray ray = new Ray(body.transform.position, body.transform.forward);
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(ray, out hit, interactDistance, collisionMask, QueryTriggerInteraction.Collide))
-    //    {
-    //        OnHitObject(hit);
-    //    }
-    //}
-    void OnTriggerStay(Collider col)
+    public void OnHitObject(RaycastHit hit)
     {
-        if(col.GetComponent<Player>())
+        if (hit.collider.GetComponent<Player>())
         {
-            if (Time.time - LastDamageTime > damageCooldown) { 
-                col.GetComponent<Player>().LoseHP(damage); //Damage player
+            if (Time.time - LastDamageTime < damageCooldown)
+            { //Calc damage cooldown
+
+            }
+            else
+            {
+                hit.collider.GetComponent<Player>().LoseHP(); //Damage player
                 LastDamageTime = Time.time;
             }
         }
     }
-<<<<<<< HEAD
-=======
-
-    //public void OnHitObject(Collider hit)
-    //{
-    //    if (hit.collider.GetComponent<Player>())
-    //    {
-    //        if (Time.time - LastDamageTime < damageCooldown)
-    //        { //Calc damage cooldown
-
-    //        }
-    //        else
-    //        {
-    //            hit.collider.GetComponent<Player>().LoseHP(damage); //Damage player
-    //            LastDamageTime = Time.time;
-    //        }
-    //    }
-    //}
-    public virtual void LoseHP(float damage = 1)
-    {
-        HP -= damage;
-        float hpToFillBar = HP / HPMax;
-        hpBarEnemy.barImage.fillAmount = hpToFillBar;
->>>>>>> Adonai
 
     public virtual void Die()
     {
@@ -172,13 +122,8 @@ public class Enemy : MonoBehaviour
         //lootSpawnPoint.y = dnaDrop.transform.position.y;
 
         Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
-<<<<<<< HEAD
         medicineDropRate = UnityEngine.Random.Range(0, 100);
         if (medicineDropRate <= 50)
-=======
-
-        if (medicineDropRate >= UnityEngine.Random.Range(1f,100f) && medicineDropRate != 0)
->>>>>>> Adonai
         {
             Instantiate(medicineDrop, lootSpawnPoint, medicineDrop.transform.rotation);
         }
