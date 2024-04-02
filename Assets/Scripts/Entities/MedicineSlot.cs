@@ -5,26 +5,24 @@ using UnityEngine.UI;
 
 public class MedicineSlot : MonoBehaviour
 {
-    public MedicineItem itemInSlot;
-    public int slotPosition = 0;
+    public Image itemInSlot;
+    public RemedySO remedySO;
+
     void Awake()
     {
-        itemInSlot = GetComponentInChildren<MedicineItem>();
-
+        itemInSlot = transform.GetChild(0).GetComponent<Image>();
     }
     void OnEnable()
     {
-        GetComponent<Button>().onClick.AddListener(() => sendSlotPosition(slotPosition));
+        GetComponent<Button>().onClick.AddListener(() => selectSlot());
     }
     void OnDisable()
     {
-        GetComponent<Button>().onClick.RemoveListener(() => sendSlotPosition(slotPosition));
+        GetComponent<Button>().onClick.RemoveListener(() => selectSlot());
     }
-    public void sendSlotPosition(int slotPosition)
+    public void selectSlot()
     {
-        Debug.Log("Posição do slot enviada: " + slotPosition);
-        Events.onSlotClicked.Invoke(slotPosition);
-
+        Events.onSlotClicked.Invoke(this);
     }
 
 }

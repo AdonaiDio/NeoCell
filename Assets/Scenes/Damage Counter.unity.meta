@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Scenes/Damage Counter.unity.meta
 guid: 8be3e8f2936459e4da43bcf0f52c7af8
-=======
-guid: 4663adc8e1e02a747abbf64e477d47d8
->>>>>>> parent of ba6a7b8 (Merge adonai)
 DefaultImporter:
+========
+guid: de820093529c3554b8124ea93e761d0d
+NativeFormatImporter:
+>>>>>>>> Adonai:Assets/Scenes/Area/Area 2.asset.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
