@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
     protected GameObject body;
     [SerializeField] protected GameObject dnaDrop;
     [SerializeField] protected GameObject medicineDrop;
-    private float medicineDropRate = 99f;///temp
+    [SerializeField] private float medicineDropRate = 15f;///temp
 
     private List<StatusEffectData> effects;//recebe os efeitos do golpe do player
     public GameObject explosionGO;
@@ -77,6 +77,7 @@ public class Enemy : MonoBehaviour
 
         scaleWithType();
         doingTask = false;
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_enemy_spawn, transform.position);
     }
 
     private void Update()
@@ -185,58 +186,57 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        LoseHP(_damage);
         //se puder, mudar os efeitos.
-        if (_effects.Count == 0)
+        if (_effects.Count > 0)
         {
-            return;
-        }
-        //checar se mudou os efeitos
-        bool isEffectsChanged = false;
-        if (_effects.Count != effects.Count)
-        {
-            isEffectsChanged = true;
-        }
-        else
-        {
-            for (int i = 0; i < effects.Count; i++)
+            //checar se mudou os efeitos
+            bool isEffectsChanged = false;
+            if (_effects.Count != effects.Count)
             {
-                if (effects[i] != _effects[i])
+                isEffectsChanged = true;
+            }
+            else
+            {
+                for (int i = 0; i < effects.Count; i++)
                 {
-                    isEffectsChanged = true;
-                    break;
+                    if (effects[i] != _effects[i])
+                    {
+                        isEffectsChanged = true;
+                        break;
+                    }
+                }
+            }
+            if (!isEffectsChanged)
+            {
+                return;
+            }
+            //n�o tem jeito, mudou mesmo. Logo:
+            effects.Clear();
+            foreach (StatusEffectData fx in _effects)
+            {
+                //add a nova lista de efeitos
+                effects.Add(fx);
+                //iniciar o timer do Lifetime deste efeito
+                if (fx.Type == StatusEffectType.Speed)
+                {
+                    _firstTick_Slow = Time.time;
+                    //alterar a velocidade do enemy
+                    GetComponent<NavMeshAgent>().speed = speed * fx.Amount;
+                }
+                else if (fx.Type == StatusEffectType.DamageOverTime)
+                {
+                    _firstTick_Decay = Time.time;
+                    //n�o faz nada ao iniciar efeito, s� durante os ticks
+                }
+                else if (fx.Type == StatusEffectType.Explosion)
+                {
+                    _firstTick_Explosion = Time.time;
+                    //nao faz nada ao iniciar efeito no maximo algum indicativo visual
+                    explosionIconGO = Instantiate(explosionIcon_prefab, hpBarEnemy.transform);
                 }
             }
         }
-        if (!isEffectsChanged)
-        {
-            return;
-        }
-        //n�o tem jeito, mudou mesmo. Logo:
-        effects.Clear();
-        foreach (StatusEffectData fx in _effects)
-        {
-            //add a nova lista de efeitos
-            effects.Add(fx);
-            //iniciar o timer do Lifetime deste efeito
-            if (fx.Type == StatusEffectType.Speed)
-            {
-                _firstTick_Slow = Time.time;
-                //alterar a velocidade do enemy
-                GetComponent<NavMeshAgent>().speed = speed * fx.Amount;
-            }
-            else if (fx.Type == StatusEffectType.DamageOverTime)
-            {
-                _firstTick_Decay = Time.time;
-                //n�o faz nada ao iniciar efeito, s� durante os ticks
-            }
-            else if (fx.Type == StatusEffectType.Explosion)
-            {
-                _firstTick_Explosion = Time.time;
-                //nao faz nada ao iniciar efeito no maximo algum indicativo visual
-                explosionIconGO = Instantiate(explosionIcon_prefab, hpBarEnemy.transform);
-            }
-        }
+        LoseHP(_damage);
     }
     #endregion
 
@@ -321,6 +321,7 @@ public class Enemy : MonoBehaviour
                         explo.GetComponent<ExplosionScript>().damage = damage;
                         explo.GetComponent<ExplosionScript>().finalSize = fx.Amount;
                         //KABUM!
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_explose, transform.position);
                     }
                 }
             }
@@ -329,12 +330,23 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Die()
     {
-        Vector3 lootSpawnPoint = transform.position;
-        lootSpawnPoint.y = 1f;
+        float rand = UnityEngine.Random.Range(-1f, 1f);
+        float rand3 = UnityEngine.Random.Range(-1f, 1f);
+        Vector3 lootSpawnPoint = new Vector3(rand+transform.position.x, 
+                                                1f, 
+                                                rand3 + transform.position.z);
+        //lootSpawnPoint.y = 1f;
 
         Instantiate(dnaDrop, lootSpawnPoint, dnaDrop.transform.rotation);
 
-        if (medicineDropRate >= UnityEngine.Random.Range(1f,100f) && medicineDropRate != 0)
+        rand = UnityEngine.Random.Range(-1f, 1f);
+        rand3 = UnityEngine.Random.Range(-1f, 1f);
+        lootSpawnPoint = new Vector3(rand + transform.position.x,
+                                                1f,
+                                                rand3 + transform.position.z);
+
+        if (medicineDropRate >= UnityEngine.Random.Range(1f,100f) && medicineDropRate != 0 
+            && InventoryManager.Instance.HasRemedyPool())
         {
             Instantiate(medicineDrop, lootSpawnPoint, medicineDrop.transform.rotation);
         }

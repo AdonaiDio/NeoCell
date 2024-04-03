@@ -216,6 +216,7 @@ public class PlayerSkills : MonoBehaviour
                 //FX area
                 GameObject _fx = Instantiate(fx_melee_prefab, meleeGO.transform);
                 //SFX
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_slash, transform.position);
             }
             return;
         }
@@ -229,7 +230,7 @@ public class PlayerSkills : MonoBehaviour
             {
                 ShootProjectile();
                 //SFX
-
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack, transform.position);
             }
             if (r is Remedy_Area)
             {
@@ -239,11 +240,13 @@ public class PlayerSkills : MonoBehaviour
                 float newScaleAxis = areaGO.GetComponent<CapsuleCollider>().radius * 2;
                 _fx.transform.localScale = new Vector3(newScaleAxis,newScaleAxis,newScaleAxis);
                 //SFX
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_area, transform.position);
 
             }
             if (r is Remedy_Mines)
             {
                 SpinningAround();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_mina, transform.position);
             }
         }
         if (!isMeleePointless)
@@ -252,7 +255,7 @@ public class PlayerSkills : MonoBehaviour
             //FX area
             GameObject _fx = Instantiate(fx_melee_prefab, meleeGO.transform);
             //SFX
-
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_slash, transform.position);
         }
     }
     #region spin around
@@ -287,6 +290,8 @@ public class PlayerSkills : MonoBehaviour
             Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
             criticalMult = 5f;
             isCritical = true;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_critico, transform.position);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_critico, transform.position);
         }
         //enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lá. dano alto
         float damageTotal = (damage*_mineDamage)*criticalMult;//sei lá. dano alto
@@ -294,6 +299,7 @@ public class PlayerSkills : MonoBehaviour
         GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
         floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
         floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_explose, transform.position);
         Events.onDamageEnemy.Invoke(enemy, damageTotal,_effects);
         //limpar da lista de minas ativas e destruir
         spawnedMines.Remove(spinScript.gameObject);
@@ -337,6 +343,8 @@ public class PlayerSkills : MonoBehaviour
                     Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
                     criticalMult = 5f;
                     isCritical = true;
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_critico, transform.position);
+
                 }
                 Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
                 float damageTotal = (damage*criticalMult);
@@ -379,6 +387,8 @@ public class PlayerSkills : MonoBehaviour
                     Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
                     criticalMult = 5f;
                     isCritical = true;
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_critico, transform.position);
+
                 }
                 Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
                 float damageTotal = (damage * criticalMult);
@@ -415,6 +425,8 @@ public class PlayerSkills : MonoBehaviour
             Debug.Log("<color=yellow>!!!! CRITOU !!!!</color>");
             criticalMult = 5f;
             isCritical = true;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_critico, transform.position);
+
         }
         float damageTotal = (damage * criticalMult);
         GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));

@@ -82,7 +82,14 @@ public class InventoryManager : MonoBehaviour
         Events.onSlotClicked.RemoveListener(ShowSelectedSlotInfo);
         buyUpButton.onClick.RemoveListener(buyOrUpgradeMedicine);
     }
-
+    public bool HasRemedyPool()
+    {
+        if (remedySO_pool.Count > 0)
+        {
+            return true;
+        }
+        return false;
+    }
     public RemedySO DrawSOFromPool()
     {
         if (remedySO_pool.Count > 0) {

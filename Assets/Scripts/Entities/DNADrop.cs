@@ -31,6 +31,7 @@ public class DNADrop : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
             Events.onDNAGained.Invoke(dnaValue);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_char_powerup_1, transform.position);
         }
     }
 }

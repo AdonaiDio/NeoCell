@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _Rigidbody;
     private Transform body;
 
+    [SerializeField] private float footstepFrequency = 1f;
+    private float cur_time;
+
     private void Awake() {
         //_Input = new Controls();
         _Rigidbody = GetComponent<Rigidbody>();
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         //move
         Vector3 movement = new Vector3(_InputHandler.MoveInput.x, 0, _InputHandler.MoveInput.y);
         _Rigidbody.velocity = movement * speed;
+        PlayFootStepSFX();
     }
     private void OnAim() {
         //rotaciona o corpo do player para o cursor do mouse, relativo a sua posi��o no ch�o.
@@ -34,7 +38,18 @@ public class PlayerMovement : MonoBehaviour
             body.LookAt(new Vector3(mousePos.x, body.position.y, mousePos.z));
         }
     }
-
+    private void PlayFootStepSFX()
+    {
+        cur_time += Time.deltaTime;
+        if (_InputHandler.MoveInput.x != 0 || _InputHandler.MoveInput.y != 0)
+        {
+            if (cur_time >= footstepFrequency)
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_char_step, transform.position);
+                cur_time = 0;
+            }
+        }
+    }
     private void FixedUpdate()
     {
         OnMove();

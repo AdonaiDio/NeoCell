@@ -43,8 +43,9 @@ public class MedicineDrop : MonoBehaviour
             {
                 //Debug.Log("coletou: "+remedy._name);
                 Events.onMedicineCollected.Invoke(remedy);
-                Destroy(gameObject);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_char_powerup_2, transform.position);
             }
+            Destroy(gameObject);
         }
     }
 }
