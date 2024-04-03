@@ -34,12 +34,16 @@ public class BossEnemy : Enemy
         HP -= damage;
         float hpToFillBar = HP / HPMax;
         Events.onHpLostBoss.Invoke(this, hpToFillBar);
+        if (HP <= 0)
+        {
+            Die();
+        }
     }
 
     public override void Die()
     {
         GameObject.Destroy(gameObject);
-        Events.onBossDeath.Invoke(this);
+        Events.onBossDeath.Invoke();
     }
 
 

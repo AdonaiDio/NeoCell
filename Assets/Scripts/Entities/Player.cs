@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     {
         HP = HPMax;
     }
-
     public void LoseHP(float damage = 1, bool isCritical = false)
     {
         HP -= damage;
@@ -23,5 +22,10 @@ public class Player : MonoBehaviour
         GameObject floatTxt = Instantiate(floatingDamage,transform.Find("HPBarUI"));
         floatTxt.GetComponent<DamageIndicator>().damageNumber = damage;
         floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
+
+        if (HP <= 0)
+        {
+            Events.onPlayerDeath.Invoke();
+        }
     }
 }
