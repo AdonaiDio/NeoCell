@@ -188,204 +188,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d1d4f604c95104c8d1b4384697aa9e, type: 3}
---- !u!1 &29584408
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 29584409}
-  - component: {fileID: 29584410}
-  m_Layer: 0
-  m_Name: FMODEvents
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &29584409
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29584408}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 149614427}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &29584410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29584408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de1ad86c66a8194b94c2e6919925a0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ambience_gameplay>k__BackingField:
-    Guid:
-      Data1: -576363066
-      Data2: 1074234061
-      Data3: -1627338826
-      Data4: -847888528
-    Path: event:/music/ambience_gameplay
-  <ambience_menu>k__BackingField:
-    Guid:
-      Data1: -1555050724
-      Data2: 1287005038
-      Data3: -108139607
-      Data4: 1465824793
-    Path: event:/music/ambience_menu
-  <music_gameplay>k__BackingField:
-    Guid:
-      Data1: -215272382
-      Data2: 1328642224
-      Data3: -1846161490
-      Data4: -67348107
-    Path: event:/music/music_gameplay
-  <tela_de_morte>k__BackingField:
-    Guid:
-      Data1: -486236790
-      Data2: 1328243164
-      Data3: -781746787
-      Data4: -159680259
-    Path: event:/music/tela_de_morte
-  <sfx_gameplay_atack>k__BackingField:
-    Guid:
-      Data1: 1677184549
-      Data2: 1086444458
-      Data3: -1853103425
-      Data4: 738869613
-    Path: event:/SFX/gameplay/sfx_gameplay_atack
-  <sfx_gameplay_atack_area>k__BackingField:
-    Guid:
-      Data1: 477791493
-      Data2: 1138730653
-      Data3: -828898136
-      Data4: 986842007
-    Path: event:/SFX/gameplay/sfx_gameplay_atack_area
-  <sfx_gameplay_atack_critico>k__BackingField:
-    Guid:
-      Data1: -861201330
-      Data2: 1321534447
-      Data3: -1921340503
-      Data4: -374983637
-    Path: event:/SFX/gameplay/sfx_gameplay_atack_critico
-  <sfx_gameplay_atack_explose>k__BackingField:
-    Guid:
-      Data1: -1569159822
-      Data2: 1145428609
-      Data3: 1107513474
-      Data4: 2145721988
-    Path: event:/SFX/gameplay/sfx_gameplay_atack_explose
-  <sfx_gameplay_atack_mina>k__BackingField:
-    Guid:
-      Data1: -601799048
-      Data2: 1327154853
-      Data3: 1255104648
-      Data4: 434537619
-    Path: event:/SFX/gameplay/sfx_gameplay_atack_mina
-  <sfx_gameplay_atack_slash>k__BackingField:
-    Guid:
-      Data1: 1720481378
-      Data2: 1082424026
-      Data3: -1838948930
-      Data4: 1829715886
-    Path: event:/SFX/gameplay/sfx_gameplay_atack_slash
-  <sfx_gameplay_char_damage>k__BackingField:
-    Guid:
-      Data1: 1344539969
-      Data2: 1198590017
-      Data3: -1693601606
-      Data4: 1067869641
-    Path: event:/SFX/gameplay/sfx_gameplay_char_damage
-  <sfx_gameplay_char_die>k__BackingField:
-    Guid:
-      Data1: -256046873
-      Data2: 1164768853
-      Data3: -1910006357
-      Data4: -1012161390
-    Path: event:/SFX/gameplay/sfx_gameplay_char_die
-  <sfx_gameplay_char_powerup_1>k__BackingField:
-    Guid:
-      Data1: -440304209
-      Data2: 1323057197
-      Data3: 43520169
-      Data4: 1529330843
-    Path: event:/SFX/gameplay/sfx_gameplay_char_powerup_1
-  <sfx_gameplay_char_powerup_2>k__BackingField:
-    Guid:
-      Data1: 2125511962
-      Data2: 1233872445
-      Data3: 440433831
-      Data4: 1545980348
-    Path: event:/SFX/gameplay/sfx_gameplay_char_powerup_2
-  <sfx_gameplay_char_step>k__BackingField:
-    Guid:
-      Data1: -884172163
-      Data2: 1270026945
-      Data3: 352723369
-      Data4: -2045754292
-    Path: event:/SFX/gameplay/sfx_gameplay_char_step
-  <sfx_gameplay_enemy_spawn>k__BackingField:
-    Guid:
-      Data1: 2000790537
-      Data2: 1132960671
-      Data3: -1885243718
-      Data4: -1066967130
-    Path: event:/SFX/gameplay/sfx_gameplay_enemy_spawn
-  <sfx_gameplay_powerup_conquista>k__BackingField:
-    Guid:
-      Data1: -419834683
-      Data2: 1265378541
-      Data3: -853500996
-      Data4: -707873907
-    Path: event:/SFX/gameplay/sfx_gameplay_powerup_conquista
-  <sfx_ui_menumain_click>k__BackingField:
-    Guid:
-      Data1: -1591806677
-      Data2: 1098827541
-      Data3: 147022472
-      Data4: 1407689914
-    Path: event:/SFX/ui/sfx_ui_menumain_click
-  <sfx_ui_menumain_click_startgame>k__BackingField:
-    Guid:
-      Data1: -1118818362
-      Data2: 1092566067
-      Data3: 1062843285
-      Data4: -1659622074
-    Path: event:/SFX/ui/sfx_ui_menumain_click_startgame
-  <sfx_ui_menumain_hover>k__BackingField:
-    Guid:
-      Data1: -1647065635
-      Data2: 1111704088
-      Data3: -1733549138
-      Data4: 932704409
-    Path: event:/SFX/ui/sfx_ui_menumain_hover
-  <sfx_ui_menuquick_click>k__BackingField:
-    Guid:
-      Data1: 1503275560
-      Data2: 1297971915
-      Data3: -1361317221
-      Data4: 637017755
-    Path: event:/SFX/ui/sfx_ui_menuquick_click
-  <sfx_ui_menuquick_hover>k__BackingField:
-    Guid:
-      Data1: 1179030792
-      Data2: 1139021076
-      Data3: -193788747
-      Data4: -1931840140
-    Path: event:/SFX/ui/sfx_ui_menuquick_hover
 --- !u!4 &33114780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4fb415b8343620c4ca9bd4322bddbdb6, type: 3}
@@ -992,51 +794,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124066644}
   m_CullTransparentMesh: 1
---- !u!1 &149614425
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 149614427}
-  - component: {fileID: 149614426}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &149614426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149614425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6827dde2d86c2e7499db9f9bfc283172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &149614427
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149614425}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 5.149995, z: -0.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 29584409}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &149923816
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,7 +2423,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 1228606814}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &455240787
 GameObject:
@@ -5299,6 +5056,204 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &681741371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681741372}
+  - component: {fileID: 681741373}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &681741372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681741371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 700097644}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &681741373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681741371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de1ad86c66a8194b94c2e6919925a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ambience_gameplay>k__BackingField:
+    Guid:
+      Data1: -576363066
+      Data2: 1074234061
+      Data3: -1627338826
+      Data4: -847888528
+    Path: event:/music/ambience_gameplay
+  <ambience_menu>k__BackingField:
+    Guid:
+      Data1: -1555050724
+      Data2: 1287005038
+      Data3: -108139607
+      Data4: 1465824793
+    Path: event:/music/ambience_menu
+  <music_gameplay>k__BackingField:
+    Guid:
+      Data1: -215272382
+      Data2: 1328642224
+      Data3: -1846161490
+      Data4: -67348107
+    Path: event:/music/music_gameplay
+  <tela_de_morte>k__BackingField:
+    Guid:
+      Data1: -486236790
+      Data2: 1328243164
+      Data3: -781746787
+      Data4: -159680259
+    Path: event:/music/tela_de_morte
+  <sfx_gameplay_atack>k__BackingField:
+    Guid:
+      Data1: 1677184549
+      Data2: 1086444458
+      Data3: -1853103425
+      Data4: 738869613
+    Path: event:/SFX/gameplay/sfx_gameplay_atack
+  <sfx_gameplay_atack_area>k__BackingField:
+    Guid:
+      Data1: 477791493
+      Data2: 1138730653
+      Data3: -828898136
+      Data4: 986842007
+    Path: event:/SFX/gameplay/sfx_gameplay_atack_area
+  <sfx_gameplay_atack_critico>k__BackingField:
+    Guid:
+      Data1: -861201330
+      Data2: 1321534447
+      Data3: -1921340503
+      Data4: -374983637
+    Path: event:/SFX/gameplay/sfx_gameplay_atack_critico
+  <sfx_gameplay_atack_explose>k__BackingField:
+    Guid:
+      Data1: -1569159822
+      Data2: 1145428609
+      Data3: 1107513474
+      Data4: 2145721988
+    Path: event:/SFX/gameplay/sfx_gameplay_atack_explose
+  <sfx_gameplay_atack_mina>k__BackingField:
+    Guid:
+      Data1: -601799048
+      Data2: 1327154853
+      Data3: 1255104648
+      Data4: 434537619
+    Path: event:/SFX/gameplay/sfx_gameplay_atack_mina
+  <sfx_gameplay_atack_slash>k__BackingField:
+    Guid:
+      Data1: 1720481378
+      Data2: 1082424026
+      Data3: -1838948930
+      Data4: 1829715886
+    Path: event:/SFX/gameplay/sfx_gameplay_atack_slash
+  <sfx_gameplay_char_damage>k__BackingField:
+    Guid:
+      Data1: 1344539969
+      Data2: 1198590017
+      Data3: -1693601606
+      Data4: 1067869641
+    Path: event:/SFX/gameplay/sfx_gameplay_char_damage
+  <sfx_gameplay_char_die>k__BackingField:
+    Guid:
+      Data1: -256046873
+      Data2: 1164768853
+      Data3: -1910006357
+      Data4: -1012161390
+    Path: event:/SFX/gameplay/sfx_gameplay_char_die
+  <sfx_gameplay_char_powerup_1>k__BackingField:
+    Guid:
+      Data1: -440304209
+      Data2: 1323057197
+      Data3: 43520169
+      Data4: 1529330843
+    Path: event:/SFX/gameplay/sfx_gameplay_char_powerup_1
+  <sfx_gameplay_char_powerup_2>k__BackingField:
+    Guid:
+      Data1: 2125511962
+      Data2: 1233872445
+      Data3: 440433831
+      Data4: 1545980348
+    Path: event:/SFX/gameplay/sfx_gameplay_char_powerup_2
+  <sfx_gameplay_char_step>k__BackingField:
+    Guid:
+      Data1: -884172163
+      Data2: 1270026945
+      Data3: 352723369
+      Data4: -2045754292
+    Path: event:/SFX/gameplay/sfx_gameplay_char_step
+  <sfx_gameplay_enemy_spawn>k__BackingField:
+    Guid:
+      Data1: 2000790537
+      Data2: 1132960671
+      Data3: -1885243718
+      Data4: -1066967130
+    Path: event:/SFX/gameplay/sfx_gameplay_enemy_spawn
+  <sfx_gameplay_powerup_conquista>k__BackingField:
+    Guid:
+      Data1: -419834683
+      Data2: 1265378541
+      Data3: -853500996
+      Data4: -707873907
+    Path: event:/SFX/gameplay/sfx_gameplay_powerup_conquista
+  <sfx_ui_menumain_click>k__BackingField:
+    Guid:
+      Data1: -1591806677
+      Data2: 1098827541
+      Data3: 147022472
+      Data4: 1407689914
+    Path: event:/SFX/ui/sfx_ui_menumain_click
+  <sfx_ui_menumain_click_startgame>k__BackingField:
+    Guid:
+      Data1: -1118818362
+      Data2: 1092566067
+      Data3: 1062843285
+      Data4: -1659622074
+    Path: event:/SFX/ui/sfx_ui_menumain_click_startgame
+  <sfx_ui_menumain_hover>k__BackingField:
+    Guid:
+      Data1: -1647065635
+      Data2: 1111704088
+      Data3: -1733549138
+      Data4: 932704409
+    Path: event:/SFX/ui/sfx_ui_menumain_hover
+  <sfx_ui_menuquick_click>k__BackingField:
+    Guid:
+      Data1: 1503275560
+      Data2: 1297971915
+      Data3: -1361317221
+      Data4: 637017755
+    Path: event:/SFX/ui/sfx_ui_menuquick_click
+  <sfx_ui_menuquick_hover>k__BackingField:
+    Guid:
+      Data1: 1179030792
+      Data2: 1139021076
+      Data3: -193788747
+      Data4: -1931840140
+    Path: event:/SFX/ui/sfx_ui_menuquick_hover
 --- !u!1 &689732875
 GameObject:
   m_ObjectHideFlags: 0
@@ -5384,11 +5339,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3201553506641596701, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
       propertyPath: HP
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3201553506641596701, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
       propertyPath: HPMax
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4816365319761819332, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
       propertyPath: m_Name
@@ -5400,7 +5355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9152632472839506706, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9152632472839506706, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5517,6 +5472,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fb415b8343620c4ca9bd4322bddbdb6, type: 3}
+--- !u!1 &700097642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 700097644}
+  - component: {fileID: 700097643}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &700097643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700097642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6827dde2d86c2e7499db9f9bfc283172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &700097644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700097642}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1, y: 5.149995, z: -0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 681741372}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &713209625
 GameObject:
   m_ObjectHideFlags: 0
@@ -9092,7 +9092,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1452800875 stripped
 Transform:
@@ -10536,7 +10536,7 @@ RectTransform:
   - {fileID: 1743294642}
   - {fileID: 4709638932879669730}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10582,7 +10582,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1724229867
 GameObject:
@@ -11576,7 +11576,7 @@ Transform:
   - {fileID: 2052810162}
   - {fileID: 1456698535}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1986048709
 PrefabInstance:
@@ -14356,7 +14356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5502610540519516801, guid: 3f78a1e806df16248bd673d60c389bf6, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5502610540519516801, guid: 3f78a1e806df16248bd673d60c389bf6, type: 3}
       propertyPath: m_LocalPosition.x

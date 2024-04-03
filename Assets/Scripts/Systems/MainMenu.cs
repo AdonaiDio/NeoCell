@@ -11,7 +11,10 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayGame()
     {
+        
         SceneManager.LoadSceneAsync(1);
+        Events.onSceneChange.Invoke(1);
+        
     }
     public void OpenOptions(){
         optionMenu.SetActive(true);

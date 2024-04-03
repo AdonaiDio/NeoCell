@@ -113,14 +113,17 @@ public class MenuManager : MonoBehaviour
     void winGame()
     {
         SceneManager.LoadSceneAsync(2);
+        Events.onSceneChange.Invoke(2);
     }
     void loseGame()
     {
         SceneManager.LoadSceneAsync(3);
+        Events.onSceneChange.Invoke(3);
     }
     public void returnToMainMenu()
     {
         SceneManager.LoadSceneAsync(0);
+        Events.onSceneChange.Invoke(0);
     }
 
     public void reloadScene()
