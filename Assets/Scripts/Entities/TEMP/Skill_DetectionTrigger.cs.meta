@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Events/Events.cs.meta
+guid: e61c178431b1e6a409302db750ab267f
+========
+guid: 5283622e4ff220044b80598e06378b47
+>>>>>>>> Adonai:Assets/Scripts/Entities/TEMP/Skill_DetectionTrigger.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

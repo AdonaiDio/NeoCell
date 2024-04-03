@@ -3,52 +3,75 @@ using UnityEngine.InputSystem;
 
 
 
-    public class InputHandler : MonoBehaviour
+public class InputHandler : MonoBehaviour
+{
+    [SerializeField] private InputActionAsset Controls;
+    [SerializeField] private string playerActionMapName = "Player";
+    [SerializeField] private string menuActionMapName = "UI";
+
+    [SerializeField] private string move = "Move";
+    [SerializeField] private string aim = "Aim";
+    [SerializeField] private string open = "OpenInventory";
+
+
+    public Vector2 rotate;
+    public InputAction moveAction;
+    public InputAction aimAction;
+    public InputAction inventoryMenuAction;
+    public bool isBPressed;
+
+
+    public static InputHandler Instance { get; private set; }
+    private void Awake()
     {
-        [SerializeField] private InputActionAsset Controls;
-        [SerializeField] private string actionMapName = "Player";
-        [SerializeField] private string move = "Move";
-        [SerializeField] private string aim = "Aim";
-        public Vector2 rotate;
-        private InputAction moveAction;
-        private InputAction aimAction;
-
-        public static InputHandler Instance { get; private set; }
-        private void Awake()
+        if (Instance == null)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            moveAction = Controls.FindActionMap("Player").FindAction("Move");
-            aimAction = Controls.FindActionMap("Player").FindAction("Aim");
-            RegisterInputActions();
-
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        void RegisterInputActions()
+        else
         {
-            moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
-            moveAction.canceled += context => MoveInput = Vector2.zero;
-            aimAction.performed += context => AimInput = context.ReadValue<Vector2>();
-            aimAction.canceled += context => AimInput = Vector2.zero;
+            Destroy(gameObject);
         }
+        moveAction = Controls.FindActionMap(playerActionMapName).FindAction(move);
+        aimAction = Controls.FindActionMap(playerActionMapName).FindAction(aim);
+        inventoryMenuAction = Controls.FindActionMap(menuActionMapName).FindAction(open);
+        RegisterInputActions();
 
-        private void OnEnable()
-        {
-            moveAction.Enable();
-            aimAction.Enable();
-        }
-        private void OnDisable()
-        {
-            moveAction.Disable();
-            aimAction.Disable();
-        }
-        public Vector2 MoveInput { get; private set; }
-
-        public Vector2 AimInput { get; private set; }
     }
+    void RegisterInputActions()
+    {
+        moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
+        moveAction.canceled += context => MoveInput = Vector2.zero;
+        aimAction.performed += context => AimInput = context.ReadValue<Vector2>();
+        aimAction.canceled += context => AimInput = Vector2.zero;        
+        inventoryMenuAction.performed += context => Events.onInventoryKeyPressed.Invoke();
+        //inventoryMenuAction.canceled += context => Events.onInventoryKeyPressed.Invoke(false);
+        
+        //inventoryMenuAction.performed += context => InventoryMenuInput = true;
+        //inventoryMenuAction.canceled += context => InventoryMenuInput = false;
+        //isBPressed = inventoryMenuAction.ReadValue<float>() > 0.1f;
+        
+    }
+
+    private void OnEnable()
+    {
+        moveAction.Enable();
+        aimAction.Enable();
+        inventoryMenuAction.Enable();
+    }
+    private void OnDisable()
+    {
+        moveAction.Disable();
+        aimAction.Disable();
+        inventoryMenuAction.Disable();
+    }
+
+    public Vector2 MoveInput { get; private set; }
+
+    public Vector2 AimInput { get; private set; }
+    public bool InventoryMenuInput { get; private set; }
+    
+    
+
+}

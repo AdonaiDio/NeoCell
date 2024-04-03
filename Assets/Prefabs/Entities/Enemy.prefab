@@ -183,24 +183,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c410a91d849d548b93ceafaba786fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 0}
+  enemySO: {fileID: 11400000, guid: fc48e80089b5ea544a96c21fa6e53f86, type: 2}
   enemyName: 
   type: 
   HPMax: 0
   HP: 0
-  hpBarEnemy: {fileID: 7033904940086372055}
-  hpBarImage: {fileID: 3326983593400304671}
   damage: 0
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyAgent: {fileID: 3825823172516024662}
-  playerTarget: {fileID: 7455264074127862014, guid: b4d043c975ef51f4b812c08f9fce354c, type: 3}
-  interactDistance: 1
+  interactDistance: 3
   damageCooldown: 0.5
-  lastDamage: 0
-  body: {fileID: 2839111922000915296}
-  dnaDrop: {fileID: 7635789907011544825, guid: c8339ce3a4008244eb6bc1b203cd07a5, type: 3}
+  dnaDrop: {fileID: 7635789907011544830, guid: c8339ce3a4008244eb6bc1b203cd07a5, type: 3}
+  medicineDrop: {fileID: 7859110703970017881, guid: a17110b25e34978408c81868c0babb7b, type: 3}
+  medicineDropRate: 0
 --- !u!1 &6729049941470554300
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,5 +463,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 3326983593400304671}
-  enemy: {fileID: 0}
   HPBarCanvas: {fileID: 2258753048228732807}

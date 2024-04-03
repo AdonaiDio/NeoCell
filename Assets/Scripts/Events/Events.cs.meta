@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: ee4e6e6a398e41b469df61ea63e781d9
+<<<<<<<< HEAD:Assets/Scripts/Events/Events.cs.meta
+guid: e487f8d107b8dd040a94e9e635dcc34a
+========
+guid: 5283622e4ff220044b80598e06378b47
+>>>>>>>> Adonai:Assets/Scripts/Entities/TEMP/Skill_DetectionTrigger.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

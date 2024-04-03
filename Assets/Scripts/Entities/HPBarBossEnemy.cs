@@ -13,7 +13,7 @@ public class HPBarBossEnemy : MonoBehaviour
     [SerializeField] protected Canvas HPBarCanvas;
     private void Awake()
     {
-        HPBarCanvas.enabled = false;
+        HPBarCanvas.SetActive(false);
     }
     private void OnEnable()
     {
@@ -43,9 +43,9 @@ public class HPBarBossEnemy : MonoBehaviour
         HPBarCanvas.enabled = true;
 
     }
-    private void onBossDeath(BossEnemy enemy)
+    private void onBossDeath()
     {
-        HPBarCanvas.enabled = false;
+        HPBarCanvas.SetActive(false);
     }
     private void OnHPLostBoss (BossEnemy enemy, float hpToFillBar) {
         barImage.fillAmount = hpToFillBar;

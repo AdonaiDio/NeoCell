@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         body = transform.Find("Body");
         _Camera = Camera.main;
     }
-    
+
     private void OnMove()
     {
         //move
@@ -29,12 +29,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnAim()
     {
-        //rotaciona o corpo do player para o cursor do mouse, relativo a sua posição no chão.
+        //rotaciona o corpo do player para o cursor do mouse, relativo a sua posiï¿½ï¿½o no chï¿½o.
         Ray ray = _Camera.ScreenPointToRay(_InputHandler.AimInput);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, _layerMask))
         {
             Vector3 mousePos = raycastHit.point;
-            body.LookAt(new Vector3(mousePos.x,body.position.y,mousePos.z));
+            body.LookAt(new Vector3(mousePos.x, body.position.y, mousePos.z));
         }
 
     }
