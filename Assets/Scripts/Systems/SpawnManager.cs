@@ -11,20 +11,20 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] List<Enemy> enemies_prefabs;
     [SerializeField] GameObject boss;
     [SerializeField] Vector3 spawnArea;
-    [SerializeField] float spawnTimer;
+    [SerializeField] float spawnTimer; //duração entre os spawns
     [SerializeField] Player player;
 
-    [SerializeField] float spawnDistance;
-    [SerializeField] float maxEnemies;
+    [SerializeField] float spawnDistance; //distancia do player em que os inimigos spawnam
+    [SerializeField] float maxEnemies; //limite de inimigos    
 
-    [SerializeField] private float waitSpawnStrongTimer;
-    [SerializeField] private float waitSpawnTimerDecrease;
-    [SerializeField] private float waitSpawnTimerBoss;
-    [SerializeField] private float spawnTimerDecreaseRate;
+    [SerializeField] private float waitSpawnTimerDecrease; //tempo para diminuir o tempo entre spawns
+    [SerializeField] private float waitSpawnTimerBoss; //tempo para spawnar o boss
+    [SerializeField] private float spawnTimerDecreaseRate; //taxa para diminuir a duração entre os spawns. Por exemplo se vc quiser diminuir 20% o valor seria 0,8
 
     List<Enemy> enemies = new List<Enemy>();
-
-    [SerializeField] private int strongEnemySpawnChance = 10;
+    [SerializeField] private float waitSpawnStrongTimer; //tempo para aumentar a chance de spawnar um inimigo mais forte.
+    [SerializeField] private int strongEnemySpawnChance; //chance de spawnar inimigos mais fortes 
+    [SerializeField] private int strongEnemyIncreaseRate = 10; //taxa em % em que aumenta a chance de spawnar inimigos mais fortes.
 
     [SerializeField] List<EnemySO> weakEnemiesPool = new List<EnemySO>();
     [SerializeField] List<EnemySO> strongEnemiesPool = new List<EnemySO>();
@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
         center.y = 0;
         Vector3 pos = RandomCircle(center, spawnDistance, a);
         int indexEnemy = UnityEngine.Random.Range(0, enemies_prefabs.Count);//temporario
-        if (UnityEngine.Random.Range(0, 100) >= strongEnemySpawnChance)
+        if (UnityEngine.Random.Range(0, 100) <= strongEnemySpawnChance)
         {
             int indexStrong = UnityEngine.Random.Range(0, strongEnemiesPool.Count);//temporario
             enemies_prefabs[indexEnemy].enemySO = strongEnemiesPool[indexStrong];
@@ -103,7 +103,7 @@ public class SpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(waitSpawnStrongTimer);
 
-            strongEnemySpawnChance += 10;
+            strongEnemySpawnChance += strongEnemyIncreaseRate;
         }
 
     }

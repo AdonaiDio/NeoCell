@@ -28,9 +28,9 @@ public class PlayerSkills : MonoBehaviour
 
     //infos
     public float CollectDropAtDistance = 15f;
-    private int enemiesAtOnce = 1;
+    [SerializeField] private int enemiesAtOnce = 1;
     [SerializeField] private float damage = 1f;
-    private float criticalChance = 0f;
+    [SerializeField] private float criticalChance = 0f;
     //projetil
     private int _projectileHits = 0;
     private float projectileThickness = 0f;
@@ -39,7 +39,7 @@ public class PlayerSkills : MonoBehaviour
     //Mines
     private int numberOfMines = 1;
     private float mineRadius = 2.5f;
-    private float _mineDamage = 20f;
+    [SerializeField] private float _mineDamage = 5f;
     private List<GameObject> spawnedMines;
     //controle do tick
     [SerializeField] public float _cooldown = 1f;
@@ -249,7 +249,6 @@ public class PlayerSkills : MonoBehaviour
             if (r is Remedy_Mines)
             {
                 SpinningAround();
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_mina, transform.position);
             }
         }
         if (!isMeleePointless)

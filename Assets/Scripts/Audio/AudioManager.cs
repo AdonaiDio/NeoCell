@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Found more than one Audio Manager in the scene.");
         }
         instance = this;
-        DontDestroyOnLoad(instance);        
+        //DontDestroyOnLoad(instance);        
     }
     public void OnEnable(){              
         

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float footstepFrequency = 1f;
     private float cur_time;
+
+    [SerializeField] private Animator animator;
 
     private void Awake() {
         //_Input = new Controls();
@@ -54,5 +57,18 @@ public class PlayerMovement : MonoBehaviour
     {
         OnMove();
         OnAim();
+        AnimateChar();
+    }
+
+    private void AnimateChar()
+    {
+        if (_InputHandler.MoveInput.x != 0 || _InputHandler.MoveInput.y != 0)
+        {
+            animator.SetBool("walking",true);
+        }
+        else
+        {
+            animator.SetBool("walking",false);
+        }
     }
 }

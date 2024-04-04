@@ -185,6 +185,7 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
+        LoseHP(_damage);
         //se puder, mudar os efeitos.
         if (_effects.Count > 0)
         {
@@ -235,7 +236,6 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        LoseHP(_damage);
     }
     #endregion
 

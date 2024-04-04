@@ -235,8 +235,8 @@ public class InventoryManager : MonoBehaviour
                                 }
                                 //corrige os DNAPoints
                                 DNAPointsManager.Instance.useDNAPoints(currentRemedy._cost);
+                                break;
                             }
-                            break;
                         }
                     }
                 }
