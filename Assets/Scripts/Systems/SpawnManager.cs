@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
         center.y = 0;
         Vector3 pos = RandomCircle(center, spawnDistance, a);
         int indexEnemy = UnityEngine.Random.Range(0, enemies_prefabs.Count);//temporario
-        if (UnityEngine.Random.Range(0, 100) >= strongEnemySpawnChance)
+        if (UnityEngine.Random.Range(0, 100) <= strongEnemySpawnChance)
         {
             int indexStrong = UnityEngine.Random.Range(0, strongEnemiesPool.Count);//temporario
             enemies_prefabs[indexEnemy].enemySO = strongEnemiesPool[indexStrong];

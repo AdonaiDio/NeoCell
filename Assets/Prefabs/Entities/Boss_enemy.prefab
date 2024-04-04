@@ -1119,8 +1119,9 @@ MonoBehaviour:
   damageCooldown: 0
   dnaDrop: {fileID: 0}
   medicineDrop: {fileID: 0}
-  explosionGO: {fileID: 0}
-  explosionIcon_prefab: {fileID: 0}
+  medicineDropRate: 40
+  explosionGO: {fileID: 7147181749216180465, guid: f70afd7d45b421b4a8fb60ceac47a525, type: 3}
+  explosionIcon_prefab: {fileID: 1361577714017235702, guid: 09f19651d968f844fbfa497ba65a537c, type: 3}
 --- !u!1 &2483566330063445113
 GameObject:
   m_ObjectHideFlags: 0
