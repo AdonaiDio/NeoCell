@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5709ecb5ea7d5419e326792012280e, type: 3}
   m_Name: Critical 2
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 30f5809cf0a11ee42ba45af0dfb1fe4d, type: 3}
+  _icon: {fileID: 21300000, guid: 402eb0e28f8f1ea40ac1174c1cc16507, type: 3}
   _name: Lucky
   _description: "Est\xE1 com sorte? Aumente sua chance de acerto critico.\nProximo
     Upgrade: Mais sorte!"
   _nextDescription: 
   _cost: 20
+  _ID: 
   _criticalChance: 10

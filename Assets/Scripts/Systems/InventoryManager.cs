@@ -214,8 +214,9 @@ public class InventoryManager : MonoBehaviour
                 if (!IsCurrentRemedyMaximized(GetCurrentRemedyListType(currentRemedy)))
                 {
                     //se é upgrade, atualiza o equivalente na hotbar e no player skill
-                    foreach (MedicineSlot slot in medicineHotbarSlots)
-                    {
+                    
+                    foreach (MedicineSlot slot in medicineHotbarSlots)             
+                    {                        
                         if (slot.remedySO != null)
                         {
                             if(slot.remedySO.GetType() == currentRemedy.GetType())

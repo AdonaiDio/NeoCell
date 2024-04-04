@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Found more than one Audio Manager in the scene.");
         }
         instance = this;
-        //DontDestroyOnLoad(instance);        
+              
     }
     public void OnEnable(){              
         
@@ -66,6 +66,12 @@ public class AudioManager : MonoBehaviour
         StopAmbience(ambienceInstance);
         InitializeMusic(FMODEvents.instance.music_gameplay);
         InitializeAmbience(FMODEvents.instance.ambience_gameplay);
+        }
+        if (newScene.buildIndex == 2){
+        StopMusic(musicInstance);
+        StopAmbience(ambienceInstance);
+        //InitializeMusic(FMODEvents.instance.music_gameplay);
+        //InitializeAmbience(FMODEvents.instance.ambience_gameplay);
         }
         if (newScene.buildIndex == 3){
         StopMusic(musicInstance);

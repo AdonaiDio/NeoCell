@@ -11,15 +11,15 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] List<Enemy> enemies_prefabs;
     [SerializeField] GameObject boss;
     [SerializeField] Vector3 spawnArea;
-    [SerializeField] float spawnTimer; //duração entre os spawns
+    [SerializeField] float spawnTimer; //duraÃ§Ã£o entre os spawns
     [SerializeField] Player player;
 
     [SerializeField] float spawnDistance; //distancia do player em que os inimigos spawnam
     [SerializeField] float maxEnemies; //limite de inimigos    
-
+    
     [SerializeField] private float waitSpawnTimerDecrease; //tempo para diminuir o tempo entre spawns
     [SerializeField] private float waitSpawnTimerBoss; //tempo para spawnar o boss
-    [SerializeField] private float spawnTimerDecreaseRate; //taxa para diminuir a duração entre os spawns. Por exemplo se vc quiser diminuir 20% o valor seria 0,8
+    [SerializeField] private float spawnTimerDecreaseRate; //taxa para diminuir a duraÃ§Ã£o entre os spawns. Por exemplo se vc quiser diminuir 20% o valor seria 0,8
 
     List<Enemy> enemies = new List<Enemy>();
     [SerializeField] private float waitSpawnStrongTimer; //tempo para aumentar a chance de spawnar um inimigo mais forte.
