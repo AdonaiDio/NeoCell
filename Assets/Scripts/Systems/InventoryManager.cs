@@ -215,10 +215,8 @@ public class InventoryManager : MonoBehaviour
                 {
                     //se é upgrade, atualiza o equivalente na hotbar e no player skill
                     
-                    foreach (MedicineSlot slot in medicineHotbarSlots)                  
-                    //for (int i=0; i<medicineHotbarSlots.Count; i++)                    
-                    {
-                        //MedicineSlot slot = medicineHotbarSlots[i];
+                    foreach (MedicineSlot slot in medicineHotbarSlots)             
+                    {                        
                         if (slot.remedySO != null)
                         {
                             if(slot.remedySO.GetType() == currentRemedy.GetType())
@@ -239,8 +237,7 @@ public class InventoryManager : MonoBehaviour
                                 //corrige os DNAPoints
                                 DNAPointsManager.Instance.useDNAPoints(currentRemedy._cost);
                                 break;
-                            }
-                         
+                            }                         
                         }
                     }
                 }
