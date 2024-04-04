@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73aed62d1b8f9c04b8b94e970f178005, type: 3}
   m_Name: Slowdown 2
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 30f5809cf0a11ee42ba45af0dfb1fe4d, type: 3}
-  _name: Slowdown
-  _description: 'Reduz a velocidade do inimigo para 0.5 vezes a velocidade normal
-    durante 5 segundos.
-
-    Proximo Upgrade:  0.5 de velocidade, por 8 segundos.'
-  _nextDescription: 
+  _icon: {fileID: 21300000, guid: 4bf66b5deb54a01419a7e19179a52509, type: 3}
+  _name: Congelamento
+  _description: "Causa <b><color=#8FD615>LENTID\xC3O</color></b> no alvo"
+  _nextDescription: "\\u2022 Tempo de dura\xE7\xE3o <b>3s</b> -> <b>5s</b>"
   _cost: 20
+  _ID: 
   _effect: {fileID: 11400000, guid: cd5eb2fe04ebd9246a5fee38dd6d885d, type: 2}

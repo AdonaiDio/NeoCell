@@ -1249,16 +1249,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c410a91d849d548b93ceafaba786fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: 09553b021aec83247ab3850f979fee30, type: 2}
+  enemySO: {fileID: 11400000, guid: da7ba3a6c101bf347b2b07d4b938a6e9, type: 2}
   enemyName: 
   type: 
   HPMax: 0
   HP: 0
   damage: 0
-  damageCooldown: 0.5
+  damageCooldown: 1.5
   dnaDrop: {fileID: 7635789907011544830, guid: c8339ce3a4008244eb6bc1b203cd07a5, type: 3}
   medicineDrop: {fileID: 7859110703970017881, guid: a17110b25e34978408c81868c0babb7b, type: 3}
-  medicineDropRate: 99
+  medicineDropRate: 25
   explosionGO: {fileID: 7147181749216180465, guid: f70afd7d45b421b4a8fb60ceac47a525, type: 3}
   explosionIcon_prefab: {fileID: 1361577714017235702, guid: 09f19651d968f844fbfa497ba65a537c, type: 3}
 --- !u!136 &2451573030288399436

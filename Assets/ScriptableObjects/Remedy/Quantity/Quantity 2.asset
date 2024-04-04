@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88535b3e4dc3da942b1ea7d59ed4fc6e, type: 3}
   m_Name: Quantity 2
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 30f5809cf0a11ee42ba45af0dfb1fe4d, type: 3}
-  _name: Quantity
-  _description: "Cause dano em at\xE9 4 inimigos de uma vez.\nProximo Upgrade: 8
-    inimigos de uma vez."
-  _nextDescription: 
+  _icon: {fileID: 21300000, guid: 66cbaa732f12d5d459bab812ea3624c5, type: 3}
+  _name: "Rea\xE7\xE3o em cadeia"
+  _description: "Os seus ataques causam <b><color=#8FD715>dano em m\xFAltiplos inimigo</color></b>"
+  _nextDescription: \u2022 Inimigos atingidos por ataque <b>2</b> -> <b>4</b>
   _cost: 20
+  _ID: 
   _enemiesAtOnce: 4

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94531ca3b97a5b14e80e85a16f375a91, type: 3}
   m_Name: Decay 2
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 30f5809cf0a11ee42ba45af0dfb1fe4d, type: 3}
-  _name: Decay
-  _description: 'Causa 3 dano extra a cada 1 segundo, durante 8 segundos.
-
-    Proximo
-    Upgrade:  4 dano a cada 1 segundo, por 10 segundos.'
-  _nextDescription: 
+  _icon: {fileID: 21300000, guid: 29bb9aee48f0ced4fbc7175d9004667a, type: 3}
+  _name: "Enzimas t\xF3xicas"
+  _description: Os seus ataques tem chance de <b><color=#8FD615>envenenar</color></b>
+    o inimigo
+  _nextDescription: "\\u2022 Dano de veneno <b>2</b> -> <b>3</b>\r\n\\u2022 Dura\xE7\xE3o
+    <b>5s</b> -> <b>8</b>"
   _cost: 20
+  _ID: 
   _effect: {fileID: 11400000, guid: c8de51c9fc6b168499457d717eb1207f, type: 2}

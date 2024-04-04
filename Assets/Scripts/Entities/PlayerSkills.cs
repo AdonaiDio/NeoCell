@@ -29,7 +29,7 @@ public class PlayerSkills : MonoBehaviour
     //infos
     public float CollectDropAtDistance = 15f;
     private int enemiesAtOnce = 1;
-    private float damage = 1f;
+    [SerializeField] private float damage = 1f;
     private float criticalChance = 0f;
     //projetil
     private int _projectileHits = 0;
@@ -42,7 +42,7 @@ public class PlayerSkills : MonoBehaviour
     private float _mineDamage = 20f;
     private List<GameObject> spawnedMines;
     //controle do tick
-    public float _cooldown = 1f;
+    [SerializeField] public float _cooldown = 1f;
     private float _lastTick;
 
     //FMOD
@@ -239,8 +239,9 @@ public class PlayerSkills : MonoBehaviour
                 AreaDetection();
                 //FX area
                 GameObject _fx = Instantiate(fx_around_prefab, areaGO.transform);
-                float newScaleAxis = areaGO.GetComponent<CapsuleCollider>().radius * 2;
-                _fx.transform.localScale = new Vector3(newScaleAxis,newScaleAxis,newScaleAxis);
+                float newScaleAxis = areaGO.GetComponent<CapsuleCollider>().radius / 4;
+                _fx.GetComponent<AreaSkillAnimation>().final_scale = new Vector3(newScaleAxis, newScaleAxis, newScaleAxis);
+                //_fx.transform.localScale = new Vector3(newScaleAxis,newScaleAxis,newScaleAxis);
                 //SFX
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_area, transform.position);
 

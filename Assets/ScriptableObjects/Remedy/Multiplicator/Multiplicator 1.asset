@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74ae44d38efe2441a79fd600d95fd28, type: 3}
   m_Name: Multiplicator 1
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 30f5809cf0a11ee42ba45af0dfb1fe4d, type: 3}
-  _name: PowerUp
-  _description: 'Aumente seu dano para 4.
-
-    Proximo Updgrade: 10 de dano.'
-  _nextDescription: 
-  _cost: 15
+  _icon: {fileID: 21300000, guid: 7c881bd27956b924a814ff7c1ce82e82, type: 3}
+  _name: "Prote\xEDnas"
+  _description: "<b><color=#D77415>Aumenta o dano</color></b> de todos os rem\xE9dios"
+  _nextDescription: \u2022 Dano aumentado <b>4</b>
+  _cost: 5
+  _ID: 
   _damage: 4

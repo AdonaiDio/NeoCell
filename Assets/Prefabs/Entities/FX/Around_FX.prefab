@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8121325164757465911}
   - component: {fileID: 818732748367221349}
   - component: {fileID: 7771508863454288974}
-  - component: {fileID: 3283372897649282922}
   - component: {fileID: 337838222432498430}
+  - component: {fileID: 3970516107582993488}
   m_Layer: 0
   m_Name: Around_FX
   m_TagString: Untagged
@@ -86,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &3283372897649282922
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811523536681269074}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b40be709404ee764f937f69814f6ad59, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &337838222432498430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +98,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3776ad1c12885424f80d74cf289e9eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3970516107582993488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811523536681269074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adaedb75f128d4b4980012ea6b9da18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 7604260153189219845}
+  final_scale: {x: 10, y: 10, z: 10}
+  duration: 0.66
+  t: 0
 --- !u!1 &7604260153189219845
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +142,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8121325164757465911}
   m_RootOrder: 0
@@ -1424,8 +1419,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.21407938, g: 0, b: 1, a: 1}
-        key1: {r: 0.2044115, g: 0, b: 1, a: 0}
+        key0: {r: 0.56078434, g: 0.84313726, b: 0.08235294, a: 1}
+        key1: {r: 0.56078434, g: 0.84313726, b: 0.08235294, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

@@ -153,6 +153,7 @@ public class InventoryManager : MonoBehaviour
                 if (slot.remedySO == null)
                 {
                     slot.remedySO = _remedySO;
+                    slot.itemInSlot.enabled = true;
                     slot.itemInSlot.sprite = _remedySO._icon;
                     break; //impede que continue adicionando o mesmo ao outros slots
                 }
@@ -199,6 +200,7 @@ public class InventoryManager : MonoBehaviour
                     if (slot.remedySO == null)
                     {
                         slot.remedySO = currentRemedy;
+                        slot.itemInSlot.enabled = true;
                         slot.itemInSlot.sprite = currentRemedy._icon;
                         Events.onRemedyActive.Invoke(currentRemedy);
                         //corrige os DNAPoints

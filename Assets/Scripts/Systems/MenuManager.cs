@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
     [SerializeField] private GameObject hotbarUI;
+    [SerializeField] private GameObject hotbarUIButton;
     [SerializeField] private InputHandler inputHandler;
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject gamePauseMenu;
@@ -81,6 +82,7 @@ public class MenuManager : MonoBehaviour
             _isActive = true;
             inventoryMenu.SetActive(_isActive);
             Time.timeScale = 0f;
+            hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
         }
     }
     public void HideInventoryMenu()
@@ -91,24 +93,24 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1f;
 
             inventoryMenu.SetActive(_isActive);
+            hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
         }
     }
     void ShowPauseMenu(GameObject menu)
     {
-
         _isActive = true;
         menu.SetActive(_isActive);
         Time.timeScale = 0f;
         //Debug.Log("Menu aberto");
-
+        hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
     }
     void HidePauseMenu(GameObject menu)
     {
-
         _isActive = false;
         Time.timeScale = 1f;
         menu.SetActive(_isActive);
         //Debug.Log("Menu fechado");
+        hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
     }
     void winGame()
     {
