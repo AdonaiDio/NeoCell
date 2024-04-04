@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
     protected GameObject body;
     [SerializeField] protected GameObject dnaDrop;
     [SerializeField] protected GameObject medicineDrop;
-    [SerializeField] private float medicineDropRate = 15f;///temp
+    [SerializeField] private float medicineDropRate = 40f;///temp
 
     private List<StatusEffectData> effects;//recebe os efeitos do golpe do player
     public GameObject explosionGO;

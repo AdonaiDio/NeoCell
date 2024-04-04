@@ -96,6 +96,7 @@ public class PlayerSkills : MonoBehaviour
     private void AddRemedy(RemedySO _newRemedySO)
     {
         _remedyList.Add(_newRemedySO);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_powerup_conquista, transform.position);
     }
     private void UpgradeRemedy(RemedySO _newRemedySO)
     {
@@ -105,6 +106,7 @@ public class PlayerSkills : MonoBehaviour
             {
                 _remedyList.Remove(remedy);
                 _remedyList.Add(_newRemedySO);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_powerup_conquista, transform.position);
                 return;
             }
         }

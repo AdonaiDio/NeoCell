@@ -38,7 +38,7 @@ public class MenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            Debug.Log("Apertou o botão!");
+            //Debug.Log("Apertou o botão!");
             if (!_isActive)
             {
                 ShowPauseMenu(inventoryMenu);
@@ -50,7 +50,7 @@ public class MenuManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Apertou o botão!");
+            //Debug.Log("Apertou o botão!");
             if (!_isActive)
             {
                 ShowPauseMenu(gamePauseMenu);
@@ -99,7 +99,7 @@ public class MenuManager : MonoBehaviour
         _isActive = true;
         menu.SetActive(_isActive);
         Time.timeScale = 0f;
-        Debug.Log("Menu aberto");
+        //Debug.Log("Menu aberto");
 
     }
     void HidePauseMenu(GameObject menu)
@@ -108,7 +108,7 @@ public class MenuManager : MonoBehaviour
         _isActive = false;
         Time.timeScale = 1f;
         menu.SetActive(_isActive);
-        Debug.Log("Menu fechado");
+        //Debug.Log("Menu fechado");
     }
     void winGame()
     {
