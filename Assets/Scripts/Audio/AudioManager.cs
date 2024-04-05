@@ -76,7 +76,7 @@ public class AudioManager : MonoBehaviour
         if (newScene.buildIndex == 3){
         StopMusic(musicInstance);
         StopAmbience(ambienceInstance);
-        PlayOneShot(FMODEvents.instance.tela_de_morte, transform.position);
+        InitializeMusic(FMODEvents.instance.tela_de_morte);
         }
     }
         
