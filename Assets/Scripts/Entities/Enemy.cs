@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] protected float HPMax; //Max HP
     [SerializeField] protected float HP; //Used to store current HP
-    private HPBarEnemy hpBarEnemy;
+    protected HPBarEnemy hpBarEnemy;
     [SerializeField] protected float damage;
     protected float speed = 3f;
 
@@ -45,10 +45,7 @@ public class Enemy : MonoBehaviour
         body = transform.Find("Body").gameObject;
         collisionMask = (1 << 3); //player layer is 3
         rb = GetComponent<Rigidbody>();
-        if (this.GetType() != typeof(BossEnemy))
-        {
-            hpBarEnemy = transform.Find("HPBarUI").GetComponent<HPBarEnemy>();
-        }
+        hpBarEnemy = transform.Find("HPBarUI").GetComponent<HPBarEnemy>();
         effects = new List<StatusEffectData>();
     }
 
@@ -179,7 +176,7 @@ public class Enemy : MonoBehaviour
         }
         doingTask = false;
     }
-    private void ReceveDamage(Enemy _enemy, float _damage, List<StatusEffectData> _effects)
+    public void ReceveDamage(Enemy _enemy, float _damage, List<StatusEffectData> _effects)
     {
         if (_enemy != this)
         {

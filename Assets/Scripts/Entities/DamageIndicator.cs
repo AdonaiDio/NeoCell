@@ -17,7 +17,7 @@ public class DamageIndicator : MonoBehaviour
     private float startTime = 0f;
     public float floatingSpeed = 0.1f;
     public bool isCritical = false;
-    public float sizeMod = 1f;
+    public float sizeMod = 2f;
 
 
     private void Awake()
@@ -35,19 +35,19 @@ public class DamageIndicator : MonoBehaviour
         currentColor.color = isCritical ? criticalColor : color;
         if (damageNumber >= 20 && damageNumber < 50)
         {
-            sizeMod = 1.5f;
+            sizeMod = 3f;
         }
         else if (damageNumber >= 50 && damageNumber < 70)
         {
-            sizeMod = 2f;
+            sizeMod = 4f;
         }
         else if (damageNumber >= 70 && damageNumber < 100)
         {
-            sizeMod = 2.5f;
+            sizeMod = 5f;
         }
         else if (damageNumber >= 100)
         {
-            sizeMod = 3.5f;
+            sizeMod = 7f;
         }
     }
     private void Update()

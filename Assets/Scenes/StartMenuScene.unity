@@ -293,6 +293,13 @@ MonoBehaviour:
       Data3: -781746787
       Data4: -159680259
     Path: event:/music/tela_de_morte
+  <tela_de_vitoria>k__BackingField:
+    Guid:
+      Data1: 1324556294
+      Data2: 1208474661
+      Data3: 599345060
+      Data4: -1069149578
+    Path: event:/music/tela_de_vitoria
   <sfx_gameplay_atack>k__BackingField:
     Guid:
       Data1: 1677184549
@@ -813,18 +820,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2249662427103807465}
-        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
-        m_MethodName: clickSFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!224 &2249662427103807458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -858,8 +853,8 @@ GameObject:
   - component: {fileID: 2249662427103807456}
   - component: {fileID: 2249662427103807457}
   - component: {fileID: 2249662427103807462}
-  - component: {fileID: 2249662427103807465}
   - component: {fileID: 2249662427103807464}
+  - component: {fileID: 2249662427103807465}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -913,7 +908,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2249662427103807465}
-          m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+          m_TargetAssemblyTypeName: MainMenuButtonSFX, Assembly-CSharp
           m_MethodName: hoverSFX
           m_Mode: 1
           m_Arguments:
@@ -933,7 +928,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2249662427103807459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa18572b4e010343978e79ca0ac866a, type: 3}
+  m_Script: {fileID: 11500000, guid: 37759216c154e7646ba23f60a0c1f932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!223 &2249662427126843993
@@ -1154,18 +1149,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9197870976704419650}
-        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
-        m_MethodName: clickSFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4265684567726508591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1164,7 @@ GameObject:
   - component: {fileID: 9197870976704419651}
   - component: {fileID: 4760679802651698117}
   - component: {fileID: 9197870976704419649}
-  - component: {fileID: 9197870976704419650}
+  - component: {fileID: 9197870976704419652}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -1815,18 +1798,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9197870976704419650}
-        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
-        m_MethodName: clickSFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4265684568807406071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,7 +1813,7 @@ GameObject:
   - component: {fileID: 6184580212331870072}
   - component: {fileID: 6071861353656741739}
   - component: {fileID: 6184580212331870070}
-  - component: {fileID: 6184580212331870071}
+  - component: {fileID: 6184580212331870073}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1914,18 +1885,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9197870976704419650}
-        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
-        m_MethodName: clickSFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4265684568810991499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1970,8 +1929,8 @@ GameObject:
   - component: {fileID: 4265684568810991498}
   - component: {fileID: 9020564493139398860}
   - component: {fileID: 9020564493139398858}
-  - component: {fileID: 9020564493139398859}
   - component: {fileID: 9429206072755715}
+  - component: {fileID: 9020564493139398861}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -2127,18 +2086,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &6184580212331870071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4265684568807406071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa18572b4e010343978e79ca0ac866a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6184580212331870072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2156,8 +2103,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 9197870976704419650}
-          m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        - m_Target: {fileID: 6184580212331870073}
+          m_TargetAssemblyTypeName: StartGameButtonSFX, Assembly-CSharp
           m_MethodName: hoverSFX
           m_Mode: 1
           m_Arguments:
@@ -2168,6 +2115,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6184580212331870073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265684568807406071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c162acd3169674c913f06210bb74d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9020564493139398858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2194,18 +2153,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &9020564493139398859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4265684568810991508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa18572b4e010343978e79ca0ac866a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9020564493139398860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,8 +2170,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 9197870976704419650}
-          m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        - m_Target: {fileID: 9020564493139398861}
+          m_TargetAssemblyTypeName: MainMenuButtonSFX, Assembly-CSharp
           m_MethodName: hoverSFX
           m_Mode: 1
           m_Arguments:
@@ -2235,6 +2182,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &9020564493139398861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265684568810991508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37759216c154e7646ba23f60a0c1f932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9197870976704419649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2261,18 +2220,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &9197870976704419650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4265684567726508591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa18572b4e010343978e79ca0ac866a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9197870976704419651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,8 +2237,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 9197870976704419650}
-          m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        - m_Target: {fileID: 9197870976704419652}
+          m_TargetAssemblyTypeName: MainMenuButtonSFX, Assembly-CSharp
           m_MethodName: hoverSFX
           m_Mode: 1
           m_Arguments:
@@ -2302,3 +2249,15 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &9197870976704419652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265684567726508591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37759216c154e7646ba23f60a0c1f932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -125,6 +125,10 @@ public class InventoryManager : MonoBehaviour
                 if (list.IndexOf(currentRemedy) == 0)
                 {
                     itemUIButtonText.text = "Ativar";
+                    if (IsHotbarFull())
+                    {
+                        buyUpButton.gameObject.SetActive(false);
+                    }
                 }
                 else if (list.IndexOf(currentRemedy) > 0)
                 {
@@ -138,7 +142,17 @@ public class InventoryManager : MonoBehaviour
         }
         ChangeButtonText(GetCurrentRemedyListType(currentRemedy));
     }
-    
+    private bool IsHotbarFull()
+    {
+        foreach (MedicineSlot slot in medicineHotbarSlots)
+        {
+            if(slot.remedySO == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     /////
 
     private void AddMedicineToInvetory(RemedySO _remedySO)

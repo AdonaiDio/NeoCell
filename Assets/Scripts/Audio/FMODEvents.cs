@@ -10,6 +10,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference ambience_menu { get; private set; }
     [field: SerializeField] public EventReference music_gameplay { get; private set; }
     [field: SerializeField] public EventReference tela_de_morte { get; private set; }
+    [field: SerializeField] public EventReference tela_de_vitoria { get; private set; }
     [field: SerializeField] public EventReference sfx_gameplay_atack { get; private set; }
     [field: SerializeField] public EventReference sfx_gameplay_atack_area { get; private set; }
     [field: SerializeField] public EventReference sfx_gameplay_atack_critico { get; private set; }

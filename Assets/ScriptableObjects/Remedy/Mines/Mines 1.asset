@@ -22,4 +22,4 @@ MonoBehaviour:
   _cost: 5
   _ID: 
   _numberOfMines: 2
-  _mineRadius: 2.5
+  _mineRadius: 5

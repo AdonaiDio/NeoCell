@@ -293,7 +293,6 @@ public class PlayerSkills : MonoBehaviour
             criticalMult = 5f;
             isCritical = true;
             AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_critico, transform.position);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_critico, transform.position);
         }
         //enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lá. dano alto
         float damageTotal = (damage*_mineDamage)*criticalMult;//sei lá. dano alto
