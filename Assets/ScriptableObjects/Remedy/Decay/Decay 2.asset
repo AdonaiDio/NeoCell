@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "Enzimas t\xF3xicas"
   _description: Os seus ataques tem chance de <b><color=#8FD615>envenenar</color></b>
     o inimigo
-  _nextDescription: "\\u2022 Dano de veneno <b>2</b> -> <b>3</b>\r\n\\u2022 Dura\xE7\xE3o
+  _nextDescription: "\\u2022 Dano de veneno <b>1</b> -> <b>2</b>\r\n\\u2022 Dura\xE7\xE3o
     <b>5s</b> -> <b>8</b>"
   _cost: 20
   _ID: 

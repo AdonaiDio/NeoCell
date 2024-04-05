@@ -5441,11 +5441,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3201553506641596701, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
       propertyPath: HP
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3201553506641596701, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
       propertyPath: HPMax
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4816365319761819332, guid: 24eb91fdf8dc23c4ca22d89cfe7459fb, type: 3}
       propertyPath: m_Name

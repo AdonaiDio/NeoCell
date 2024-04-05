@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Decay2
   Type: 2
-  Amount: 3
-  TickSpeed: 1
+  Amount: 2
+  TickSpeed: 1.5
   Lifetime: 8

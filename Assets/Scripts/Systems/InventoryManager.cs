@@ -269,7 +269,6 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log("oi?");
         //refresh inventory
         ShowSelectedSlotInfo(GetCurrentSelectedSlotInventory());
     }
