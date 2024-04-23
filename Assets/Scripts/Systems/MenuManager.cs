@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,7 +16,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private InputHandler inputHandler;
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject gamePauseMenu;
-    private bool _isActive = false;
+    private bool _isInventoryActive = false;
+    private bool _isPauseActive = false;
     void Start()
     {
         hotbarUI.SetActive(true);
@@ -40,25 +42,28 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             //Debug.Log("Apertou o botão!");
-            if (!_isActive)
+            if (!_isInventoryActive && !_isPauseActive)
             {
-                ShowPauseMenu(inventoryMenu);
+                ShowInventoryMenu();
             }
             else
             {
-                HidePauseMenu(inventoryMenu);
+                HideInventoryMenu();
             }
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //Debug.Log("Apertou o botão!");
-            if (!_isActive)
+            if (!_isInventoryActive && !_isPauseActive)
             {
-                ShowPauseMenu(gamePauseMenu);
+                ShowPauseMenu();
             }
             else
             {
-                HidePauseMenu(gamePauseMenu);
+                if (_isPauseActive)
+                HidePauseMenu();
+                if (_isInventoryActive)
+                HideInventoryMenu();
             }
         }
 
@@ -70,45 +75,41 @@ public class MenuManager : MonoBehaviour
     }
     public void HideOrShowInventory()
     {
-        if (!_isActive)
+        if (!_isInventoryActive)
             ShowInventoryMenu();
         else
             HideInventoryMenu();
     }
     public void ShowInventoryMenu()
     {
-        if (_isActive == false)
-        {
-            _isActive = true;
-            inventoryMenu.SetActive(_isActive);
-            Time.timeScale = 0f;
-            hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
-        }
+        _isInventoryActive = true;
+        inventoryMenu.SetActive(_isInventoryActive);
+        Time.timeScale = 0f;
+        hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
+        
     }
     public void HideInventoryMenu()
     {
-        if (_isActive == true)
-        {
-            _isActive = false;
-            Time.timeScale = 1f;
-
-            inventoryMenu.SetActive(_isActive);
-            hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
-        }
+        
+        _isInventoryActive = false;
+        Time.timeScale = 1f;
+        inventoryMenu.SetActive(_isInventoryActive);
+        hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
+        
     }
-    void ShowPauseMenu(GameObject menu)
+    void ShowPauseMenu()
     {
-        _isActive = true;
-        menu.SetActive(_isActive);
+        _isPauseActive = true;
+        gamePauseMenu.SetActive(_isPauseActive);
         Time.timeScale = 0f;
         //Debug.Log("Menu aberto");
         hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
     }
-    void HidePauseMenu(GameObject menu)
+    void HidePauseMenu()
     {
-        _isActive = false;
+        _isPauseActive = false;        
+        gamePauseMenu.SetActive(_isPauseActive);
         Time.timeScale = 1f;
-        menu.SetActive(_isActive);
         //Debug.Log("Menu fechado");
         hotbarUIButton.GetComponent<ToggleIcon>().ToggleImages();
     }
