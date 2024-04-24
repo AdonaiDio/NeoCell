@@ -28,7 +28,7 @@ public class PlayerSkills : MonoBehaviour
 
     //infos
     public float CollectDropAtDistance = 15f;
-    [SerializeField] private int enemiesAtOnce = 1;
+    [SerializeField] private int enemiesAtOnce = 10;
     [SerializeField] private float damage = 1f;
     [SerializeField] private float criticalChance = 0f;
     //projetil
@@ -321,15 +321,10 @@ public class PlayerSkills : MonoBehaviour
         if (areaGO.GetComponent<Skill_DetectionTrigger>().enemies.Count == 0)
         {   return; }
         List<GameObject> temp_enemiesList = areaGO.GetComponent<Skill_DetectionTrigger>().enemies;
-        int maxOfList;
-        if (temp_enemiesList.Count < enemiesAtOnce) {
-            maxOfList = temp_enemiesList.Count;
-        }
-        else {
-            maxOfList = enemiesAtOnce;
-        }
+        //int maxOfList;
 
-        for (int i = 0; i < maxOfList; i++)
+
+        for (int i = 0; i < temp_enemiesList.Count; i++)
         {
             if (temp_enemiesList[i] != null)
             {
