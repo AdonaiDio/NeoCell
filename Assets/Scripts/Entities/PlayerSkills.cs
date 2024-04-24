@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMOD.Studio;
 
-//A ideia é que o playerSkills seja o lugar com os atributos de combate do jogador.
-//Que por padrão ele tenha as informações necessárias para realizar a ação do "rémédio default".
+//A ideia ï¿½ que o playerSkills seja o lugar com os atributos de combate do jogador.
+//Que por padrï¿½o ele tenha as informaï¿½ï¿½es necessï¿½rias para realizar a aï¿½ï¿½o do "rï¿½mï¿½dio default".
 //por hora vou fazer tudo aqui dentro mas talvez eu separe um ScriptableObject
-//para cada remédio com suas caracteristicas.
+//para cada remï¿½dio com suas caracteristicas.
 //FAZER DOS DANOS E AREAS DE DANO SPAWNS. ESQUECA OS COLLIDERS!!!!!!
 
 public class PlayerSkills : MonoBehaviour
 {
     [SerializeField] private List<RemedySO> _remedyList;//Remedios ativos
     private List<RemedySO> _lastRemedyList;//temporario auxiliar
-    private List<StatusEffectData> _effects;//recebe os efeitos dos remedios para acesso rápido
+    private List<StatusEffectData> _effects;//recebe os efeitos dos remedios para acesso rï¿½pido
 
     //colliders
     [SerializeField] private GameObject meleeGO;
@@ -77,9 +77,9 @@ public class PlayerSkills : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //a cada X tempos DoAction para que o jogador execute todos os danos e spawns nas áreas detectáveis.
+        //a cada X tempos DoAction para que o jogador execute todos os danos e spawns nas ï¿½reas detectï¿½veis.
         //
-        WaitForTick();
+        WaitForTick();       
     }
 
     private void WaitForTick()
@@ -134,12 +134,12 @@ public class PlayerSkills : MonoBehaviour
             //resetar lista auxiliar
             _lastRemedyList.Clear();
             _effects.Clear();
-            //mudou! Ler os remédios. Escrever atributos alterados! Quando entra e tal
+            //mudou! Ler os remï¿½dios. Escrever atributos alterados! Quando entra e tal
             foreach (RemedySO r in _remedyList)
             {
                 if (r is Remedy_Projectile)
                 {
-                    //castei o remedio para seu SO correto e usei o auxiliar para pegar os valores específicos.
+                    //castei o remedio para seu SO correto e usei o auxiliar para pegar os valores especï¿½ficos.
                     Remedy_Projectile aux_r = (Remedy_Projectile)r;
                     projectileThickness = aux_r._projectileThickness;
                 }
@@ -209,7 +209,7 @@ public class PlayerSkills : MonoBehaviour
     private void CollisonDetection()
     {
         bool isMeleePointless = false;
-        //usar melee se não tiver outro dano
+        //usar melee se nï¿½o tiver outro dano
         if (_remedyList == null || _remedyList.Count == 0)
         {
             if (!isMeleePointless)
@@ -227,7 +227,7 @@ public class PlayerSkills : MonoBehaviour
             if (r is Remedy_Area || r is Remedy_Projectile ) {
                 isMeleePointless = true;
             }
-            //checar cada remédio com collider
+            //checar cada remï¿½dio com collider
             if (r is Remedy_Projectile)
             {
                 ShootProjectile();
@@ -263,9 +263,9 @@ public class PlayerSkills : MonoBehaviour
     #region spin around
     private void SpinningAround()
     {
-        //se não tiver mais de zero minas pra spawnar ou se ainda tiver minas do outro tick
+        //se nï¿½o tiver mais de zero minas pra spawnar ou se ainda tiver minas do outro tick
         if (numberOfMines<=0 || spawnedMines.Count > 0) { return; }
-        //instanciar todos em x raio de distância do player distribuido igualmente nos 360º
+        //instanciar todos em x raio de distï¿½ncia do player distribuido igualmente nos 360ï¿½
 
         Vector3 center = transform.position + new Vector3(0,2.5f,0);//centro do player
         for (int i = 0; i < numberOfMines; i++)
@@ -278,7 +278,7 @@ public class PlayerSkills : MonoBehaviour
         }
 
     }
-    //Detectar colisão e tal
+    //Detectar colisï¿½o e tal
     //??
     private void MineAroundHit(Skill_SpinningAround spinScript, Enemy enemy)
     {
@@ -294,9 +294,9 @@ public class PlayerSkills : MonoBehaviour
             isCritical = true;
             AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_critico, transform.position);
         }
-        //enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lá. dano alto
-        float damageTotal = (damage*_mineDamage)*criticalMult;//sei lá. dano alto
-        //efeito de dano do inimigo. critico ou não
+        //enemy.LoseHP((damage*_mineDamage)*criticalMult);//sei lï¿½. dano alto
+        float damageTotal = (damage*_mineDamage)*criticalMult;//sei lï¿½. dano alto
+        //efeito de dano do inimigo. critico ou nï¿½o
         GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
         floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
         floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
@@ -349,7 +349,7 @@ public class PlayerSkills : MonoBehaviour
                 }
                 Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
                 float damageTotal = (damage*criticalMult);
-                //efeito de dano do inimigo. critico ou não
+                //efeito de dano do inimigo. critico ou nï¿½o
                 GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
                 floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
                 floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
@@ -393,7 +393,7 @@ public class PlayerSkills : MonoBehaviour
                 }
                 Enemy enemy = temp_enemiesList[i].GetComponent<Enemy>();
                 float damageTotal = (damage * criticalMult);
-                //efeito de dano do inimigo. critico ou não
+                //efeito de dano do inimigo. critico ou nï¿½o
                 GameObject floatTxt = Instantiate(GetComponent<Player>().floatingDamage, enemy.transform.Find("HPBarUI"));
                 floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
                 floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
@@ -434,8 +434,8 @@ public class PlayerSkills : MonoBehaviour
         floatTxt.GetComponent<DamageIndicator>().damageNumber = damageTotal;
         floatTxt.GetComponent<DamageIndicator>().isCritical = isCritical;
         Events.onDamageEnemy.Invoke(enemy, damageTotal, _effects);
-        //efeito de dano do inimigo. critico ou não
-        //Limpar da cena caso já tenha atingido o ultimo inimigo possível
+        //efeito de dano do inimigo. critico ou nï¿½o
+        //Limpar da cena caso jï¿½ tenha atingido o ultimo inimigo possï¿½vel
         if (_projectileHits >= enemiesAtOnce)
         {
             Destroy(skill_LineProjectile.gameObject);

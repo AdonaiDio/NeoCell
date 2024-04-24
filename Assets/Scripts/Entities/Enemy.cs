@@ -81,6 +81,9 @@ public class Enemy : MonoBehaviour
         ChasePlayer(); //follow player
         //CheckCollisions(interactDistance);//check collisions to do damage
                                           //hpBarEnemy.transform.rotation = Quaternion.identity;
+         if (HP<=0){
+            Die();
+        }
     }
     #region Relacionados a Efeitos
     private void FixedUpdate()
@@ -233,6 +236,9 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+        if (HP <= 0) //Die           
+        Die();
+    
     }
     #endregion
 
@@ -302,9 +308,11 @@ public class Enemy : MonoBehaviour
         float hpToFillBar = HP / HPMax;
         hpBarEnemy.barImage.fillAmount = hpToFillBar;
 
-        if (HP <= 0) //Die
-        {
-            if (effects.Count != 0)
+ 
+    }
+    public virtual void Die()
+    {
+        if (effects.Count != 0)
             {
                 //antes de morrer ver se vai morrer com efeito de explos�o
                 foreach (StatusEffectData fx in effects)
@@ -320,12 +328,9 @@ public class Enemy : MonoBehaviour
                         AudioManager.instance.PlayOneShot(FMODEvents.instance.sfx_gameplay_atack_explose, transform.position);
                     }
                 }
-            }
-            Die();
+            //}
+            
         }
-    }
-    public virtual void Die()
-    {
         float rand = UnityEngine.Random.Range(-1f, 1f);
         float rand3 = UnityEngine.Random.Range(-1f, 1f);
         Vector3 lootSpawnPoint = new Vector3(rand+transform.position.x, 
