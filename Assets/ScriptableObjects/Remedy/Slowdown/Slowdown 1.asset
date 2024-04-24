@@ -15,8 +15,8 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 4bf66b5deb54a01419a7e19179a52509, type: 3}
   _name: Congelamento
   _description: "Causa <b><color=#8FD615>LENTID\xC3O</color></b> no alvo"
-  _nextDescription: "\\u2022 Redu\xE7\xE3o de velocidade <b>50%</b>\r\n\\u2022 Tempo
-    de dura\xE7\xE3o <b>3s</b>"
+  _nextDescription: "Redu\xE7\xE3o de velocidade <b>50%</b>\r\nTempo de dura\xE7\xE3o
+    <b>3s</b>"
   _cost: 5
   _ID: 
   _effect: {fileID: 11400000, guid: b7d9db4bc8a8c9649a1eabe077127b03, type: 2}

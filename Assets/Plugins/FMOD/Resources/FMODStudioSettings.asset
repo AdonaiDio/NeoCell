@@ -599,9 +599,10 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:/Users/USER/Documents/FMOD Studio/Projects/Jam Guarah - NEO/Jam
-    Guarah - NEO.fspro
-  sourceBankPath: C:/Users/USER/Documents/FMOD Studio/Projects/Jam Guarah - NEO/Build
+  sourceProjectPath: ../../../Downloads/Jam Guarah - NEO-20240424T140831Z-001/Jam
+    Guarah - NEO/Jam Guarah - NEO.fspro
+  sourceBankPath: ../../../Downloads/Jam Guarah - NEO-20240424T140831Z-001/Jam Guarah
+    - NEO/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

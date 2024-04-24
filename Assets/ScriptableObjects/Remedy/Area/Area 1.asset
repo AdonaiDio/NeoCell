@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Aguardente
   _description: "Causa <b><color=#8FD615>dano em \xE1rea</color></b> aos inimigos
     pr\xF3ximos"
-  _nextDescription: "\\u2022 \xC1rea de efeito <b>2.5m</b>"
+  _nextDescription: "\xC1rea de efeito <b>2.5m</b>"
   _cost: 5
   _ID: 
   _areaRadius: 5

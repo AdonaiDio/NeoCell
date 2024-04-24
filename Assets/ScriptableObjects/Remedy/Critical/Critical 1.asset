@@ -15,7 +15,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 402eb0e28f8f1ea40ac1174c1cc16507, type: 3}
   _name: "Acerto cr\xEDtico"
   _description: "Os ataques tem chance de causar <b><color=#50B2FA>dano cr\xEDtico</color></b>"
-  _nextDescription: "\\u2022 Chance de cr\xEDtico <b>10%</b>"
+  _nextDescription: "Chance de cr\xEDtico <b>10%</b>"
   _cost: 5
   _ID: 
   _criticalChance: 5

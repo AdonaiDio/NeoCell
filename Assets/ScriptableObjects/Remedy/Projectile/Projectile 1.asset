@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "Proj\xE9til"
   _description: "Lan\xE7a um <b><color=#50B2FA>proj\xE9til</color></b> contra os
     v\xEDrus pr\xF3ximos"
-  _nextDescription: "\\u2022 Tamanho do proj\xE9til <b>0.5</b>"
+  _nextDescription: "Tamanho do proj\xE9til <b>0.5</b>"
   _cost: 5
   _ID: 
   _projectileThickness: 0.5

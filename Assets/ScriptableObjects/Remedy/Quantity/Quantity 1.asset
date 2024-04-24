@@ -15,7 +15,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 66cbaa732f12d5d459bab812ea3624c5, type: 3}
   _name: "Rea\xE7\xE3o em cadeia"
   _description: "Os seus ataques causam <b><color=#8FD715>dano em m\xFAltiplos inimigo</color></b>"
-  _nextDescription: \u2022 Inimigos atingidos por ataque <b>2</b>
+  _nextDescription: Inimigos atingidos por ataque <b>2</b>
   _cost: 5
   _ID: 
   _enemiesAtOnce: 2

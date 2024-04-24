@@ -16,8 +16,8 @@ MonoBehaviour:
   _name: Dano explosivo
   _description: "Ao atingir v\xEDrus, adiciona 1 <b><color=#D77415>bolha explosiva</color></b>.
     Caso o inimigo com bolha morra, ele <b><color=#D77415>explode</color></b>"
-  _nextDescription: "\\u2022 Dura\xE7\xE3o da bolha <b>8s</b>\r\n\\u2022 Dist\xE2ncia
-    da explos\xE3o <b>5m</b>"
+  _nextDescription: "Dura\xE7\xE3o da bolha <b>8s</b>\r\nDist\xE2ncia da explos\xE3o
+    <b>5m</b>"
   _cost: 5
   _ID: 
   _effect: {fileID: 11400000, guid: d1daa2586de7c42498875f9b8c2b11fb, type: 2}

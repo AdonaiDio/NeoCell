@@ -16,10 +16,10 @@ MonoBehaviour:
   _name: Mines
   _description: "<b><color=#D77415>Invoca cristais</color></b> ao redor do jogador.
     Ao entrarem em contato com um v\xEDrus, eles <b><color=#D77415>explodem</color></b>"
-  _nextDescription: '\u2022 Minas invocadas <b>2</b> -> <b>3</b>
+  _nextDescription: 'Minas invocadas <b>2</b> -> <b>3</b>
 
-    \u2022 Raio
-    das minas <b>2.5m</b> -> <b>3</b>'
+    Raio das minas <b>2.5m</b>
+    -> <b>3</b>'
   _cost: 20
   _ID: 
   _numberOfMines: 3
